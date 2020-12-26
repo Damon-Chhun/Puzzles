@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server",
     "server": "nodemon server",
-    "say-hello": "echo Hello World!"
+    "say-hello": "echo Hello World!",
+    "user-faker": "node faker/users/registerUsers.js"
   },
   "repository": {
     "type": "git",
