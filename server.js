@@ -8,7 +8,12 @@ const app = express();
 connectDB();
 
 //Init Middleware
-app.use(express.json({ extended: false }));
+app.use(
+  express.json({
+    extended: false,
+    useCreateIndexes: true
+  })
+);
 
 app.get("/", (req, res) => res.send("API running"));
 
@@ -21,6 +26,8 @@ app.use("/api/shop", require("./routes/api/shop"));
 
 const PORT = process.env.PORT || 5000;
 
-console.log(faker.commerce.department() + faker.commerce.product());
+console.log(
+  faker.fake("department: {{commerce.department}}, {{commerce.product}}")
+);
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
