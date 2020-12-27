@@ -1,29 +1,37 @@
 const faker = require("faker");
 const User = require("../../models/User");
 const gravatar = require("gravatar");
+
 const MongoClient = require("mongodb");
 const config = require("config");
 const url = config.get("mongoURI");
 
-const email = faker.internet.email();
-const avatar = gravatar.url(email, { s: "200", r: "pg", d: "mm" });
+let users = [];
+let counter = 0;
 
-user = new User({
-  name: faker.name.firstName() + " " + faker.name.lastName(),
-  email,
-  avatar,
-  password: faker.internet.password()
-});
+while (counter < 50) {
+  let email = faker.internet.email();
+  let avatar = gravatar.url(email, { s: "200", r: "pg", d: "mm" });
 
-console.log("HELLLOOOOO!!!!");
-console.log(user);
+  user = new User({
+    name: faker.name.firstName() + " " + faker.name.lastName(),
+    email,
+    avatar,
+    password: faker.internet.password()
+  });
+
+  users.push(user);
+  ++counter;
+}
+
+console.log(users);
 
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   const dbo = db.db("Puzzles");
-  dbo.collection("users").insertOne(user, function(err, res) {
+  dbo.collection("users").insertMany(users, function(err, res) {
     if (err) throw err;
-    console.log("1 document inserted");
+    console.log(`${counter} of documents inserted into users collection`);
     db.close();
   });
 });
