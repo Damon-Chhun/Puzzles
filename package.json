@@ -8,7 +8,7 @@
     "start": "node server",
     "server": "nodemon server",
     "say-hello": "echo Hello World!",
-    "register-50-users": "node faker/users/registerUsers.js"
+    "register-10-users": "node faker/users/registerUsers.js"
   },
   "repository": {
     "type": "git",
