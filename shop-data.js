@@ -97,7 +97,32 @@ module.exports.phoneImageUrls = [
   "https://m.media-amazon.com/images/I/51az5uPx4AL._AC_UY218_.jpg"
 ];
 
-module.exports.phonePrices = [];
+module.exports.phonePrices = [
+  "$358.00 ",
+  "$14.99 ",
+  "$177.99 ",
+  "$29.99 ",
+  "$68.65 ",
+  "$52.99 ",
+  "$119.99 ",
+  "$39.51 ",
+  "$19.99 ",
+  "$322.00 ",
+  "$219.98 ",
+  "$9.99 ",
+  "$559.99 ",
+  "$225.00 ",
+  "$39.25 ",
+  "$395.79 ",
+  "$183.49 ",
+  "$29.99 ",
+  "$127.50 ",
+  "$57.95 ",
+  "$159.99 ",
+  "$54.96 ",
+  "$199.58 ",
+  "$799.00 "
+];
 
 module.exports.tvNames = [];
 module.exports.tvImageUrls = [];
