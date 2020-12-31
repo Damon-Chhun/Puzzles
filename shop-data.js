@@ -124,8 +124,59 @@ module.exports.phonePrices = [
   "$799.00 "
 ];
 
-module.exports.tvNames = [];
-module.exports.tvImageUrls = [];
+module.exports.tvNames = [
+  "TCL 40S325 40 Inch 1080p Smart LED ROKU TV (2019)",
+  "SAMSUNG 43-inch Class Crystal UHD TU-8000 Series -… with Alexa Built-in (UN43TU8000FXZA, 2020 Model)",
+  'TCL 4K Smart LED TV, 50" (50S435)',
+  "Insignia NS-32DF310NA19 32-inch Smart HD TV - Fire TV Edition",
+  "LG OLED65CXPUA Alexa BuiltIn CX 65Inch 4K Smart OLED TV 2020",
+  'TCL 50" 5-Series 4K UHD Dolby Vision HDR QLED ROKU Smart TV - 50S535',
+  'LG 55UN7300PUF Alexa Built-In UHD 73 Series 55" 4K Smart UHD TV (2020)',
+  "Hisense 32-Inch Class H4 Series LED Roku Smart TV with Alexa Compatibility (32H4F, 2020 Model)",
+  'TCL 55" 6-Series 4K UHD Dolby Vision HDR QLED ROKU Smart TV - 55R635',
+  "SAMSUNG 65-inch Class Curved UHD TU-8300 Series - … With Alexa Built-in (UN65TU8300FXZA, 2020 Model)",
+  'SAMSUNG QN32Q50RAFXZA Flat 32" QLED 4K 32Q50 Series Smart TV',
+  "SAMSUNG 55-inch Class QLED Q70T Series - 4K UHD Du…V with Alexa Built-in (QN55Q70TAFXZA, 2020 Model)",
+  "TCL 43S425 43 Inch 4K Ultra HD Smart ROKU LED TV (2018)",
+  "All-New Insignia NS-43DF710NA21 43-inch Smart 4K UHD - Fire TV Edition, Released 2020",
+  "Sony X800H 43 Inch TV: 4K Ultra HD Smart LED TV with HDR and Alexa Compatibility - 2020 Model",
+  "SAMSUNG 43-inch Class QLED Q60T Series - 4K UHD Du…V with Alexa Built-in (QN43Q60TAFXZA, 2020 Model)",
+  "Sony X900H 55 Inch TV: 4K Ultra HD Smart LED TV wi… for Gaming, and Alexa Compatibility - 2020 Model",
+  "All-New Toshiba 43LF421U21 43-inch Smart HD 1080p TV - Fire TV Edition, Released 2020",
+  "Samsung Flat 82-Inch 4K 8 Series UHD Smart TV with HDR and Alexa Compatibility - 2019 Model",
+  "LG Electronics 24LM530S-PU 24-Inch HD webOS 3.5 Smart TV",
+  "All-New Insignia NS-39DF310NA21 39-inch Smart HD 720p TV - Fire TV Edition",
+  "Hisense 32-Inch 32H5500F Class H55 Series Android Smart TV with Voice Remote (2020 Model)",
+  "LG 22LJ4540 TV, 22-Inch 1080p IPS LED - 2017 Model",
+  "SAMSUNG 65-inch Class QLED Q80T Series - 4K UHD Di…V with Alexa Built-in (QN65Q80TAFXZA, 2020 Model)"
+];
+module.exports.tvImageUrls = [
+  "https://m.media-amazon.com/images/I/71YZlXXFktL._AC_UY218_.jpg",
+  "https://m.media-amazon.com/images/I/71RiQZ0J2SL._AC_UY218_.jpg",
+  "https://m.media-amazon.com/images/I/714hn7q7WxL._AC_UY218_.jpg",
+  "https://m.media-amazon.com/images/I/41VCva3xinL._AC_UY218_.jpg",
+  "https://m.media-amazon.com/images/I/A1Ik70D2wfL._AC_UY218_.jpg",
+  "https://m.media-amazon.com/images/I/91tMNAWWsPL._AC_UY218_.jpg",
+  "https://m.media-amazon.com/images/I/81CnumJVUGL._AC_UY218_.jpg",
+  "https://m.media-amazon.com/images/I/71gzlKauNQL._AC_UY218_.jpg",
+  "https://m.media-amazon.com/images/I/91CXxVtVkAL._AC_UY218_.jpg",
+  "https://m.media-amazon.com/images/I/9138UedBC+L._AC_UY218_.jpg",
+  "https://m.media-amazon.com/images/I/51NKhnjhpGL._AC_UY218_.jpg",
+  "https://m.media-amazon.com/images/I/51d1lfcMIaL._AC_UY218_.jpg",
+  "https://m.media-amazon.com/images/I/71tN5cFBvFL._AC_UY218_.jpg",
+  "https://m.media-amazon.com/images/I/61+OhM4LEUL._AC_UY218_.jpg",
+  "https://m.media-amazon.com/images/I/71VC9cPNy6L._AC_UY218_.jpg",
+  "https://m.media-amazon.com/images/I/61fKzrson-L._AC_UY218_.jpg",
+  "https://m.media-amazon.com/images/I/612U-Yeox0L._AC_UY218_.jpg",
+  "https://m.media-amazon.com/images/I/61piX33QmAL._AC_UY218_.jpg",
+  "https://m.media-amazon.com/images/I/91r0Iqby0QL._AC_UY218_.jpg",
+  "https://m.media-amazon.com/images/I/91zmQQ6C09L._AC_UY218_.jpg",
+  "https://m.media-amazon.com/images/I/612LGuPnbVL._AC_UY218_.jpg",
+  "https://m.media-amazon.com/images/I/8161gQWMnNL._AC_UY218_.jpg",
+  "https://m.media-amazon.com/images/I/81NZaNRrvDL._AC_UY218_.jpg",
+  "https://m.media-amazon.com/images/I/61DIUfDxBtL._AC_UY218_.jpg"
+];
+
 module.exports.tvPrices = [];
 
 module.exports.menClothesNames = [];
