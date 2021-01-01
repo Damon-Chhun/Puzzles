@@ -29,18 +29,22 @@ module.exports.laptopImages = [
 ];
 
 module.exports.laptopPrices = [
-  "$364.99",
-  "$416.22",
-  "$999.99",
-  "$269.99",
-  "$1,174.84",
-  "$2,599.00",
-  "$1,249.00",
-  "$680.39",
-  "$520.83",
-  "$1,879.99",
-  "$853.28",
-  "$749.99"
+  364.99,
+  416.22,
+  999.99,
+  269.99,
+  1,
+  174.84,
+  2,
+  599.0,
+  1,
+  249.0,
+  680.39,
+  520.83,
+  1,
+  879.99,
+  853.28,
+  749.99
 ];
 
 module.exports.phoneNames = [
@@ -98,33 +102,33 @@ module.exports.phoneImageUrls = [
 ];
 
 module.exports.phonePrices = [
-  "$358.00 ",
-  "$14.99 ",
-  "$177.99 ",
-  "$29.99 ",
-  "$68.65 ",
-  "$52.99 ",
-  "$119.99 ",
-  "$39.51 ",
-  "$19.99 ",
-  "$322.00 ",
-  "$219.98 ",
-  "$9.99 ",
-  "$559.99 ",
-  "$225.00 ",
-  "$39.25 ",
-  "$395.79 ",
-  "$183.49 ",
-  "$29.99 ",
-  "$127.50 ",
-  "$57.95 ",
-  "$159.99 ",
-  "$54.96 ",
-  "$199.58 ",
-  "$799.00 "
+  358.0,
+  14.99,
+  177.99,
+  29.99,
+  68.65,
+  52.99,
+  119.99,
+  39.51,
+  19.99,
+  322.0,
+  219.98,
+  9.99,
+  559.99,
+  225.0,
+  39.25,
+  395.79,
+  183.49,
+  29.99,
+  127.5,
+  57.95,
+  159.99,
+  54.96,
+  199.58,
+  799.0
 ];
 
-module.exports.tvNames = [
+module.exports.hatNames = [
   "Carhartt Men's Knit Cuffed Beanie",
   'mysuntown Trapper Hat Winter Hats for Men, Trooper… Ear Flaps, Women Ushanka Bomber Fur Hats 22"-24"',
   "Carhartt Men's Buffalo Sandstone Meshback Cap",
@@ -156,7 +160,7 @@ module.exports.tvNames = [
   "Tommy Hilfiger Men's Dad Hat Avery",
   "adidas Men's Superlite Relaxed Adjustable Performance Cap"
 ];
-module.exports.tvImageUrls = [
+module.exports.hatImageUrls = [
   "https://m.media-amazon.com/images/I/A1ermmc7iQL._AC_UY218_.jpg",
   "https://m.media-amazon.com/images/I/71FZApsNRrL._AC_UY218_.jpg",
   "https://m.media-amazon.com/images/I/71cXRq5oBlL._AC_UY218_.jpg",
@@ -189,45 +193,75 @@ module.exports.tvImageUrls = [
   "https://m.media-amazon.com/images/I/81U5+6GLVZL._AC_UY218_.jpg"
 ];
 
-module.exports.tvPrices = [
-  "$16.99",
-  "$22.99",
-  "$16.99",
-  "$16.99",
-  "$18.23",
-  "$15.99",
-  "$16.27",
-  "$19.99",
-  "$13.99",
-  "$26.99",
-  "$13.95",
-  "$16.99",
-  "$19.99",
-  "$28.99",
-  "$12.99",
-  "$16.49",
-  "$18.23",
-  "$11.99",
-  "$11.99",
-  "$13.99",
-  "$12.99",
-  "$21.99",
-  "$17.99",
-  "$13.98",
-  "$19.99",
-  "$21.50",
-  "$12.99",
-  "$16.99",
-  "$15.92"
+module.exports.hatPrices = [
+  16.99,
+  22.99,
+  16.99,
+  16.99,
+  18.23,
+  15.99,
+  16.27,
+  19.99,
+  13.99,
+  26.99,
+  13.95,
+  16.99,
+  19.99,
+  28.99,
+  12.99,
+  16.49,
+  18.23,
+  11.99,
+  11.99,
+  13.99,
+  12.99,
+  21.99,
+  17.99,
+  13.98,
+  19.99,
+  21.5,
+  12.99,
+  16.99,
+  15.92
 ];
 
-module.exports.menClothesNames = [];
-module.exports.menClothesImageUrls = [];
-module.exports.menClothesPrices = [];
+module.exports.menClothesNames = [
+  "Camo Down Vest",
+  "Floral T-shirt",
+  "Black & White Longsleeve",
+  "Pink T-shirt",
+  "Jean Long Sleeve",
+  "Burgundy T-shirt"
+];
+module.exports.menClothesImageUrls = [
+  "https://i.ibb.co/xJS0T3Y/camo-vest.png",
+  "https://i.ibb.co/qMQ75QZ/floral-shirt.png",
+  "https://i.ibb.co/55z32tw/long-sleeve.png",
+  "https://i.ibb.co/RvwnBL8/pink-shirt.png",
+  "https://i.ibb.co/VpW4x5t/roll-up-jean-shirt.png",
+  "https://i.ibb.co/mh3VM1f/polka-dot-shirt.png"
+];
+module.exports.menClothesPrices = [325, 20, 25, 25, 40, 25];
 
-module.exports.womenClothesNames = [];
-module.exports.womenClothesImagesUrls = [];
-module.exports.womenClothesPrices = [];
+module.exports.womenClothesNames = [
+  "Blue Tanktop",
+  "Floral Blouse",
+  "Floral Dress",
+  "Red Dots Dress",
+  "Striped Sweater",
+  "Yellow Track Suit",
+  "White Blouse"
+];
+module.exports.womenClothesImagesUrls = [
+  "https://i.ibb.co/7CQVJNm/blue-tank.png",
+  "https://i.ibb.co/4W2DGKm/floral-blouse.png",
+  "https://i.ibb.co/KV18Ysr/floral-skirt.png",
+  "https://i.ibb.co/N3BN1bh/red-polka-dot-dress.png",
+  "https://i.ibb.co/KmSkMbH/striped-sweater.png",
+  "https://i.ibb.co/v1cvwNf/yellow-track-suit.png",
+  "https://i.ibb.co/qBcrsJg/white-vest.png"
+];
+module.exports.womenClothesPrices = [25, 20, 80, 80, 45, 135, 20];
 
 module.exports.shoeNames = [];
 module.exports.shoeImageUrls = [];
