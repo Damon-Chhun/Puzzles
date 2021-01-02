@@ -249,7 +249,7 @@ module.exports.womenClothesNames = [
   "Yellow Track Suit",
   "White Blouse"
 ];
-module.exports.womenClothesImagesUrls = [
+module.exports.womenClothesImageUrls = [
   "https://i.ibb.co/7CQVJNm/blue-tank.png",
   "https://i.ibb.co/4W2DGKm/floral-blouse.png",
   "https://i.ibb.co/KV18Ysr/floral-skirt.png",
