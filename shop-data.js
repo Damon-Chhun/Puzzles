@@ -218,7 +218,8 @@ module.exports.hatPrices = [
   21.5,
   12.99,
   16.99,
-  15.92
+  15.92,
+  20.0
 ];
 
 module.exports.menClothesNames = [
