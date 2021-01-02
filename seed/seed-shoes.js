@@ -5,29 +5,29 @@ const MongoClient = require("mongodb");
 const config = require("config");
 const url = config.get("mongoURI");
 
-const phones = [];
+const shoes = [];
 
-const { phoneNames, phoneImageUrls, phonePrices } = shopData;
+const { shoeNames, shoeImageUrls, shoePrices } = shopData;
 
-for (var i = 0; i < shopData.phoneNames.length; ++i) {
-  let phone = {
-    title: phoneNames[i],
-    imageURL: phoneImageUrls[i],
+for (var i = 0; i < shopData.shoeNames.length; ++i) {
+  let shoe = {
+    title: shoeNames[i],
+    imageURL: shoeImageUrls[i],
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, quia, non repellat vel praesentium itaque omnis animi earum quam perspiciatis minima ipsum et quibusdam asperiores nostrum labore autem! Explicabo, in.",
-    price: phonePrices[i]
+    price: shoePrices[i]
   };
-  phones.push(phone);
+  shoes.push(shoe);
 }
 
-//console.log(phones);
+// console.log(shoes);
 
 shop = new Shop({
-  Department: "Phone",
-  product: phones
+  Department: "shoe",
+  product: shoes
 });
 
-//console.log(shop);
+// console.log(shop);
 
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
