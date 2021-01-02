@@ -8,7 +8,13 @@
     "start": "node server",
     "server": "nodemon server",
     "say-hello": "echo Hello World!",
-    "register-10-users": "node faker/users/registerUsers.js"
+    "register-10-users": "node faker/users/registerUsers.js",
+    "seed-laptops": "node seed/seed-laptops.js",
+    "seed-phones": "node seed/seed-phones.js",
+    "seed-hats": "node seed/seed-hats.js",
+    "seed-mens": "node seed/seed-mens.js",
+    "seed-women": "node seed/seed-womens.js",
+    "seed-shoes": "node seed/seed-shoes.js"
   },
   "repository": {
     "type": "git",

@@ -33,15 +33,11 @@ module.exports.laptopPrices = [
   416.22,
   999.99,
   269.99,
-  1,249.99,
   174.84,
-  2,200.0,
   599.0,
-  1,200.0,
-  249.0,
+  2490.0,
   680.39,
   520.83,
-  1,000.0,
   879.99,
   853.28,
   749.99
@@ -219,7 +215,7 @@ module.exports.hatPrices = [
   17.99,
   13.98,
   19.99,
-  21.50,
+  21.5,
   12.99,
   16.99,
   15.92
@@ -264,23 +260,23 @@ module.exports.womenClothesImagesUrls = [
 module.exports.womenClothesPrices = [25, 20, 80, 80, 45, 135, 20];
 
 module.exports.shoeNames = [
-  'Adidas NMD',
-  'Adidas Yeezy',
-  'Black Converse',
-  'Nike White AirForce',
-  'Nike Red High Tops',
-  'Nike Brown High Tops',
-  'Air Jordan Limited',
-  'Timberlands',
+  "Adidas NMD",
+  "Adidas Yeezy",
+  "Black Converse",
+  "Nike White AirForce",
+  "Nike Red High Tops",
+  "Nike Brown High Tops",
+  "Air Jordan Limited",
+  "Timberlands"
 ];
 module.exports.shoeImageUrls = [
-  'https://i.ibb.co/0s3pdnc/adidas-nmd.png',
-  'https://i.ibb.co/dJbG1cT/yeezy.png',
-  'https://i.ibb.co/bPmVXyP/black-converse.png',
-  'https://i.ibb.co/1RcFPk0/white-nike-high-tops.png',
-  'https://i.ibb.co/QcvzydB/nikes-red.png',
-  'https://i.ibb.co/fMTV342/nike-brown.png',
-  'https://i.ibb.co/w4k6Ws9/nike-funky.png',
-  'https://i.ibb.co/Mhh6wBg/timberlands.png',
+  "https://i.ibb.co/0s3pdnc/adidas-nmd.png",
+  "https://i.ibb.co/dJbG1cT/yeezy.png",
+  "https://i.ibb.co/bPmVXyP/black-converse.png",
+  "https://i.ibb.co/1RcFPk0/white-nike-high-tops.png",
+  "https://i.ibb.co/QcvzydB/nikes-red.png",
+  "https://i.ibb.co/fMTV342/nike-brown.png",
+  "https://i.ibb.co/w4k6Ws9/nike-funky.png",
+  "https://i.ibb.co/Mhh6wBg/timberlands.png"
 ];
-module.exports.shoePrices = [220,280,110,160,160,160,190,200];
+module.exports.shoePrices = [220, 280, 110, 160, 160, 160, 190, 200];
