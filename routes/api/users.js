@@ -61,7 +61,6 @@ router.post(
       user.password = await bcrypt.hash(password, salt);
 
       await user.save();
-      res.send("user registered!");
 
       const payload = {
         user: {
@@ -69,11 +68,15 @@ router.post(
         }
       };
 
-      jsonwebtoken.sign(payload, config.get("jwtSecret"), { expiresIn: 3600 }),
+      jsonwebtoken.sign(
+        payload,
+        config.get("jwtSecret"),
+        { expiresIn: 3600 },
         (err, token) => {
           if (err) throw err;
           res.json({ token });
-        };
+        }
+      );
     } catch (error) {
       console.rror(error.essage);
       res.status(500).send("Server Error");

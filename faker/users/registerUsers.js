@@ -43,8 +43,13 @@ const payload = {
   }
 };
 
-jsonwebtoken.sign(payload, config.get("jwtSecret"), { expiresIn: 3600 }),
+jsonwebtoken.sign(
+  payload,
+  config.get("jwtSecret"),
+  { expiresIn: 3600 },
   (err, token) => {
+    console.log(token);
     if (err) throw err;
     res.json({ token });
-  };
+  }
+);
