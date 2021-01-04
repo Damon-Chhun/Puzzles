@@ -1,6 +1,5 @@
 const express = require("express");
 const connectDB = require("./config/db");
-const faker = require("faker");
 
 const app = express();
 
@@ -25,9 +24,5 @@ app.use("/api/reviews", require("./routes/api/reviews"));
 app.use("/api/shop", require("./routes/api/shop"));
 
 const PORT = process.env.PORT || 5000;
-
-console.log(
-  faker.fake("department: {{commerce.department}}, {{commerce.product}}")
-);
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
