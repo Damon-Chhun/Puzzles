@@ -14,12 +14,12 @@ const CartSchema = mongoose.Schema({
     }
   ],
   active: {
-    boolean,
-    deafult: true
+    type: Boolean,
+    default: true
   },
   lastModified: {
-    type: Data,
-    deafult: Date.now
+    type: Date,
+    default: Date.now
   }
 });
 
