@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Shop = require("./Shop");
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -20,7 +21,11 @@ const UserSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  purchaseHistory: {
+    type: [Shop.Schema],
+    default: []
   }
 });
 
-module.exports = User = mongoose.model("user", UserSchema);
+module.exports = User = mongoose.model("User", UserSchema);
