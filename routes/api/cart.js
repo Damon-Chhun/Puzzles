@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const auth = require("../../middleware/auth");
 const User = require("../../models/User");
+const Shop = require("../../models/Shop");
 const Cart = require("../../models/Cart");
 const config = require("config");
 const { check, validationResult } = require("express-validator");
@@ -11,16 +12,10 @@ const { check, validationResult } = require("express-validator");
 //@access   Private
 router.post(
   "/",
+  auth,
   [
-    auth,
-    [
-      check("productID", "Invalid productID").exists(),
-      check("quantity", "No quantity provided").isNumeric(),
-      check("name", "Invalid Name")
-        .not()
-        .isEmpty(),
-      check("price", "no price provided").isNumeric()
-    ]
+    check("productID", "Invalid productID").isString(),
+    check("quantity", "No quantity provided").isNumeric()
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -28,19 +23,17 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    console.log(req.body);
-
-    const { productID, quantity, name, price } = req.body;
-    const { id } = req.user;
-    console.log(id);
+    const { quantity, productID } = req.body;
     try {
-      let doesCartExist = await Cart.findOne({ userId: id });
+      let doesCartExist = await Cart.findOne({ userId: req.user.id });
+      console.log(doesCartExist);
+      const item = await Shop.findById(productID);
+      console.log(item);
 
       if (!doesCartExist && quantity < 0) {
         // If trying to reduce a product in a cart that doesn't exist
         return res.status(400).json({ msg: "No Cart Exist" });
       }
-
       if (doesCartExist) {
         // If there is already a cart that exists
         let doesItemExist = doesCartExist.products.findIndex(
@@ -49,9 +42,9 @@ router.post(
 
         if (doesCartExist && quantity < 0 && doesItemExist < 0) {
           // If trying to reduce a product in a cart that doesn't exist
-          return res.status(400).json({ msg: "No Item Exist" });
+          return res.status(400).json({ msg: "No Item Exists Exist" });
         }
-
+        console.log(doesItemExist, "    FIND INDEX");
         if (doesItemExist > -1) {
           //Item already exists in cart (change quantity)
           doesCartExist.products[doesItemExist].quantity += quantity;
@@ -64,24 +57,23 @@ router.post(
           doesCartExist.products.push({
             productID,
             quantity,
-            name,
-            price
+            name: item.name,
+            price: item.price
           });
+          await doesCartExist.save();
+          res.json(doesCartExist);
         }
-        await doesCartExist.save();
-        res.json(doesCartExist);
       }
-
       //build Cart object (No Cart exists)
       else {
         let reqCart = new Cart({
-          userId: id,
+          userId: req.user.id,
           products: [
             {
               productID,
               quantity,
-              name,
-              price
+              item: item.name,
+              price: item.price
             }
           ]
         });

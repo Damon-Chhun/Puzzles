@@ -10,7 +10,7 @@ connectDB();
 app.use(
   express.json({
     extended: false,
-    useCreateIndexes: true
+    createIndexes: true
   })
 );
 
