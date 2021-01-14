@@ -81,6 +81,9 @@ router.post(
         await reqCart.save();
         return res.json(reqCart);
       }
+
+      await doesCartExist.save();
+      return res.json(doesCartExist);
     } catch (error) {
       console.error(error.message);
       res.status(500).send("something went wrong :(");
