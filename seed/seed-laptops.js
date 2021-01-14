@@ -20,7 +20,7 @@ for (var i = 0; i < shopData.laptopNames.length; ++i) {
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     const dbo = db.db("Puzzles");
-    dbo.collection("Shop").insertOne(shop, function(err, res) {
+    dbo.collection("shop").insertOne(shop, function(err, res) {
       if (err) throw err;
       console.log(`${i} of documents inserted into users collection`);
       db.close();
