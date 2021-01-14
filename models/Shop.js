@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Posts = require("./Posts");
 
 const ShopSchema = new mongoose.Schema({
   Department: {
@@ -18,6 +19,10 @@ const ShopSchema = new mongoose.Schema({
   },
   price: {
     type: Number
+  },
+  posts: {
+    type: [Posts.Schema],
+    deafult: []
   }
 });
 
