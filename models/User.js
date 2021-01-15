@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Shop = require("./Shop");
+const Posts = require("./Posts");
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -24,6 +25,10 @@ const UserSchema = new mongoose.Schema({
   },
   purchaseHistory: {
     type: [Shop.Schema],
+    default: []
+  },
+  posts: {
+    type: [Posts.Schema],
     default: []
   }
 });

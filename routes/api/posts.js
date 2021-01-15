@@ -13,7 +13,7 @@ const { check, validationResult } = require("express-validator");
 //@desc     Make a review
 //@access   Private
 router.post(
-  "/:productID",
+  "/:Department/:productID",
   auth,
   [
     [
@@ -31,6 +31,7 @@ router.post(
     try {
       const user = await User.findById(req.user.id).select("-password");
       console.log(user, "USER MODEL");
+
       const product = await Shop.findById(req.params.productID);
       console.log(product, "PRODUCT MODEL");
 
@@ -47,6 +48,10 @@ router.post(
         { _id: product.id },
         { $push: { posts: newPost } }
       );
+      await User.findOneAndUpdate(
+        { _id: req.user.id },
+        { $push: { posts: newPost } }
+      );
 
       res.json(post);
     } catch (err) {
@@ -60,8 +65,9 @@ router.post(
 //@desc     Get all reviews for a product
 //@access   Public
 
-router.get("/:productID", async (req, res) => {
+router.get("/:Department/:productID", async (req, res) => {
   try {
+    console.log(req.params.productID);
     const product = await Shop.findById(req.params.productID);
     //console.log(product.posts);
     if (product.posts.length < 1) {
@@ -75,4 +81,28 @@ router.get("/:productID", async (req, res) => {
     res.status(404).json("Server Error");
   }
 });
+//@route    GET api/posts/
+//@desc     Get all reviews from a user
+//@access   Private
+
+router.get("/:userID", auth, async (req, res) => {
+  try {
+    console.log(req.params.userID);
+    const user = await User.findById(req.params.userID);
+
+    const reviews = user.posts;
+    console.log(reviews);
+    if (!reviews) {
+      res.status(404).json({ msg: "Error finding post made by user" });
+    }
+    res.json(reviews);
+  } catch (error) {
+    console.error(error.message);
+    if (!reviews) {
+      res.status(404).json({ msg: "Error finding post made by user" });
+    }
+    res.status(404).json("Server Error");
+  }
+});
+
 module.exports = router;
