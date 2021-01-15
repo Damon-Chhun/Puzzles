@@ -6,11 +6,15 @@ const PostsSchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: "users"
   },
+  productID: {
+    type: Schema.Types.ObjectId,
+    ref: "shop"
+  },
   text: {
     type: String,
     required: true
   },
-  title: {
+  name: {
     type: String
   },
   avatar: {
