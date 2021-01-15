@@ -9,7 +9,7 @@ const Posts = require("../../models/Posts");
 
 const { check, validationResult } = require("express-validator");
 
-//@route    Post api/shop/:Department/:productID
+//@route    Post api/posts/:productID
 //@desc     Make a review
 //@access   Private
 router.post(
@@ -56,4 +56,23 @@ router.post(
   }
 );
 
+//@route    GET api/posts/:productID
+//@desc     Get all reviews for a product
+//@access   Public
+
+router.get("/:productID", async (req, res) => {
+  try {
+    const product = await Shop.findById(req.params.productID);
+    //console.log(product.posts);
+    if (product.posts.length < 1) {
+      res.status(404).json("No Reviews for this product yet");
+    } else {
+      console.log(product.posts, "REVIEWS FOR PRODUCT");
+      res.json(product.posts);
+    }
+  } catch (error) {
+    console.error(error.message);
+    res.status(404).json("Server Error");
+  }
+});
 module.exports = router;
