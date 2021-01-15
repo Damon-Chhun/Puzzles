@@ -13,7 +13,7 @@ const { check, validationResult } = require("express-validator");
 //@desc     Make a review
 //@access   Private
 router.post(
-  "/:Department/:productID",
+  "/:productID",
   auth,
   [
     [
@@ -23,6 +23,7 @@ router.post(
     ]
   ],
   async (req, res) => {
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
@@ -33,15 +34,20 @@ router.post(
       const product = await Shop.findById(req.params.productID);
       console.log(product, "PRODUCT MODEL");
 
-      const newPost = {
+      const newPost = new Posts({
         text: req.body.text,
         user: req.user.id,
         name: user.name,
         avatar: user.avatar,
         productID: product.id
-      };
+      });
 
       const post = await newPost.save();
+      await Shop.findOneAndUpdate(
+        { _id: product.id },
+        { $push: { posts: newPost } }
+      );
+
       res.json(post);
     } catch (err) {
       console.error(err.message);
