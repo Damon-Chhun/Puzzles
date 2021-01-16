@@ -20,10 +20,6 @@ const ShopSchema = new mongoose.Schema({
   },
   price: {
     type: Number
-  },
-  posts: {
-    type: [Posts.Schema],
-    deafult: []
   }
 });
 

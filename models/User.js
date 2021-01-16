@@ -26,10 +26,6 @@ const UserSchema = new mongoose.Schema({
   purchaseHistory: {
     type: [Shop.Schema],
     default: []
-  },
-  posts: {
-    type: [Posts.Schema],
-    default: []
   }
 });
 

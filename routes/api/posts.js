@@ -109,4 +109,27 @@ router.get("/:userID", auth, async (req, res) => {
   }
 });
 
+//@route    DELETE api/posts/
+//@desc     DELETE review
+//@access   Private
+
+router.delete("/:postID", auth, async (req, res) => {
+  try {
+    const post = await Posts.findById(req.params.postID);
+    console.log(post);
+
+    //check user
+    if (post.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: "User not authorized" });
+    }
+
+    await post.remove();
+
+    res.json({ msg: "Post removed" });
+  } catch (error) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 module.exports = router;
