@@ -94,7 +94,7 @@ router.get("/:userID", auth, async (req, res) => {
       res.status(404).json({ msg: "Error finding post made by user" });
     }
 
-    const reviews = user.posts;
+    const reviews = await Posts.findOne({ user: req.params.userID });
     console.log(reviews);
     if (!reviews) {
       res.status(404).json({ msg: "Error finding post made by user" });
