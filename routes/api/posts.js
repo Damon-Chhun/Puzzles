@@ -94,7 +94,7 @@ router.get("/:userID", auth, async (req, res) => {
       res.status(404).json({ msg: "Error finding post made by user" });
     }
 
-    const reviews = await Posts.findOne({ user: req.params.userID });
+    const reviews = await Posts.find({ user: req.params.userID });
     console.log(reviews);
     if (!reviews) {
       res.status(404).json({ msg: "Error finding post made by user" });
@@ -126,6 +126,32 @@ router.delete("/:postID", auth, async (req, res) => {
     await post.remove();
 
     res.json({ msg: "Post removed" });
+  } catch (error) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+//@route    PUT api/posts/
+//@desc     Like a post
+//@access   Private
+
+router.put("/like/:postID", auth, async (req, res) => {
+  try {
+    const post = await Posts.findById(req.params.postID);
+
+    //Check if the post has already been liked
+    if (
+      post.likes.filter(like => like.user.toString() === req.user.id).length > 0
+    ) {
+      return res.status(400).json({ msg: "Post is already liked" });
+    }
+
+    post.likes.unshift({ user: req.user.id });
+
+    await post.save();
+
+    res.json(post.likes);
   } catch (error) {
     console.error(err.message);
     res.status(500).send("Server Error");
