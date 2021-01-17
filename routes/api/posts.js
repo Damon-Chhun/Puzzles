@@ -4,7 +4,6 @@ const auth = require("../../middleware/auth");
 
 const User = require("../../models/User");
 const Shop = require("../../models/Shop");
-const Cart = require("../../models/Cart");
 const Posts = require("../../models/Posts");
 
 const { check, validationResult } = require("express-validator");
@@ -13,7 +12,7 @@ const { check, validationResult } = require("express-validator");
 //@desc     Make a review
 //@access   Private
 router.post(
-  "/:Department/:productID",
+  "/:productID",
   auth,
   [
     [
@@ -44,14 +43,6 @@ router.post(
       });
 
       const post = await newPost.save();
-      await Shop.findOneAndUpdate(
-        { _id: product.id },
-        { $push: { posts: newPost } }
-      );
-      await User.findOneAndUpdate(
-        { _id: req.user.id },
-        { $push: { posts: newPost } }
-      );
 
       res.json(post);
     } catch (err) {
@@ -68,13 +59,15 @@ router.post(
 router.get("/:Department/:productID", async (req, res) => {
   try {
     console.log(req.params.productID);
-    const product = await Shop.findById(req.params.productID);
-    //console.log(product.posts);
-    if (product.posts.length < 1) {
-      res.status(404).json("No Reviews for this product yet");
+    const review = await Posts.find({ productID: req.params.productID });
+
+    console.log(review);
+
+    //check if there arent any reviews
+    if (review.length == 0) {
+      return res.status(404).json({ msg: `They're no reviews for this item` });
     } else {
-      console.log(product.posts, "REVIEWS FOR PRODUCT");
-      res.json(product.posts);
+      res.json(review);
     }
   } catch (error) {
     console.error(error.message);
@@ -109,7 +102,7 @@ router.get("/:userID", auth, async (req, res) => {
   }
 });
 
-//@route    DELETE api/posts/
+//@route    DELETE api/posts/:postID
 //@desc     DELETE review
 //@access   Private
 
@@ -132,7 +125,7 @@ router.delete("/:postID", auth, async (req, res) => {
   }
 });
 
-//@route    PUT api/posts/
+//@route    PUT api/posts/like/postID
 //@desc     Like a post
 //@access   Private
 
@@ -158,7 +151,7 @@ router.put("/like/:postID", auth, async (req, res) => {
   }
 });
 
-//@route    PUT api/posts/
+//@route    PUT api/posts/unlike/postID
 //@desc     unlike a post
 //@access   Private
 
@@ -188,5 +181,49 @@ router.put("/unlike/:postID", auth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+//@route    Post api/posts/:postID
+//@desc     Make a review
+//@access   Private
+router.post(
+  "/comment/:postID",
+  auth,
+  [
+    [
+      check("text", "Text is required")
+        .not()
+        .isEmpty()
+    ]
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+      const user = await User.findById(req.user.id).select("-password");
+      console.log(user, "USER MODEL");
+
+      const post = await Posts.findById(req.params.postID);
+
+      const newComment = {
+        text: req.body.text,
+        user: req.user.id,
+        name: user.name,
+        avatar: user.avatar
+      };
+
+      post.comments.unshift(newComment);
+
+      await post.save();
+
+      res.json(post.comments);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).json("Server Error");
+    }
+  }
+);
 
 module.exports = router;
