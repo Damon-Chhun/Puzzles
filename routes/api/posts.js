@@ -2,10 +2,6 @@ const express = require("express");
 const router = express.Router();
 const auth = require("../../middleware/auth");
 
-const User = require("../../models/User");
-const Shop = require("../../models/Shop");
-const Posts = require("../../models/Posts");
-
 const { check, validationResult } = require("express-validator");
 
 const PostsController = require("../../controllers/Posts.Controller");
