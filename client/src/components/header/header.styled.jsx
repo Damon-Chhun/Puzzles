@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const HeaderContainer = styled.div`
-  height: 10vh;
+  height: 50px:
   width: 100vw;
   display: flex;
   flex-direction: row;
@@ -10,18 +10,19 @@ export const HeaderContainer = styled.div`
 `;
 
 export const LogoContainer = styled(Link)`
-  height: 10vh;
-  width: 70px;
+  margin: 10px;
+  height: 8vh;
+  width: 8vw;
   display: flex;
   flex-direction: column;
   flex-wrap: none;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
 
   .nested-logo {
     cursor: pointer;
-    height: 6vh;
-    width: 15vw;
+    height: 100%;
+    width: 100%;
   }
 `;
 
@@ -42,4 +43,5 @@ export const OptionLink = styled(Link)`
   color: black;
   text-decoration: none;
   margin: 2vw;
+  font-size: 2vh;
 `;

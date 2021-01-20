@@ -6,7 +6,8 @@ export const HomePageContainer = styled.div`
   flex-direction: column;
   flex-wrap: no-wrap;
   width: 100vw;
-  height: 100vh;
+
+  overflow-y: scroll;
 `;
 
 export const BackgroundContainer = styled.div`
@@ -15,8 +16,13 @@ export const BackgroundContainer = styled.div`
   height: 100vh;
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  justify-content: flex-start;
+  align-items: flex-start;
   background-size: cover;
-  padding-bottom: 5vh;
+  .button {
+    position: absolute;
+    height: 50vh;
+    width: 20vw;
+    font-size: 5vh;
+  }
 `;

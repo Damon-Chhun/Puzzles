@@ -7,7 +7,7 @@ const HomePage = () => (
   <HomePageContainer>
     <Header />
     <BackgroundContainer>
-      <Button variant="outlined" color="default" size="large" href="/shop">
+      <Button color="default" size="large" href="/shop" className="button">
         Finish Your Puzzle
       </Button>
     </BackgroundContainer>
