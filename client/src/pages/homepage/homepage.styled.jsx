@@ -12,7 +12,7 @@ export const HomePageContainer = styled.div`
 export const BackgroundContainer = styled.div`
   background-image: url(${Background});
   background-position: center;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
