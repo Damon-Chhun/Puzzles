@@ -1,7 +1,8 @@
 import React from "react";
 import { HomePageContainer, BackgroundContainer } from "./homepage.styled";
 import Header from "../../components/header/header.component";
-import { Button } from "@material-ui/core";
+import { Button, ButtonBase } from "@material-ui/core";
+import Directory from "../../components/directory/directory.component";
 
 const HomePage = () => (
   <HomePageContainer>
@@ -11,6 +12,8 @@ const HomePage = () => (
         Finish Your Puzzle
       </Button>
     </BackgroundContainer>
+
+    <Directory />
   </HomePageContainer>
 );
 

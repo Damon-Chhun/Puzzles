@@ -5,7 +5,7 @@ export const HomePageContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: no-wrap;
-  width: 100vw;
+  width: 100w;
 
   overflow-y: scroll;
 `;
@@ -20,7 +20,6 @@ export const BackgroundContainer = styled.div`
   align-items: flex-start;
   background-size: cover;
   .button {
-    position: absolute;
     height: 50vh;
     width: 20vw;
     font-size: 5vh;
