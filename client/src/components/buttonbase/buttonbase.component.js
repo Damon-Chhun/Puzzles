@@ -14,6 +14,7 @@ const useStyles = makeStyles(theme => ({
     width: "100%"
   },
   image: {
+    outline: "solid 2px black",
     position: "relative",
     margin: 5,
     [theme.breakpoints.down("xs")]: {
