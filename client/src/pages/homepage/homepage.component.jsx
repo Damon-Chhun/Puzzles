@@ -4,6 +4,8 @@ import Header from "../../components/header/header.component";
 import { Button, ButtonBase } from "@material-ui/core";
 import Directory from "../../components/directory/directory.component";
 
+//import Quote from "../../components/quote/quote.component";
+
 const HomePage = () => (
   <HomePageContainer>
     <Header />

@@ -9,5 +9,5 @@ export const DirectoryContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  padding: none;
+  margin-top: 2%;
 `;
