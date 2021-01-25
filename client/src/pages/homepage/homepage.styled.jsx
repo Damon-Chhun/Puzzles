@@ -13,7 +13,6 @@ export const HomePageContainer = styled.div`
 `;
 
 export const BackgroundContainer = styled.div`
-  outline: solid 1px black;
   background-image: url(${Background});
   background-position: center;
   height: 100vh;

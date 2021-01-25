@@ -8,6 +8,8 @@ import AccountPage from "./pages/account/accountpage.component";
 import SignInPage from "./pages/sign-in/signinpage.component";
 import ProductPage from "./pages/product/productpage.component";
 
+import Footer from "./components/footer/footer.component";
+
 function App() {
   return (
     <div>
