@@ -30,6 +30,7 @@
   "homepage": "https://github.com/Damon-Chhun/Puzzles#readme",
   "dependencies": {
     "@material-ui/core": "^4.11.2",
+    "@material-ui/system": "^4.11.3",
     "bcryptjs": "^2.4.3",
     "config": "^3.3.3",
     "express": "^4.17.1",

@@ -11,12 +11,14 @@ const useStyles = makeStyles(theme => ({
     minWidth: 300,
     height: "100%",
     //border: "solid 5px blue",
+
     width: "100%"
   },
   image: {
     outline: "solid 2px black",
     position: "relative",
-    margin: 5,
+    margin: 10,
+
     [theme.breakpoints.down("xs")]: {
       width: "100% !important", // Overrides inline-style
       height: 100
