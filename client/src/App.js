@@ -7,6 +7,7 @@ import AboutPage from "./pages/about/aboutpage.component";
 import AccountPage from "./pages/account/accountpage.component";
 import SignInPage from "./pages/sign-in/signinpage.component";
 import ProductPage from "./pages/product/productpage.component";
+import RegisterPage from "./pages/register/registerpage.component";
 
 import Footer from "./components/footer/footer.component";
 
@@ -19,7 +20,8 @@ function App() {
         <Route exact path="/about" component={AboutPage} />
         <Route exact path="/account/:userID" component={AccountPage} />
         <Route exact path="/shop/:productID" component={ProductPage} />
-        <Route exact path="/SignIn" component={SignInPage} />
+        <Route exact path="/signin" component={SignInPage} />
+        <Route exact path="/register" component={RegisterPage} />
       </Switch>
     </div>
   );
