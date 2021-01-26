@@ -14,7 +14,7 @@ import {
 const Header = () => (
   <HeaderContainer>
     <LeftOptionsContainer>
-      <LogoContainer className="logo-container" to="/testing">
+      <LogoContainer className="logo-container" to="/">
         <Logo className="nested-logo" />
       </LogoContainer>
     </LeftOptionsContainer>
