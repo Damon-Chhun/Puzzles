@@ -1,28 +1,36 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { register } from "../../redux/auth/auth.actions";
 
-const Login = () => {
+export const Register = ({ register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: "",
     firstName: "",
     lastName: "",
-    password1: "",
+    password: "",
     password2: ""
   });
 
-  const { email, password1, firstName, lastName, password2 } = formData;
+  const { email, password, firstName, lastName, password2 } = formData;
 
-  const onChange = text => {
-    setFormData({ ...formData, [text.target.name]: text.target.value });
+  const onChange = e => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const onSubmit = async text => {
-    text.preventDefault();
-    if (password1 !== password2) {
+  const onSubmit = async e => {
+    e.preventDefault();
+    if (password !== password2) {
       console.log("Passwords do not match");
     } else {
-      console.log(formData);
+      register({ firstName, lastName, email, password });
     }
   };
+
+  //Redirect if Registered
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <div>
       <h2>Register</h2>
@@ -35,7 +43,7 @@ const Login = () => {
             type="name"
             placeholder="First Name"
             value={firstName}
-            onChange={text => onChange(text)}
+            onChange={e => onChange(e)}
             required
           />
 
@@ -44,7 +52,7 @@ const Login = () => {
             type="name"
             placeholder="Last Name"
             value={lastName}
-            onChange={text => onChange(text)}
+            onChange={e => onChange(e)}
             required
           />
 
@@ -53,16 +61,16 @@ const Login = () => {
             type="email"
             placeholder="Email"
             value={email}
-            onChange={text => onChange(text)}
+            onChange={e => onChange(e)}
             required
           />
 
           <input
-            name="password1"
+            name="password"
             type="password"
             placeholder="Password"
-            value={password1}
-            onChange={text => onChange(text)}
+            value={password}
+            onChange={e => onChange(e)}
             required
           />
 
@@ -71,11 +79,11 @@ const Login = () => {
             type="password"
             placeholder="Confirm Password"
             value={password2}
-            onChange={text => onChange(text)}
+            onChange={e => onChange(e)}
             required
           />
 
-          <input type="submit" value="Sign In" />
+          <input type="submit" value="Register" />
           <a>
             Already Have an Account? <Link to="/signin">Sign In</Link>
           </a>
@@ -85,4 +93,12 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapDispatchToProps = dispatch => ({
+  register: ({ firstName, lastName, email, password }) =>
+    dispatch(register({ firstName, lastName, email, password }))
+});
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
