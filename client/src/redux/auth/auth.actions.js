@@ -19,26 +19,22 @@ const registerUserFail = errorMessage => ({
 });
 
 //register User
-export const register = ({
-  firstName,
-  lastName,
-  email,
-  password
-}) => async dispatch => {
-  dispatch(registerUserStart());
+export function register({ firstName, lastName, email, password }) {
   const config = {
     headers: {
-      "Content-Type": application / json
+      "Content-Type": "application/json"
     }
   };
-
   const name = `${firstName} ${lastName}`;
   const body = JSON.stringify({ name, email, password });
-
-  try {
-    const res = await axios.post("/api/users", body, config);
-    dispatch(registerUserSuccess(res.data));
-  } catch (error) {
-    dispatch(registerUserFail(error));
-  }
-};
+  console.log(body);
+  return async dispatch => {
+    try {
+      dispatch(registerUserStart());
+      const res = await axios.post("/api/users/", body, config);
+      dispatch(registerUserSuccess(res.data));
+    } catch (error) {
+      dispatch(registerUserFail(error.response.data.error));
+    }
+  };
+}

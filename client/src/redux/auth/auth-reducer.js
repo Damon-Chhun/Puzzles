@@ -13,15 +13,16 @@ const authReducer = (state = INITIAL_STATE, action) => {
 
   switch (type) {
     case ACTIONTYPES.REGISTER_START:
-      localStorage.setItem("token", payload.token);
+      console.log("register start");
+
       return {
         ...state,
-        ...payload,
         isAuthenticated: false,
         loading: true
       };
 
     case ACTIONTYPES.REGISTER_SUCCESS:
+      localStorage.setItem("token", payload.token);
       return {
         ...state,
         ...payload,
@@ -33,7 +34,6 @@ const authReducer = (state = INITIAL_STATE, action) => {
       localStorage.removeItem("token");
       return {
         ...state,
-        ...payload,
         isAuthenticated: false,
         loading: false,
         errorMessage: payload.message
