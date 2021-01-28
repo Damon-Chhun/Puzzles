@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import HomePage from "./pages/homepage/homepage.component";
@@ -12,6 +12,10 @@ import RegisterPage from "./pages/register/registerpage.component";
 import Footer from "./components/footer/footer.component";
 
 function App() {
+  useEffect(() => {
+    console.log("USE EFFECT HOOK >.<");
+  }, []);
+
   return (
     <div>
       <Switch>
