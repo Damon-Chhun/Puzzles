@@ -59,7 +59,7 @@ module.exports = {
         }
       );
     } catch (error) {
-      console.rror(error.essage);
+      console.rror(error.message);
       res.status(500).send("Server Error");
     }
   }
