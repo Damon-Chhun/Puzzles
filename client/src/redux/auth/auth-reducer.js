@@ -39,6 +39,33 @@ const authReducer = (state = INITIAL_STATE, action) => {
         errorMessage: payload.message
       };
 
+    case ACTIONTYPES.LOGIN_START:
+      console.log("register start");
+
+      return {
+        ...state,
+        isAuthenticated: false,
+        loading: true
+      };
+
+    case ACTIONTYPES.LOGIN_SUCCESS:
+      localStorage.setItem("token", payload.token);
+      return {
+        ...state,
+        ...payload,
+        isAuthenticated: true,
+        loading: false
+      };
+
+    case ACTIONTYPES.LOGIN_FAIL:
+      localStorage.removeItem("token");
+      return {
+        ...state,
+        isAuthenticated: false,
+        loading: false,
+        errorMessage: payload
+      };
+
     default:
       return state;
   }

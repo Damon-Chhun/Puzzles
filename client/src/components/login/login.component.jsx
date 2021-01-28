@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { login } from "../../redux/auth/auth.actions";
 
-const Login = () => {
+const Login = ({ login }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -14,7 +16,7 @@ const Login = () => {
   };
   const onSubmit = async text => {
     text.preventDefault();
-    console.log("SUCCESS");
+    login(email, password);
   };
   return (
     <div>
@@ -51,4 +53,8 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapDispatchToProps = dispatch => ({
+  login: (email, password) => dispatch(login(email, password))
+});
+
+export default connect(null, mapDispatchToProps)(Login);
