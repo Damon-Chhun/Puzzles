@@ -93,5 +93,15 @@ module.exports = {
       console.error(err.message);
       res.status(500).json("Server Error");
     }
+  },
+
+  getProducts: async (req, res) => {
+    try {
+      const products = await Shop.find();
+      res.send(products);
+    } catch (error) {
+      console.error(error.message);
+      res.status(404).json("Server Error");
+    }
   }
 };

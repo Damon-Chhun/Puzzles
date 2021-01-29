@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
+import axios from "axios";
+import { connect } from "react-redux";
 
 import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shoppage.component";
@@ -9,9 +11,14 @@ import SignInPage from "./pages/sign-in/signinpage.component";
 import ProductPage from "./pages/product/productpage.component";
 import RegisterPage from "./pages/register/registerpage.component";
 
-import Footer from "./components/footer/footer.component";
+import { fetchShop } from "./redux/shop/shop.actions";
 
-function App() {
+function App({ fetchShop }) {
+  useEffect(() => {
+    console.log("USE EFFECT HOOK >.<");
+    fetchShop();
+  }, []);
+
   return (
     <div>
       <Switch>
@@ -27,4 +34,8 @@ function App() {
   );
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  fetchShop: () => dispatch(fetchShop())
+});
+
+export default connect(null, mapDispatchToProps)(App);

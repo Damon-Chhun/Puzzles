@@ -28,4 +28,9 @@ router.delete(
   ShopController.clearCart
 );
 
+//@route    GET api/shop
+//@desc     Get all products
+//@access   Public
+router.get("/", ShopController.getProducts);
+
 module.exports = router;
