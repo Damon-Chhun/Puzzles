@@ -5,7 +5,7 @@ export const HomePageContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: no-wrap;
-  justify-content: center;
+
   align-items: center;
   width: 100w;
 
@@ -18,8 +18,8 @@ export const BackgroundContainer = styled.div`
   height: 100vh;
   width: 100%;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
   background-size: cover;
   .button {
     height: 50vh;
