@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { HomePageContainer, BackgroundContainer } from "./homepage.styled";
 import Header from "../../components/header/header.component";
 import { Button, ButtonBase } from "@material-ui/core";
@@ -8,7 +8,7 @@ import Footer from "../../components/footer/footer.component";
 //import Quote from "../../components/quote/quote.component";
 
 const HomePage = () => (
-  <HomePageContainer>
+  <Fragment>
     <Header />
     <BackgroundContainer>
       <Button color="default" size="large" href="/shop" className="button">
@@ -17,7 +17,7 @@ const HomePage = () => (
     </BackgroundContainer>
 
     <Directory />
-  </HomePageContainer>
+  </Fragment>
 );
 
 export default HomePage;
