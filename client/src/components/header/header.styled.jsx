@@ -81,6 +81,11 @@ cursor: pointer;
 &.active {
   border-bottom: 5px solid #01bf71;
 }
+
+&:hover {
+  transition: all 0.3s ease-in-out;
+  border-bottom: 4px solid #01bf71;
+}
 `;
 
 export const NavButton = styled.nav`
