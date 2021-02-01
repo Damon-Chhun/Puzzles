@@ -1,6 +1,8 @@
 import { ACTIONTYPE } from "./Shop.ActionTypes";
 import axios from "axios";
 
+const departments = ["Phones", "Laptops", "Mens", "Womens", "Hats", "Shoes"];
+
 // fetch shop collection
 export function fetchShop() {
   return async dispatch => {
@@ -12,8 +14,20 @@ export function fetchShop() {
     try {
       dispatch(fetchShopStart());
       const res = await axios.get("/api/shop/");
-      dispatch(fetchShopSuccess(res.data));
-      console.log(res.data);
+
+      const structuredRes = departments.map((department, index) => {
+        console.log(department);
+        const newObject = {
+          id: index,
+          department: department,
+          products: res.data.filter(
+            element => element.Department === department
+          )
+        };
+        return newObject;
+      });
+      //console.log(structuredRes);
+      dispatch(fetchShopSuccess(structuredRes));
     } catch (error) {
       const errors = error.response.data.errors;
       if (errors) {

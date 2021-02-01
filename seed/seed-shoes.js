@@ -9,7 +9,7 @@ const { shoeNames, shoeImageUrls, shoePrices } = shopData;
 
 for (var i = 0; i < shopData.shoeNames.length; ++i) {
   let shop = new Shop({
-    Department: "shoe",
+    Department: "Shoes",
     title: shoeNames[i],
     imageURL: shoeImageUrls[i],
     description:

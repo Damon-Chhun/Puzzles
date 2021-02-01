@@ -13,7 +13,7 @@ const {
 
 for (var i = 0; i < shopData.womenClothesNames.length; ++i) {
   let shop = new Shop({
-    Department: "womenClothe",
+    Department: "Womens",
     title: womenClothesNames[i],
     imageURL: womenClothesImageUrls[i],
     description:

@@ -9,7 +9,7 @@ const { phoneNames, phoneImageUrls, phonePrices } = shopData;
 
 for (var i = 0; i < shopData.phoneNames.length; ++i) {
   let shop = new Shop({
-    Department: "Phone",
+    Department: "Phones",
     title: phoneNames[i],
     imageURL: phoneImageUrls[i],
     description:

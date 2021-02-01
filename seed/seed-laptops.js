@@ -9,7 +9,7 @@ const { laptopNames, laptopImages, laptopPrices } = shopData;
 
 for (var i = 0; i < shopData.laptopNames.length; ++i) {
   let shop = new Shop({
-    Department: "Laptop",
+    Department: "Laptops",
     title: laptopNames[i],
     imageURL: laptopImages[i],
     description:
