@@ -16,31 +16,28 @@ import {
   NavButton
 } from "./header.styled";
 
-import Sidebar from "../sidebar/sidebar.component";
-
-const Header = () => (
+const Header = ({ toggle }) => (
   <Nav>
     <NavContainer>
       <NavLogo to="/">puzzles</NavLogo>
-      <MobileIcon>
+      <MobileIcon onClick={toggle}>
         <Bars />
       </MobileIcon>
       <NavMenu>
         <NavItem>
-          <NavLinks to="/about">about</NavLinks>
+          <NavLinks to="/about">About</NavLinks>
         </NavItem>
         <NavItem>
-          <NavLinks to="/discover">discover</NavLinks>
+          <NavLinks to="/discover">Discover</NavLinks>
         </NavItem>
         <NavItem>
-          <NavLinks to="/sign up">sign up</NavLinks>
+          <NavLinks to="/register">Sign up</NavLinks>
         </NavItem>
       </NavMenu>
       <NavButton>
-        <NavBtnLink to="/signin">sign in</NavBtnLink>
+        <NavBtnLink to="/signin">Sign in</NavBtnLink>
       </NavButton>
     </NavContainer>
-    <Sidebar />
   </Nav>
 );
 

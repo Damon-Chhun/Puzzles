@@ -11,20 +11,20 @@ import {
   SidebarLink
 } from "./sidebar.styled";
 
-const Sidebar = () => {
+const Sidebar = ({ toggle, isOpen }) => {
   return (
-    <SidebarContainer>
-      <Icon>
+    <SidebarContainer onClick={toggle} isOpen={isOpen}>
+      <Icon onClick={toggle}>
         <CloseIcon />
       </Icon>
       <SidebarWrapper>
         <SidebarMenu>
-          <SidebarLink to="about">about</SidebarLink>
-          <SidebarLink to="discover">discover</SidebarLink>
-          <SidebarLink to="register">sign up</SidebarLink>
+          <SidebarLink to="about">About</SidebarLink>
+          <SidebarLink to="discover">Discover</SidebarLink>
+          <SidebarLink to="register">Sign Up</SidebarLink>
         </SidebarMenu>
         <SideButtonWrap>
-          <SidebarRoute to="/signin">sign in</SidebarRoute>
+          <SidebarRoute to="/signin">Sign In</SidebarRoute>
         </SideButtonWrap>
       </SidebarWrapper>
     </SidebarContainer>
