@@ -24,6 +24,7 @@ export const BackgroundContainer = styled.div`
   .button {
     height: 50vh;
     width: 20vw;
+    text-align: center;
     font-size: 5vh;
     margin-bottom: 5%;
   }
