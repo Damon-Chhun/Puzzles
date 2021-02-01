@@ -16,6 +16,8 @@ import {
   NavButton
 } from "./header.styled";
 
+import Sidebar from "../sidebar/sidebar.component";
+
 const Header = () => (
   <Nav>
     <NavContainer>
@@ -38,6 +40,7 @@ const Header = () => (
         <NavBtnLink to="/signin">sign in</NavBtnLink>
       </NavButton>
     </NavContainer>
+    <Sidebar />
   </Nav>
 );
 
