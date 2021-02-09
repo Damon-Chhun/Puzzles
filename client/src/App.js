@@ -11,14 +11,7 @@ import SignInPage from "./pages/sign-in/signinpage.component";
 import ProductPage from "./pages/product/productpage.component";
 import RegisterPage from "./pages/register/registerpage.component";
 
-import { fetchShop } from "./redux/shop/shop.actions";
-
-function App({ fetchShop }) {
-  useEffect(() => {
-    console.log("USE EFFECT HOOK >.<");
-    fetchShop();
-  }, []);
-
+function App() {
   return (
     <div>
       <Switch>
@@ -34,8 +27,4 @@ function App({ fetchShop }) {
   );
 }
 
-const mapDispatchToProps = dispatch => ({
-  fetchShop: () => dispatch(fetchShop())
-});
-
-export default connect(null, mapDispatchToProps)(App);
+export default App;

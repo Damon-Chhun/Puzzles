@@ -5,6 +5,8 @@ import { Button, ButtonBase } from "@material-ui/core";
 import Directory from "../../components/directory/directory.component";
 import Sidebar from "../../components/sidebar/sidebar.component";
 
+import { Element } from "react-scroll";
+
 //import Quote from "../../components/quote/quote.component";
 
 const HomePage = () => {
@@ -24,7 +26,9 @@ const HomePage = () => {
         </Button>
       </BackgroundContainer>
 
-      <Directory />
+      <Element name="discover">
+        <Directory />
+      </Element>
     </Fragment>
   );
 };

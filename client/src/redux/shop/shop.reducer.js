@@ -1,7 +1,7 @@
 import { ACTIONTYPE } from "./Shop.ActionTypes";
 
 const INITIAL_STATE = {
-  shop: null,
+  shop: [],
   isFetching: false,
   errorMessage: undefined
 };
