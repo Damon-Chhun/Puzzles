@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import Header from "../../components/header/header.component";
-import { Fragment } from "react";
 
 import { connect } from "react-redux";
 import {
@@ -10,12 +9,24 @@ import {
 import { createStructuredSelector } from "reselect";
 import { fetchShop } from "../../redux/shop/shop.actions";
 
+import { ShopPageContainer } from "./shop.styled";
+import SmoothNavBar from "../../components/SmoothNavBar/SmoothNavbar.component";
+import Drawer from "../../components/Drawer/Drawer.component";
+
 function ShopPage({ categories, fetchShop, shop }) {
   useEffect(() => {
     fetchShop();
     //console.log(categories);
   }, []);
-  return <Fragment></Fragment>;
+  return (
+    <Fragment>
+      <Header />
+      <ShopPageContainer>
+        <SmoothNavBar category={categories} />
+        <Drawer />
+      </ShopPageContainer>
+    </Fragment>
+  );
 }
 
 const mapStateToProps = createStructuredSelector({
