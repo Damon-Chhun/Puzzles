@@ -8,6 +8,11 @@ export const ShopPageContainer = styled.div`
   flex-wrap: none;
 `;
 
+export const ShopSticky = styled.div`
+  position: sticky;
+  top: 0;
+`;
+
 export const ShopNavBar = styled(LinkScroll)`
 color: black;
 display: flex;

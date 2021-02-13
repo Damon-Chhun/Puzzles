@@ -1,5 +1,6 @@
 import React, { useEffect, Fragment } from "react";
 import Header from "../../components/header/header.component";
+import Cards from "../../components/Cards/Cards.component";
 
 import { connect } from "react-redux";
 import {
@@ -9,7 +10,7 @@ import {
 import { createStructuredSelector } from "reselect";
 import { fetchShop } from "../../redux/shop/shop.actions";
 
-import { ShopPageContainer } from "./shop.styled";
+import { ShopPageContainer, ShopSticky } from "./shop.styled";
 import SmoothNavBar from "../../components/SmoothNavBar/SmoothNavbar.component";
 import Drawer from "../../components/Drawer/Drawer.component";
 
@@ -20,10 +21,13 @@ function ShopPage({ categories, fetchShop, shop }) {
   }, []);
   return (
     <Fragment>
-      <Header />
       <ShopPageContainer>
-        <SmoothNavBar category={categories} />
+        <ShopSticky>
+          <Header />
+          <SmoothNavBar category={categories} />
+        </ShopSticky>
         <Drawer />
+        <Cards categories={categories} shop={shop} />
       </ShopPageContainer>
     </Fragment>
   );

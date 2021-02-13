@@ -6,7 +6,7 @@ import { textAlign } from "@material-ui/system";
 const useStyles = makeStyles({
   drawer: {
     width: "25%",
-    minWidth: "350px",
+
     marginTop: "80px",
     border: "1px solid black",
     display: "flex",

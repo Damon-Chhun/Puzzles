@@ -6,11 +6,11 @@ export const SmoothContainer = styled.div`
   justify-content: center;
   align-items: center;
   background: white;
-  border: 5px solid green;
   height: 80px;
   width: 100%;
   position: sticky;
   top: 0;
+  bottom: 0;
   z-index: 10;
 `;
 
@@ -18,7 +18,7 @@ export const NavContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 3px solid pink;
+
   height: 80px;
   z-index: 1;
   width: 100%;

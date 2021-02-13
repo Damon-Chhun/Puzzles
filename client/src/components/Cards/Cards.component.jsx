@@ -1,7 +1,8 @@
 import React from "react";
+import ItemCard from "../ItemCard/ItemCard.component";
 //import { connect } from "react-redux";
 
-import "./Cards.styled";
+import { CardsContainer, CategoryContainer } from "./Cards.styled";
 
 function Cards({ categories, shop }) {
   return (
@@ -9,11 +10,13 @@ function Cards({ categories, shop }) {
       {categories.map(element => {
         let index = shop.findIndex(object => object.department === element);
 
-        shop[index].products.map(item => (
+        return (
           <CategoryContainer>
-            <ItemCard info={item} />
+            {shop[index].products.map(item => (
+              <ItemCard info={item} />
+            ))}
           </CategoryContainer>
-        ));
+        );
       })}
     </CardsContainer>
   );
