@@ -1,10 +1,17 @@
-import {createSelector} from 'reselect';
+import { createSelector } from "reselect";
 
 const selectShop = state => state.shop;
 
 export const selectShopCollection = createSelector(
-    [selectShop],
-    (reducer => reducer.shop)
+  [selectShop],
+  reducer => reducer.shop
 );
 
-export const selectShopCollection
+export const selectShopCategories = createSelector(
+  [selectShopCollection],
+  collection =>
+    collection.map(element => {
+      //console.log(element.department);
+      return element.department;
+    })
+);

@@ -28,7 +28,16 @@ const Header = ({ toggle }) => (
           <NavLinks to="/about">About</NavLinks>
         </NavItem>
         <NavItem>
-          <NavLinks to="/discover">Discover</NavLinks>
+          <NavLinks
+            to="discover"
+            smooth={true}
+            duration={500}
+            spy={true}
+            exact="true"
+            offset={-80}
+          >
+            Discover
+          </NavLinks>
         </NavItem>
         <NavItem>
           <NavLinks to="/register">Sign up</NavLinks>

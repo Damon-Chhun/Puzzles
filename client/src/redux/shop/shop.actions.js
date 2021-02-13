@@ -12,7 +12,7 @@ export function fetchShop() {
       }
     };
     try {
-      dispatch(fetchShopStart());
+      await dispatch(fetchShopStart());
       const res = await axios.get("/api/shop/");
 
       const structuredRes = departments.map((department, index) => {
@@ -27,11 +27,13 @@ export function fetchShop() {
         return newObject;
       });
       //console.log(structuredRes);
-      dispatch(fetchShopSuccess(structuredRes));
+      await dispatch(fetchShopSuccess(structuredRes));
     } catch (error) {
       const errors = error.response.data.errors;
       if (errors) {
-        errors.forEach(errors => dispatch(fetchShopFail(errors.msg, "danger")));
+        await errors.forEach(errors =>
+          dispatch(fetchShopFail(errors.msg, "danger"))
+        );
       }
     }
   };
