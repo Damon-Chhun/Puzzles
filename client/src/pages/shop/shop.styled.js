@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link as LinkScroll } from "react-scroll";
 
 export const ShopPageContainer = styled.div`
-  width: 100%;
+  width: 75%;
   diplay: flex;
   justify-content: center;
   flex-wrap: none;
