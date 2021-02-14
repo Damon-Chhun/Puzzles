@@ -13,9 +13,9 @@ export const CategoryContainer = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
-  border: 2px solid blue;
+
   min-height: 800px;
   margin-bottom: 50px;
 `;

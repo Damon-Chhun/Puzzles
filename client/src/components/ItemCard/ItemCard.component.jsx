@@ -1,13 +1,21 @@
 import React from "react";
 
-import { ItemCardContainer, Image, Price } from "./Itemcard.styled";
+import {
+  ItemCardContainer,
+  Image,
+  Price,
+  InfoContainer
+} from "./Itemcard.styled";
 
 function ItemCard({ info }) {
   return (
     <ItemCardContainer>
+      <div>{info.Department}</div>
       <Image imageURL={info.imageURL} category={info.Department} />
-      <div>{info.title}</div>
-      <Price>{info.price}</Price>
+      <InfoContainer>
+        <div>{info.title}</div>
+        <Price>${info.price}</Price>
+      </InfoContainer>
     </ItemCardContainer>
   );
 }
