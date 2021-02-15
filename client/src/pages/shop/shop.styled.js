@@ -11,6 +11,7 @@ export const ShopPageContainer = styled.div`
 export const ShopSticky = styled.div`
   position: sticky;
   top: 0;
+  z-index: 10;
 `;
 
 export const ShopNavBar = styled(LinkScroll)`

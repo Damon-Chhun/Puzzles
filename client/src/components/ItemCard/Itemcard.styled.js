@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 export const ItemCardContainer = styled.div`
   height: 475px;
-  width: 250px;
+  width: 450px;
   diplay: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   border: 1px solid black;
-  margin 20px
+  margin: 20px;
 `;
 
 export const Image = styled.div`
@@ -19,10 +19,20 @@ export const Image = styled.div`
     return props.category === "Laptops" ? `contain` : `center`;
   }};
   background-repeat: no-repeat;
+  border: 1px solid purple;
+`;
+
+export const InfoContainer = styled.div`
+  background-color: #ecebec;
+  diplay: flex;
+  align-items: center;
+  height: 74px;
 `;
 
 export const Price = styled.div`
   font-size: 1rem;
   display: flex;
   justify-content: center;
+  border: 1px solid yellow;
+  width: 50%;
 `;
