@@ -13,6 +13,7 @@ import { fetchShop } from "../../redux/shop/shop.actions";
 import { ShopPageContainer, ShopSticky } from "./shop.styled";
 import SmoothNavBar from "../../components/SmoothNavBar/SmoothNavbar.component";
 import Drawer from "../../components/Drawer/Drawer.component";
+import MuiCard from "../../components/MuiCard/MuiCard.component";
 
 function ShopPage({ categories, fetchShop, shop }) {
   useEffect(() => {
@@ -27,6 +28,7 @@ function ShopPage({ categories, fetchShop, shop }) {
           <SmoothNavBar category={categories} />
         </ShopSticky>
         <Drawer />
+
         <Cards categories={categories} shop={shop} />
       </ShopPageContainer>
     </Fragment>
