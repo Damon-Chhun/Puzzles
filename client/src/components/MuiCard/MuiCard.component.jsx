@@ -8,9 +8,12 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
+import { CardButton, AddToCart } from "./MuiCard.styled";
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
+
     margin: 10
   },
   media: {
@@ -22,6 +25,10 @@ const useStyles = makeStyles({
   },
   mainInfo: {
     marginTop: "10px"
+  },
+  cartButton: {
+    display: "flex",
+    justifyContent: "center"
   }
 });
 
@@ -50,18 +57,15 @@ export default function MuiCard({ info }) {
             component="h2"
             className={classes.mainInfo}
           >
-            {info.price}
+            ${info.price}
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions>
+      <CardButton className="cartButton">
+        <AddToCart size="small" color="primary">
+          Add to Cart
+        </AddToCart>
+      </CardButton>
     </Card>
   );
 }
