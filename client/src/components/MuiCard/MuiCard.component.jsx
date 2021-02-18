@@ -8,6 +8,9 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
+import { connect } from "react-redux";
+import { addToCart } from "../../redux/cart/cart.actions";
+
 import { CardButton, AddToCart } from "./MuiCard.styled";
 
 const useStyles = makeStyles({
@@ -32,7 +35,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function MuiCard({ info }) {
+function MuiCard({ info, addToCart }) {
   const classes = useStyles();
 
   return (
@@ -62,10 +65,21 @@ export default function MuiCard({ info }) {
         </CardContent>
       </CardActionArea>
       <CardButton className="cartButton">
-        <AddToCart size="small" color="primary">
+        <AddToCart
+          size="small"
+          color="primary"
+          onClick={() => addToCart(info.id, 1)}
+        >
           Add to Cart
         </AddToCart>
       </CardButton>
     </Card>
   );
 }
+
+const mapDispatchToProps = dispatch => ({
+  addToCart: (productID, quantity) =>
+    dispatch(addToCart({ productID, quantity }))
+});
+
+export default connect(null, mapDispatchToProps)(MuiCard);

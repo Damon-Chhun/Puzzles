@@ -15,7 +15,7 @@ import SmoothNavBar from "../../components/SmoothNavBar/SmoothNavbar.component";
 import Drawer from "../../components/Drawer/Drawer.component";
 import MuiCard from "../../components/MuiCard/MuiCard.component";
 
-function ShopPage({ categories, fetchShop, shop }) {
+function ShopPage({ categories, fetchShop, shop, cart }) {
   useEffect(() => {
     fetchShop();
     //console.log(categories);
