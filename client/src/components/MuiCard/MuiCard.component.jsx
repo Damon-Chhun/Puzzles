@@ -35,7 +35,7 @@ const useStyles = makeStyles({
   }
 });
 
-function MuiCard({ info, addToCart }) {
+function MuiCard({ info, addToCart, token }) {
   const classes = useStyles();
 
   return (
@@ -68,7 +68,7 @@ function MuiCard({ info, addToCart }) {
         <AddToCart
           size="small"
           color="primary"
-          onClick={() => addToCart(info.id, 1)}
+          onClick={() => addToCart(info._id, 1, token)}
         >
           Add to Cart
         </AddToCart>
@@ -78,8 +78,8 @@ function MuiCard({ info, addToCart }) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addToCart: (productID, quantity) =>
-    dispatch(addToCart({ productID, quantity }))
+  addToCart: (productID, quantity, token) =>
+    dispatch(addToCart({ productID, quantity, token }))
 });
 
 export default connect(null, mapDispatchToProps)(MuiCard);

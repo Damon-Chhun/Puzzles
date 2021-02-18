@@ -5,7 +5,7 @@ import MuiCard from "../MuiCard/MuiCard.component";
 
 import { CardsContainer, CategoryContainer } from "./Cards.styled";
 
-function Cards({ categories, shop }) {
+function Cards({ categories, shop, token }) {
   return (
     <CardsContainer>
       {categories.map(element => {
@@ -15,7 +15,7 @@ function Cards({ categories, shop }) {
           <CategoryContainer>
             {shop[index].products.map(item => (
               // <ItemCard info={item} />
-              <MuiCard info={item} />
+              <MuiCard info={item} token={token} />
             ))}
           </CategoryContainer>
         );
