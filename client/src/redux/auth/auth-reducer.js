@@ -12,6 +12,16 @@ const authReducer = (state = INITIAL_STATE, action) => {
   const { payload, type } = action;
 
   switch (type) {
+    case ACTIONTYPES.SIGN_OUT:
+      console.log("SIGNING OUT");
+
+      return {
+        ...state,
+        isAuthenticated: null,
+        token: "",
+        user: null
+      };
+
     case ACTIONTYPES.REGISTER_START:
       console.log("register start");
 
