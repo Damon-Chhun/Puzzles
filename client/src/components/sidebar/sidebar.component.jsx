@@ -1,4 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectIsAuth } from "../../redux/auth/auth.selectors";
 
 import {
   SidebarContainer,
@@ -11,7 +14,7 @@ import {
   SidebarLink
 } from "./sidebar.styled";
 
-const Sidebar = ({ toggle, isOpen }) => {
+const Sidebar = ({ toggle, isOpen, isAuth }) => {
   return (
     <SidebarContainer onClick={toggle} isOpen={isOpen}>
       <Icon onClick={toggle}>
@@ -24,11 +27,19 @@ const Sidebar = ({ toggle, isOpen }) => {
           <SidebarLink to="register">Sign Up</SidebarLink>
         </SidebarMenu>
         <SideButtonWrap>
-          <SidebarRoute to="/signin">Sign In</SidebarRoute>
+          {isAuth == true ? (
+            <SidebarRoute to="/signin">Sign out</SidebarRoute>
+          ) : (
+            <SidebarRoute to="/signin">Sign In</SidebarRoute>
+          )}
         </SideButtonWrap>
       </SidebarWrapper>
     </SidebarContainer>
   );
 };
 
-export default Sidebar;
+const mapDispatchToProps = createStructuredSelector({
+  isAuth: selectIsAuth
+});
+
+export default connect(mapDispatchToProps, null)(Sidebar);
