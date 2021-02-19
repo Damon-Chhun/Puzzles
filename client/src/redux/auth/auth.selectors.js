@@ -6,3 +6,8 @@ export const selectAuthToken = createSelector(
   [selectAuth],
   reducer => reducer.token
 );
+
+export const selectIsAuth = createSelector(
+  [selectAuth],
+  reducer => reducer.isAuthenticated
+);

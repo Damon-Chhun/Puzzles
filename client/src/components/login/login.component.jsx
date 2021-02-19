@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { login } from "../../redux/auth/auth.actions";
 
-const Login = ({ login }) => {
+const Login = ({ login, history }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -16,7 +16,8 @@ const Login = ({ login }) => {
   };
   const onSubmit = async text => {
     text.preventDefault();
-    login(email, password);
+    await login(email, password);
+    history.push("/");
   };
   return (
     <div>
@@ -57,4 +58,4 @@ const mapDispatchToProps = dispatch => ({
   login: (email, password) => dispatch(login(email, password))
 });
 
-export default connect(null, mapDispatchToProps)(Login);
+export default withRouter(connect(null, mapDispatchToProps)(Login));
