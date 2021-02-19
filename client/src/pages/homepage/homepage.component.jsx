@@ -1,4 +1,6 @@
 import React, { Fragment, useState } from "react";
+
+import { Link } from "react-router-dom";
 import {
   HomePageContainer,
   BackgroundContainer,
@@ -24,9 +26,10 @@ const HomePage = () => {
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <BackgroundContainer>
         <HomeButton
+          component={Link}
           color="default"
           size="large"
-          href="/shop"
+          to="/shop"
           className="button"
         >
           Finish Your Puzzle
