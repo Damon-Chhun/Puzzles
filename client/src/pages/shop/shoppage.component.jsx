@@ -10,7 +10,7 @@ import {
 import { createStructuredSelector } from "reselect";
 import { fetchShop } from "../../redux/shop/shop.actions";
 
-import { ShopPageContainer, ShopSticky } from "./shop.styled";
+import { ShopPageContainer, ShopSticky, CardContainer } from "./shop.styled";
 import SmoothNavBar from "../../components/SmoothNavBar/SmoothNavbar.component";
 import Drawer from "../../components/Drawer/Drawer.component";
 import MuiCard from "../../components/MuiCard/MuiCard.component";
@@ -23,14 +23,15 @@ function ShopPage({ categories, fetchShop, shop, cart, token }) {
   }, []);
   return (
     <Fragment>
+      <Header />
       <ShopPageContainer>
-        <ShopSticky>
-          <Header />
-          <SmoothNavBar category={categories} />
-        </ShopSticky>
         <Drawer />
-
-        <Cards categories={categories} shop={shop} token={token} />
+        <CardContainer>
+          <ShopSticky>
+            <SmoothNavBar category={categories} />
+          </ShopSticky>
+          <Cards categories={categories} shop={shop} token={token} />
+        </CardContainer>
       </ShopPageContainer>
     </Fragment>
   );

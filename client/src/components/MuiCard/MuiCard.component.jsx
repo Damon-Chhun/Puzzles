@@ -15,7 +15,7 @@ import { CardButton, AddToCart } from "./MuiCard.styled";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 335,
 
     margin: 10
   },

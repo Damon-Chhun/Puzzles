@@ -5,10 +5,11 @@ export const ItemCardContainer = styled.div`
   width: 450px;
   diplay: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   border: 1px solid black;
   margin: 20px;
+  border: 2px solid green;
 `;
 
 export const Image = styled.div`
