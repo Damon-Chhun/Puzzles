@@ -1,7 +1,6 @@
 import react from "react";
 import { Drawer as MUIDrawer } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { textAlign } from "@material-ui/system";
 
 const useStyles = makeStyles({
   drawer: {

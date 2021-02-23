@@ -15,11 +15,11 @@ import SmoothNavBar from "../../components/SmoothNavBar/SmoothNavbar.component";
 import Drawer from "../../components/Drawer/Drawer.component";
 import MuiCard from "../../components/MuiCard/MuiCard.component";
 import { selectAuthToken } from "../../redux/auth/auth.selectors";
+import Footer from "../../components/footer/footer.component";
 
 function ShopPage({ categories, fetchShop, shop, cart, token }) {
   useEffect(() => {
     fetchShop();
-    //console.log(categories);
   }, []);
   return (
     <Fragment>

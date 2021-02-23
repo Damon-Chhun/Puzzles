@@ -14,9 +14,18 @@ const SmoothNavbar = ({ category }) => {
       <NavContainer>
         <NavMenu>
           {category.map(element => (
-            <NavLinks>
-              <NavItem>{element}</NavItem>
-            </NavLinks>
+            <NavItem>
+              <NavLinks
+                to={element}
+                smooth={true}
+                duration={500}
+                spy={true}
+                exact="true"
+                offset={-160}
+              >
+                {element}
+              </NavLinks>
+            </NavItem>
           ))}
         </NavMenu>
       </NavContainer>

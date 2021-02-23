@@ -5,12 +5,12 @@ export const ShopPageContainer = styled.div`
   diplay: flex;
   justify-content: center;
   flex-wrap: none;
-  border: 5px solid pink;
+
+  top: 500px;
 `;
 
 export const CardContainer = styled.div`
   margin-right: 400px;
-  border: 3px solid purple;
 `;
 
 export const ShopSticky = styled.div`

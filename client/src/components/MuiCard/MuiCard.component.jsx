@@ -39,7 +39,7 @@ function MuiCard({ info, addToCart, token }) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} elevation={10}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
