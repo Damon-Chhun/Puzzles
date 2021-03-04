@@ -1,5 +1,7 @@
 import React from "react";
 
+import { CartItemsContainer } from "./CartItem.styled";
+
 export default function CartItem({
   department,
   name,
@@ -8,5 +10,5 @@ export default function CartItem({
   quantity
 }) {
   console.log(department, name, price, quantity, name);
-  return <div>{name}</div>;
+  return <CartItemsContainer>{name}</CartItemsContainer>;
 }
