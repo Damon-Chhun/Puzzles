@@ -17,9 +17,23 @@ const cartReducer = (state = INITIAL_STATE, action) => {
     case ActionTypes.ADD_TO_CART_SUCCESS:
       return {
         ...state,
-        cartItems: [payload]
+        cartItems: payload
       };
     case ActionTypes.ADD_TO_CART_FAIL:
+      return {
+        ...state,
+        message: payload
+      };
+    case ActionTypes.LOAD_CART_ON_LOGIN_START:
+      return {
+        ...state
+      };
+    case ActionTypes.LOAD_CART_ON_LOGIN_SUCCESS:
+      return {
+        ...state,
+        cartItems: payload
+      };
+    case ActionTypes.LOAD_CART_ON_LOGIN_FAIL:
       return {
         ...state,
         message: payload

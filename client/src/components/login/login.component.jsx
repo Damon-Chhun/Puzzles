@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { login } from "../../redux/auth/auth.actions";
+import { loadCartOnLogin } from "../../redux/cart/cart.actions";
+import { selectAuthToken } from "../../redux/auth/auth.selectors";
 
-const Login = ({ login, history }) => {
+import { createStructuredSelector } from "reselect";
+
+const Login = ({ login, history, token, loadCart, prevProps }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -17,7 +21,9 @@ const Login = ({ login, history }) => {
   const onSubmit = async text => {
     text.preventDefault();
     await login(email, password);
-    history.push("/");
+    console.log(token, "TOKEN TOKEN LOGIN");
+    await loadCart(token);
+    history.goBack();
   };
   return (
     <div>
@@ -55,7 +61,11 @@ const Login = ({ login, history }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  login: (email, password) => dispatch(login(email, password))
+  login: (email, password) => dispatch(login(email, password)),
+  loadCart: token => dispatch(loadCartOnLogin(token))
+});
+const mapStateToProps = state => ({
+  token: state.auth.token
 });
 
-export default withRouter(connect(null, mapDispatchToProps)(Login));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

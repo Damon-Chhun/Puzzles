@@ -12,10 +12,9 @@ import { fetchShop } from "../../redux/shop/shop.actions";
 
 import { ShopPageContainer, ShopSticky, CardContainer } from "./shop.styled";
 import SmoothNavBar from "../../components/SmoothNavBar/SmoothNavbar.component";
-import Drawer from "../../components/Drawer/Drawer.component";
-import MuiCard from "../../components/MuiCard/MuiCard.component";
+import ShopDrawer from "../../components/Drawer/Drawer.component";
+
 import { selectAuthToken } from "../../redux/auth/auth.selectors";
-import Footer from "../../components/footer/footer.component";
 
 function ShopPage({ categories, fetchShop, shop, cart, token }) {
   useEffect(() => {
@@ -25,7 +24,7 @@ function ShopPage({ categories, fetchShop, shop, cart, token }) {
     <Fragment>
       <Header />
       <ShopPageContainer>
-        <Drawer />
+        <ShopDrawer />
         <CardContainer>
           <ShopSticky>
             <SmoothNavBar category={categories} />

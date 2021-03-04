@@ -29,6 +29,13 @@ router.delete(
 );
 
 //@route    GET api/shop
+//@desc     Get all Cart Items
+//@access   Private
+router.get("/getCartItems", auth, ShopController.getCartItems);
+
+module.exports = router;
+
+//@route    GET api/shop
 //@desc     Get all products
 //@access   Public
 router.get("/", ShopController.getProducts);

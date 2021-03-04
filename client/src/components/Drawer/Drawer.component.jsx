@@ -1,6 +1,18 @@
-import react from "react";
-import { Drawer as MUIDrawer } from "@material-ui/core";
+import React from "react";
+import { Drawer } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import Item from "../CartItem/CartItem.component";
+
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectCartProducts } from "../../redux/cart/cart.selectors";
+
+import {
+  DrawerContainer,
+  Title,
+  CartItemsContainer,
+  ItemContainer
+} from "./Drawer.styled";
 
 const useStyles = makeStyles({
   drawer: {
@@ -13,16 +25,38 @@ const useStyles = makeStyles({
   }
 });
 
-const Drawer = () => {
+const ShopDrawer = ({ cartItems }) => {
+  console.log(
+    cartItems,
+    "CART ITEMS HELSDKLFJSDLKFJSLDK:FJSKL:DFJSDFL:KJSDL:KFJ"
+  );
   const classes = useStyles();
   return (
-    <MUIDrawer
+    <Drawer
       variant="permanent"
       anchor="right"
       classes={{ paper: classes.drawer }}
     >
-      <h1>Your Cart</h1>
-    </MUIDrawer>
+      <Title>Your Items</Title>
+      {cartItems != null
+        ? cartItems.map(({ ...otherCartItemProps }) => {
+            return <Item {...otherCartItemProps} />;
+          })
+        : null}
+
+      {/* <CartItemsContainer>
+        <ItemContainer>
+          {cartItems.map(product => {
+            return <Item item={product} />;
+          })}
+        </ItemContainer>
+      </CartItemsContainer> */}
+    </Drawer>
   );
 };
-export default Drawer;
+
+const mapStateToProps = createStructuredSelector({
+  cartItems: selectCartProducts
+});
+
+export default connect(mapStateToProps, null)(ShopDrawer);
