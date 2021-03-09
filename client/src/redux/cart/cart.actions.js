@@ -86,3 +86,49 @@ export function loadCartOnLogin(token) {
     }
   };
 }
+
+//start Remove Item from Cart
+const RemoveCartItemStart = () => {
+  return {
+    type: ActionTypes.REMOVE_ITEM_FROM_CART_START
+  };
+};
+
+//Success Remove Item from Cart
+const RemoveCartItemSuccess = cart => {
+  return {
+    type: ActionTypes.REMOVE_ITEM_FROM_CART_SUCCESS,
+    payload: cart
+  };
+};
+
+// Fail remove Item from Cart
+const RemoveCartItemFail = error => {
+  return {
+    type: ActionTypes.REMOVE_ITEM_FROM_CART_FAIL,
+    message: error
+  };
+};
+
+export function RemoveItemFromCart(token, productID) {
+  return async dispatch => {
+    console.log(token, "TOKEN TOKEN TOKEN");
+    console.log(productID, "ID ID ID ID ID");
+    const config = {
+      headers: {
+        "x-auth-token": `${token}`,
+        "Content-Type": "application/json"
+      }
+    };
+    const body = JSON.stringify({ productID });
+    try {
+      console.log("dispatch CHECKK CHECK CHECK CHECK");
+      await dispatch(RemoveCartItemStart());
+      const res = await axios.post("/api/shop/removeCartItem", body, config);
+      console.log(res.data, "RES.DATA REQUEST");
+      await dispatch(RemoveCartItemSuccess(res.data));
+    } catch (error) {
+      dispatch(RemoveCartItemFail("Fail"));
+    }
+  };
+}

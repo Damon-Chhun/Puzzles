@@ -38,6 +38,20 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         message: payload
       };
+    case ActionTypes.REMOVE_ITEM_FROM_CART_FAIL:
+      return {
+        ...state,
+        message: payload
+      };
+    case ActionTypes.REMOVE_ITEM_FROM_CART_START:
+      return {
+        ...state
+      };
+    case ActionTypes.REMOVE_ITEM_FROM_CART_SUCCESS:
+      return {
+        ...state,
+        cartItems: payload
+      };
 
     default:
       return state;

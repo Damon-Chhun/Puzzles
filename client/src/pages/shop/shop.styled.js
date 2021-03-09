@@ -38,3 +38,6 @@ cursor: pointer;
   border-bottom: 4px solid #01bf71;
 }
 `;
+export const Blank = styled.div`
+  height: 55px;
+`;

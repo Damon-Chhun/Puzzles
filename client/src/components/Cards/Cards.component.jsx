@@ -5,7 +5,12 @@ import ItemCard from "../ItemCard/ItemCard.component";
 //import { connect } from "react-redux";
 import MuiCard from "../MuiCard/MuiCard.component";
 
-import { CardsContainer, Category, CategoryContainer } from "./Cards.styled";
+import {
+  CardsContainer,
+  Category,
+  CategoryContainer,
+  DepartmentContainer
+} from "./Cards.styled";
 
 function Cards({ categories, shop, token }) {
   return (
@@ -16,7 +21,7 @@ function Cards({ categories, shop, token }) {
         return (
           <Element name={element}>
             <CategoryContainer>
-              <h1>{element}</h1>
+              <DepartmentContainer>{element}</DepartmentContainer>
               <Category>
                 {shop[index].products.map(item => (
                   // <ItemCard info={item} />

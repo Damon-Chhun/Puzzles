@@ -117,5 +117,22 @@ module.exports = {
       console.error(error.message);
       res.status(404).json("Server Error");
     }
+  },
+  clearCartItem: async (req, res) => {
+    try {
+      const cart = await Cart.findOne({ userId: req.user.id });
+      const { productID } = req.body;
+      console.log(productID, "ProductID");
+
+      const indexOfSplice = cart.products.findIndex(
+        item => item.productID == productID
+      );
+      console.log(indexOfSplice, "INDEX OF SPLICE");
+      const itemRemoved = cart.products.splice(indexOfSplice, 1);
+      console.log(itemRemoved, "ITEM REMOVED FROM CART");
+      console.log(cart, "CART CART CART CART");
+      await cart.save();
+      res.json(cart);
+    } catch (error) {}
   }
 };
