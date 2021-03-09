@@ -20,8 +20,10 @@ const AddToCartFail = error => ({
 
 //add to cart
 
-export function addToCart({ productID, quantity, token }) {
+export function addToCart(productID, quantity, token) {
   console.log(token, "TOKEN");
+  console.log(quantity, "QUANTITY");
+  console.log(productID, "PRODUCTID");
   const config = {
     headers: {
       "Content-Type": "application/json",
