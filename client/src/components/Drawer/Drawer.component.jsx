@@ -5,8 +5,19 @@ import Item from "../CartItem/CartItem.component";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectCartProducts } from "../../redux/cart/cart.selectors";
+import {
+  selectCartProducts,
+  selectSubTotal,
+  selectTax,
+  selectTotal
+} from "../../redux/cart/cart.selectors";
 import { selectAuthToken } from "../../redux/auth/auth.selectors";
+
+import {
+  CalcSubTotal,
+  CalcTax,
+  CalcTotal
+} from "../../redux/cart/cart.actions";
 
 import {
   DrawerContainer,
@@ -27,12 +38,26 @@ const useStyles = makeStyles({
   }
 });
 
-const ShopDrawer = ({ cartItems, token }) => {
+const ShopDrawer = ({
+  cartItems,
+  token,
+  subTotalState,
+  CalcSubTotal,
+  CalcTax,
+  CalcTotal,
+  taxState,
+  totalState
+}) => {
   console.log(
     cartItems,
     "CART ITEMS HELSDKLFJSDLKFJSLDK:FJSKL:DFJSDFL:KJSDL:KFJ"
   );
   const classes = useStyles();
+
+  CalcSubTotal(cartItems);
+  CalcTax(subTotalState);
+  CalcTotal(subTotalState, taxState);
+
   return (
     <Drawer
       variant="permanent"
@@ -47,13 +72,25 @@ const ShopDrawer = ({ cartItems, token }) => {
             })
           : null}
       </ListContainer>
+      <div>{subTotalState}</div>
+      <div>{taxState}</div>
+      <div>{totalState}</div>
     </Drawer>
   );
 };
 
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartProducts,
-  token: selectAuthToken
+  token: selectAuthToken,
+  subTotalState: selectSubTotal,
+  taxState: selectTax,
+  totalState: selectTotal
 });
 
-export default connect(mapStateToProps, null)(ShopDrawer);
+const mapDispatchToProps = dispatch => ({
+  CalcSubTotal: cartItems => dispatch(CalcSubTotal(cartItems)),
+  CalcTax: subTotal => dispatch(CalcTax(subTotal)),
+  CalcTotal: (subTotal, tax) => dispatch(CalcTotal(subTotal, tax))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShopDrawer);

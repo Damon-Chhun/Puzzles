@@ -11,3 +11,14 @@ export const selectCartProducts = createSelector([selectCartItems], object => {
   console.log(object, "SELECTOR");
   return object.products;
 });
+
+export const selectSubTotal = createSelector(
+  [selectCart],
+  reducer => reducer.subtotal
+);
+
+export const selectTax = createSelector([selectCart], reducer => reducer.tax);
+export const selectTotal = createSelector(
+  [selectCart],
+  reducer => reducer.total
+);

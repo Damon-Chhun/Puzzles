@@ -3,7 +3,10 @@ import { ActionTypes } from "./cart.ActionTypes";
 const INITIAL_STATE = {
   isHidden: true,
   cartItems: [],
-  message: null
+  message: null,
+  subtotal: 0.0,
+  tax: 0.0,
+  total: 0.0
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -51,6 +54,21 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         cartItems: payload
+      };
+    case ActionTypes.CALC_SUBTOTAL:
+      return {
+        ...state,
+        subtotal: payload
+      };
+    case ActionTypes.CALC_TAX:
+      return {
+        ...state,
+        tax: payload
+      };
+    case ActionTypes.CALC_TOTAL:
+      return {
+        ...state,
+        total: payload
       };
 
     default:

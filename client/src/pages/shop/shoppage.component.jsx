@@ -10,7 +10,12 @@ import {
 import { createStructuredSelector } from "reselect";
 import { fetchShop } from "../../redux/shop/shop.actions";
 
-import { ShopPageContainer, ShopSticky, CardContainer, Blank } from "./shop.styled";
+import {
+  ShopPageContainer,
+  ShopSticky,
+  CardContainer,
+  Blank
+} from "./shop.styled";
 import SmoothNavBar from "../../components/SmoothNavBar/SmoothNavbar.component";
 import ShopDrawer from "../../components/Drawer/Drawer.component";
 
@@ -29,7 +34,7 @@ function ShopPage({ categories, fetchShop, shop, cart, token }) {
           <ShopSticky>
             <SmoothNavBar category={categories} />
           </ShopSticky>
-          <Cards categories={categories} shop={shop} token={token} />
+          <Cards categories={categories} shop={shop} />
         </CardContainer>
         <Blank></Blank>
       </ShopPageContainer>
@@ -39,8 +44,7 @@ function ShopPage({ categories, fetchShop, shop, cart, token }) {
 
 const mapStateToProps = createStructuredSelector({
   categories: selectShopCategories,
-  shop: selectShopCollection,
-  token: selectAuthToken
+  shop: selectShopCollection
 });
 
 const mapDispatchToProps = dispatch => ({

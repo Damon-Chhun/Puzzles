@@ -134,3 +134,40 @@ export function RemoveItemFromCart(token, productID) {
     }
   };
 }
+
+export function CalcSubTotal(cartItems) {
+  console.log(cartItems, "CALC SUBTOTAL ARGUMENT");
+  const subTotal = cartItems
+    .reduce(
+      (accumulator, element) => accumulator + element.quantity * element.price,
+      0
+    )
+    .toFixed(2);
+
+  console.log(subTotal, "SUBTOTAL CALCSUBTOTAL ACTION");
+
+  return {
+    type: ActionTypes.CALC_SUBTOTAL,
+    payload: subTotal
+  };
+}
+
+export function CalcTax(subTotal) {
+  const tax = (subTotal * 0.08).toFixed(2);
+  console.log(tax, "TAX");
+  return {
+    type: ActionTypes.CALC_TAX,
+    payload: tax
+  };
+}
+
+export function CalcTotal(subTotal, tax) {
+  console.log(subTotal, tax, "SUBTOTAL AND TAX");
+  let total = subTotal + tax;
+  total = parseFloat(total).toFixed(2);
+
+  return {
+    type: ActionTypes.CALC_TOTAL,
+    payload: total
+  };
+}
