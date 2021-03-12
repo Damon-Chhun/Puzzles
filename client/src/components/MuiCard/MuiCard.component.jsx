@@ -10,12 +10,14 @@ import Typography from "@material-ui/core/Typography";
 
 import { connect } from "react-redux";
 import { addToCart } from "../../redux/cart/cart.actions";
+import { createStructuredSelector } from "reselect";
+import { selectAuthToken } from "../../redux/auth/auth.selectors";
 
 import { CardButton, AddToCart } from "./MuiCard.styled";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 335,
 
     margin: 10
   },
@@ -39,7 +41,7 @@ function MuiCard({ info, addToCart, token }) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} elevation={10}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
@@ -77,9 +79,13 @@ function MuiCard({ info, addToCart, token }) {
   );
 }
 
-const mapDispatchToProps = dispatch => ({
-  addToCart: (productID, quantity, token) =>
-    dispatch(addToCart({ productID, quantity, token }))
+const mapStateToProps = createStructuredSelector({
+  token: selectAuthToken
 });
 
-export default connect(null, mapDispatchToProps)(MuiCard);
+const mapDispatchToProps = dispatch => ({
+  addToCart: (productID, quantity, token) =>
+    dispatch(addToCart(productID, quantity, token))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MuiCard);

@@ -12,10 +12,11 @@ module.exports = {
 
     const { quantity, productID } = req.body;
     try {
+      console.log(productID, "PRODUCT ID ID ID I");
       let doesCartExist = await Cart.findOne({ userId: req.user.id });
       console.log(doesCartExist);
       const item = await Shop.findById(productID);
-      console.log(item);
+      console.log(item, "ITEM ITEM ITEM ITEM");
 
       if (!doesCartExist && quantity < 0) {
         // If trying to reduce a product in a cart that doesn't exist
@@ -44,7 +45,8 @@ module.exports = {
           doesCartExist.products.push({
             productID,
             quantity,
-            name: item.name,
+            name: item.title,
+            department: item.Department,
             price: item.price
           });
           await doesCartExist.save();
@@ -53,6 +55,7 @@ module.exports = {
       }
       //build Cart object (No Cart exists)
       else {
+        const item = await Shop.findById(productID);
         let reqCart = new Cart({
           userId: req.user.id,
           products: [
@@ -98,10 +101,38 @@ module.exports = {
   getProducts: async (req, res) => {
     try {
       const products = await Shop.find();
+      console.log("GetShop");
       res.send(products);
     } catch (error) {
       console.error(error.message);
       res.status(404).json("Server Error");
     }
+  },
+  getCartItems: async (req, res) => {
+    try {
+      const cart = await Cart.findOne({ userId: req.user.id });
+      console.log(cart, "GET CART ITEMS !!!!!!");
+      res.send(cart);
+    } catch (error) {
+      console.error(error.message);
+      res.status(404).json("Server Error");
+    }
+  },
+  clearCartItem: async (req, res) => {
+    try {
+      const cart = await Cart.findOne({ userId: req.user.id });
+      const { productID } = req.body;
+      console.log(productID, "ProductID");
+
+      const indexOfSplice = cart.products.findIndex(
+        item => item.productID == productID
+      );
+      console.log(indexOfSplice, "INDEX OF SPLICE");
+      const itemRemoved = cart.products.splice(indexOfSplice, 1);
+      console.log(itemRemoved, "ITEM REMOVED FROM CART");
+      console.log(cart, "CART CART CART CART");
+      await cart.save();
+      res.json(cart);
+    } catch (error) {}
   }
 };

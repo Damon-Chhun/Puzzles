@@ -10,27 +10,33 @@ import {
 import { createStructuredSelector } from "reselect";
 import { fetchShop } from "../../redux/shop/shop.actions";
 
-import { ShopPageContainer, ShopSticky } from "./shop.styled";
+import {
+  ShopPageContainer,
+  ShopSticky,
+  CardContainer,
+  Blank
+} from "./shop.styled";
 import SmoothNavBar from "../../components/SmoothNavBar/SmoothNavbar.component";
-import Drawer from "../../components/Drawer/Drawer.component";
-import MuiCard from "../../components/MuiCard/MuiCard.component";
+import ShopDrawer from "../../components/Drawer/Drawer.component";
+
 import { selectAuthToken } from "../../redux/auth/auth.selectors";
 
 function ShopPage({ categories, fetchShop, shop, cart, token }) {
   useEffect(() => {
     fetchShop();
-    //console.log(categories);
   }, []);
   return (
     <Fragment>
+      <Header />
       <ShopPageContainer>
-        <ShopSticky>
-          <Header />
-          <SmoothNavBar category={categories} />
-        </ShopSticky>
-        <Drawer />
-
-        <Cards categories={categories} shop={shop} token={token} />
+        <ShopDrawer />
+        <CardContainer>
+          <ShopSticky>
+            <SmoothNavBar category={categories} />
+          </ShopSticky>
+          <Cards categories={categories} shop={shop} />
+        </CardContainer>
+        <Blank></Blank>
       </ShopPageContainer>
     </Fragment>
   );
@@ -38,8 +44,7 @@ function ShopPage({ categories, fetchShop, shop, cart, token }) {
 
 const mapStateToProps = createStructuredSelector({
   categories: selectShopCategories,
-  shop: selectShopCollection,
-  token: selectAuthToken
+  shop: selectShopCollection
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -2,15 +2,20 @@ import styled from "styled-components";
 import { Link as LinkScroll } from "react-scroll";
 
 export const ShopPageContainer = styled.div`
-  width: 75%;
   diplay: flex;
   justify-content: center;
   flex-wrap: none;
+
+  top: 500px;
+`;
+
+export const CardContainer = styled.div`
+  margin-right: 400px;
 `;
 
 export const ShopSticky = styled.div`
   position: sticky;
-  top: 0;
+  top: 80px;
   z-index: 10;
 `;
 
@@ -32,4 +37,7 @@ cursor: pointer;
   transition: all 0.3s ease-in-out;
   border-bottom: 4px solid #01bf71;
 }
+`;
+export const Blank = styled.div`
+  height: 55px;
 `;

@@ -78,3 +78,8 @@ export function login(email, password) {
     }
   };
 }
+
+//Sign out user
+export const signOut = () => ({
+  type: ACTIONTYPES.SIGN_OUT
+});
