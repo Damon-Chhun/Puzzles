@@ -10,8 +10,17 @@ import AccountPage from "./pages/account/accountpage.component";
 import SignInPage from "./pages/sign-in/signinpage.component";
 import ProductPage from "./pages/product/productpage.component";
 import RegisterPage from "./pages/register/registerpage.component";
+import setAuthToken from "./utils/setAuthToken";
+import { store } from "./redux/store";
+import { loadUser } from "./redux/auth/auth.actions";
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 function App() {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
   return (
     <div>
       <Switch>

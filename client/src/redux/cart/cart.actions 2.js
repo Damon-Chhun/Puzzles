@@ -1,6 +1,5 @@
 import axios from "axios";
 import { ActionTypes } from "./cart.ActionTypes";
-import setAuthToken from "../../utils/setAuthToken";
 
 //start add to cart
 const AddToCartStart = () => ({
@@ -70,22 +69,26 @@ const LoadCartOnLoginFail = error => {
   };
 };
 
-//load cart items on login
-export const loadCartOnLogin = () => async dispatch => {
-  if (localStorage.token) {
-    setAuthToken(localStorage.token);
-  }
-
-  try {
-    console.log("dispatch CHECKK CHECK CHECK CHECK");
-    await dispatch(LoadCartOnLoginStart());
-    const res = await axios.get("/api/shop/getCartItems");
-    console.log(res.data, "RES.DATA GET REQUEST");
-    await dispatch(LoadCartOnLoginSuccess(res.data));
-  } catch (error) {
-    dispatch(LoadCartOnLoginFail("Fail"));
-  }
-};
+export function loadCartOnLogin(token) {
+  console.log(token, "TOKEN TOKEN TOKEN");
+  return async dispatch => {
+    const config = {
+      headers: {
+        "x-auth-token": `${token}`,
+        "Content-Type": "application/json"
+      }
+    };
+    try {
+      console.log("dispatch CHECKK CHECK CHECK CHECK");
+      await dispatch(LoadCartOnLoginStart());
+      const res = await axios.get("/api/shop/getCartItems", config);
+      console.log(res.data, "RES.DATA GET REQUEST");
+      await dispatch(LoadCartOnLoginSuccess(res.data));
+    } catch (error) {
+      await dispatch(LoadCartOnLoginFail("Fail"));
+    }
+  };
+}
 
 //start Remove Item from Cart
 const RemoveCartItemStart = () => {
