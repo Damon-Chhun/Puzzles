@@ -21,16 +21,18 @@ const AddToCartFail = error => ({
 
 //add to cart
 
-export function addToCart(productID, quantity, token) {
-  console.log(token, "TOKEN");
-  console.log(quantity, "QUANTITY");
-  console.log(productID, "PRODUCTID");
+export function addToCart(productID, quantity) {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
   const config = {
     headers: {
-      "Content-Type": "application/json",
-      "x-auth-token": `${token}`
+      "Content-Type": "application/json"
     }
   };
+  console.log(quantity, "QUANTITY");
+  console.log(productID, "PRODUCTID");
 
   const body = JSON.stringify({ productID, quantity });
 
@@ -47,14 +49,14 @@ export function addToCart(productID, quantity, token) {
   };
 }
 
-//start add to cart
+//start Load Cart on Login
 const LoadCartOnLoginStart = () => {
   return {
     type: ActionTypes.LOAD_CART_ON_LOGIN_START
   };
 };
 
-//Success add to cart
+//Success Load Cart on Login
 const LoadCartOnLoginSuccess = cart => {
   return {
     type: ActionTypes.LOAD_CART_ON_LOGIN_SUCCESS,
@@ -62,7 +64,7 @@ const LoadCartOnLoginSuccess = cart => {
   };
 };
 
-// Fail add to cart
+// Fail Load Cart on Login
 const LoadCartOnLoginFail = error => {
   return {
     type: ActionTypes.LOAD_CART_ON_LOGIN_FAIL,
@@ -110,13 +112,15 @@ const RemoveCartItemFail = error => {
   };
 };
 
-export function RemoveItemFromCart(token, productID) {
+export function RemoveItemFromCart(productID) {
   return async dispatch => {
-    console.log(token, "TOKEN TOKEN TOKEN");
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
+
     console.log(productID, "ID ID ID ID ID");
     const config = {
       headers: {
-        "x-auth-token": `${token}`,
         "Content-Type": "application/json"
       }
     };
