@@ -20,10 +20,12 @@ import SmoothNavBar from "../../components/SmoothNavBar/SmoothNavbar.component";
 import ShopDrawer from "../../components/Drawer/Drawer.component";
 
 import { selectAuthToken } from "../../redux/auth/auth.selectors";
+import { loadCartOnLogin } from "../../redux/cart/cart.actions";
 
 function ShopPage({ categories, fetchShop, shop, cart, token }) {
   useEffect(() => {
     fetchShop();
+    loadCartOnLogin(token);
   }, []);
   return (
     <Fragment>
@@ -44,11 +46,13 @@ function ShopPage({ categories, fetchShop, shop, cart, token }) {
 
 const mapStateToProps = createStructuredSelector({
   categories: selectShopCategories,
-  shop: selectShopCollection
+  shop: selectShopCollection,
+  token: selectAuthToken
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchShop: () => dispatch(fetchShop())
+  fetchShop: () => dispatch(fetchShop()),
+  loadCartOnLogin: token => dispatch(loadCartOnLogin(token))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShopPage);

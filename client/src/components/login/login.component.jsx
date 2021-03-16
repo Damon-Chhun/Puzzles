@@ -3,11 +3,18 @@ import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { login } from "../../redux/auth/auth.actions";
 import { loadCartOnLogin } from "../../redux/cart/cart.actions";
-import { selectAuthToken } from "../../redux/auth/auth.selectors";
 
-import { createStructuredSelector } from "reselect";
+import {
+  LoginComponentContainer,
+  Title,
+  InputName,
+  InputContainer,
+  InputField,
+  EmailAndPassword,
+  SignInInput
+} from "./login.styled";
 
-const Login = ({ login, history, token, loadCart, prevProps }) => {
+const Login = ({ login, history, loadCart }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -21,42 +28,42 @@ const Login = ({ login, history, token, loadCart, prevProps }) => {
   const onSubmit = async text => {
     text.preventDefault();
     await login(email, password);
-    console.log(token, "TOKEN TOKEN LOGIN");
-    await loadCart(token);
+    await loadCart();
     history.goBack();
   };
   return (
-    <div>
-      <h2>Sign In</h2>
-      <span>Already have an account</span>
-
+    <LoginComponentContainer>
+      <Title>Sign Into Puzzles</Title>
       <form onSubmit={e => onSubmit(e)}>
-        <input
-          name="email"
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={text => onChange(text)}
-          required
-        />
-        <label>Email</label>
+        <EmailAndPassword>
+          <InputContainer>
+            <InputName>Email</InputName>
+            <InputField
+              name="email"
+              type="email"
+              defaultValue={email}
+              onChange={text => onChange(text)}
+              required
+            />
+          </InputContainer>
+          <InputContainer>
+            <InputName>Password</InputName>
+            <InputField
+              name="password"
+              type="password"
+              defaultValue={password}
+              onChange={text => onChange(text)}
+              required
+            />
+          </InputContainer>
+        </EmailAndPassword>
 
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={text => onChange(text)}
-          required
-        />
-        <label>Password</label>
-
-        <input type="submit" value="Sign In" />
+        <SignInInput type="submit" value="Sign In" />
         <a>
-          Not Registered? <Link to="/register">Sign up</Link>
+          Don't Have An Account? <Link to="/register">Sign up</Link>
         </a>
       </form>
-    </div>
+    </LoginComponentContainer>
   );
 };
 
@@ -64,8 +71,5 @@ const mapDispatchToProps = dispatch => ({
   login: (email, password) => dispatch(login(email, password)),
   loadCart: token => dispatch(loadCartOnLogin(token))
 });
-const mapStateToProps = state => ({
-  token: state.auth.token
-});
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default withRouter(connect(null, mapDispatchToProps)(Login));

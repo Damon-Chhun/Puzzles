@@ -18,7 +18,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isAuthenticated: null,
-        token: "",
+        token: null,
         user: null
       };
 
@@ -35,7 +35,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
       localStorage.setItem("token", payload.token);
       return {
         ...state,
-        ...payload,
+        user: null,
         isAuthenticated: true,
         loading: false
       };
@@ -44,6 +44,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
       localStorage.removeItem("token");
       return {
         ...state,
+        token: null,
         isAuthenticated: false,
         loading: false,
         errorMessage: payload.message
@@ -62,7 +63,6 @@ const authReducer = (state = INITIAL_STATE, action) => {
       localStorage.setItem("token", payload.token);
       return {
         ...state,
-        ...payload,
         isAuthenticated: true,
         loading: false
       };
@@ -71,8 +71,25 @@ const authReducer = (state = INITIAL_STATE, action) => {
       localStorage.removeItem("token");
       return {
         ...state,
+        token: null,
         isAuthenticated: false,
         loading: false,
+        errorMessage: payload
+      };
+
+    case ACTIONTYPES.LOAD_USER_START:
+      return {
+        ...state
+      };
+
+    case ACTIONTYPES.LOAD_USER_SUCCESS:
+      return {
+        ...state,
+        user: payload
+      };
+    case ACTIONTYPES.LOAD_USER_FAIL:
+      return {
+        ...state,
         errorMessage: payload
       };
 

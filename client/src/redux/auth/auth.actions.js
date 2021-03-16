@@ -1,5 +1,7 @@
 import axios from "axios";
 import ACTIONTYPES from "./Auth.ActionTypes";
+import setAuthToken from "../../utils/setAuthToken";
+import { FaThermometerEmpty } from "react-icons/fa";
 
 //Start Register
 const registerUserStart = () => ({
@@ -64,12 +66,14 @@ export function login(email, password) {
     }
   };
   const body = JSON.stringify({ email, password });
-  console.log(email, password);
+  console.log(email, "EMAIL");
+  console.log(password, "PASSWORD");
   return async dispatch => {
     try {
-      dispatch(loginUserStart());
+      await dispatch(loginUserStart());
       const res = await axios.post("/api/auth/", body, config);
-      dispatch(loginUserSuccess(res.data));
+      console.log(res.data, "AUTH ACTION");
+      await dispatch(loginUserSuccess(res.data));
     } catch (error) {
       const errors = error.response.data.errors;
       if (errors) {
@@ -83,3 +87,34 @@ export function login(email, password) {
 export const signOut = () => ({
   type: ACTIONTYPES.SIGN_OUT
 });
+
+//Start Load User
+const loadUserStart = () => ({
+  type: ACTIONTYPES.LOAD_USER_START
+});
+
+//Successful Load User
+const loadUserSuccess = data => ({
+  type: ACTIONTYPES.LOAD_USER_SUCCESS,
+  payload: data
+});
+
+//Failed Load User
+const loadUserFail = errorMessage => ({
+  type: ACTIONTYPES.LOAD_USER_FAIL,
+  payload: errorMessage
+});
+
+export const loadUser = () => async dispatch => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+  try {
+    const res = await axios.get("/api/auth/");
+    console.log(res.data, "LOADUSER");
+
+    await dispatch(loadUserSuccess(res.data));
+  } catch (error) {
+    dispatch(loadUserFail(error.response.data.error));
+  }
+};
