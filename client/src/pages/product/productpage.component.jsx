@@ -5,8 +5,14 @@ import { connect } from "react-redux";
 import { selectShopCollection } from "../../redux/shop/shop.selectors";
 import { InfoContainer } from "../../components/ItemCard/Itemcard.styled";
 
-function ProductPage({ shop }) {
+import { getReviews } from "../../redux/reviews/reviews.actions";
+
+function ProductPage({ shop, getReviews }) {
   const { productID, department } = useParams();
+
+  useEffect(() => {
+    getReviews(department, productID);
+  }, []);
   console.log(productID, department, "product page arguments");
 
   const categoryIndex = shop.findIndex(category => {
@@ -35,4 +41,11 @@ const mapStateToProps = createStructuredSelector({
   shop: selectShopCollection
 });
 
-export default withRouter(connect(mapStateToProps, null)(ProductPage));
+const mapDispatchToProps = dispatch => ({
+  getReviews: (department, productID) =>
+    dispatch(getReviews(department, productID))
+});
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(ProductPage)
+);
