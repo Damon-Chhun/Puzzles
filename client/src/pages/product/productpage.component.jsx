@@ -4,10 +4,12 @@ import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
 import { selectShopCollection } from "../../redux/shop/shop.selectors";
 import { InfoContainer } from "../../components/ItemCard/Itemcard.styled";
+import Posts from "../../components/posts/posts.component";
 
 import { getReviews } from "../../redux/reviews/reviews.actions";
+import { selectReviewsPosts } from "../../redux/reviews/reviews.selectors";
 
-function ProductPage({ shop, getReviews }) {
+function ProductPage({ shop, getReviews, posts }) {
   const { productID, department } = useParams();
 
   useEffect(() => {
@@ -33,12 +35,14 @@ function ProductPage({ shop, getReviews }) {
       <div>{item.title}</div>
       <div>{item.description}</div>
       <div>{item.price}</div>
+      <Posts posts={posts} />
     </div>
   );
 }
 
 const mapStateToProps = createStructuredSelector({
-  shop: selectShopCollection
+  shop: selectShopCollection,
+  posts: selectReviewsPosts
 });
 
 const mapDispatchToProps = dispatch => ({
