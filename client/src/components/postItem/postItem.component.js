@@ -13,10 +13,12 @@ import {
   LikeIcon,
   DislikeIcon,
   ButtonContainer,
-  Discussion
+  Discussion,
+  CloseIcon,
+  Icon
 } from "./postItem.styled";
 
-function PostItems({ posts }) {
+function PostItems({ posts, user }) {
   console.log(posts);
   console.log(posts.avatar);
   Gravatar.defaultProps = {
@@ -37,12 +39,25 @@ function PostItems({ posts }) {
         <UserFunctionsContainer>
           <ButtonContainer>
             <LikeDislikeButton>
-              <LikeIcon />
+              {posts.likes.length > 0 ? (
+                `${(<LikeIcon />)} {posts.likes.length}`
+              ) : (
+                <LikeIcon />
+              )}
             </LikeDislikeButton>
             <LikeDislikeButton>
               <DislikeIcon />
             </LikeDislikeButton>
-            <Discussion>Discussion</Discussion>
+            <Discussion to={`/posts/${posts._id}`}>
+              {posts.comments.length > 0
+                ? `Discussion {posts.comments.length}`
+                : `Discussion`}
+            </Discussion>
+            {posts.user === user && (
+              <Icon>
+                <CloseIcon />
+              </Icon>
+            )}
           </ButtonContainer>
         </UserFunctionsContainer>
       </TextAndFunctionsContainer>
