@@ -33,3 +33,58 @@ export function getReviews(department, productID) {
     }
   };
 }
+
+//add like
+export const addLike = postId => async dispatch => {
+  console.log(postId);
+  console.log(localStorage.token);
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+  try {
+    const res = await axios.put(`/api/posts/like/${postId}`, config);
+
+    dispatch({
+      type: ActionTypes.UPDATE_LIKES,
+      payload: { postId, likes: res.data }
+    });
+  } catch (error) {
+    dispatch({
+      type: ActionTypes.LIKES_ERROR,
+      payload: { msg: error.response.statusText, status: error.response.status }
+    });
+  }
+};
+
+//unlike
+export const unlike = postId => async dispatch => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+
+  try {
+    const res = await axios.put(`/api/posts/unlike/${postId}`, config);
+
+    dispatch({
+      type: ActionTypes.UPDATE_LIKES,
+      payload: { postId, likes: res.data }
+    });
+  } catch (error) {
+    dispatch({
+      type: ActionTypes.LIKES_ERROR,
+      payload: { msg: error.response.statusText, status: error.response.status }
+    });
+  }
+};

@@ -28,6 +28,21 @@ const reviewsReducer = (state = INITAL_STATE, action) => {
         error: payload
       };
 
+    case ActionTypes.UPDATE_LIKES:
+      return {
+        ...state,
+        posts: state.posts.map(post =>
+          post._id === payload.postId ? { ...post, likes: payload.likes } : post
+        )
+      };
+
+    case ActionTypes.LIKES_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: payload
+      };
+
     default:
       return state;
   }
