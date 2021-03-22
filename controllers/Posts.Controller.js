@@ -43,12 +43,9 @@ module.exports = {
 
       //check if there arent any reviews
       if (review.length == 0) {
-        return res
-          .status(404)
-          .json({ msg: `They're no reviews for this item` });
-      } else {
-        res.json(review);
+        return res.json([{ text: `They're no reviews for this item` }]);
       }
+      res.json(review);
     } catch (error) {
       console.error(error.message);
       res.status(404).json("Server Error");

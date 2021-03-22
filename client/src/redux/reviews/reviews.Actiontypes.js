@@ -1,0 +1,7 @@
+const ActionTypes = {
+  GET_REVIEWS_START: "GET_REVIEWS_START",
+  GET_REVIEWS_SUCCESS: "GET_REVIEWS_SUCCESS",
+  GET_REVIEWS_FAIL: "GET_REVIEWS_FAIL"
+};
+
+export default ActionTypes;

@@ -8,6 +8,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { addToCart } from "../../redux/cart/cart.actions";
 import { createStructuredSelector } from "reselect";
@@ -37,11 +38,19 @@ const useStyles = makeStyles({
   }
 });
 
-function MuiCard({ info, addToCart, token }) {
+function MuiCard({ info, addToCart, token, history }) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root} elevation={10}>
+    <Card
+      className={classes.root}
+      elevation={10}
+      onClick={() =>
+        history.push(
+          `${history.location.pathname}/${info.Department}/${info._id}`
+        )
+      }
+    >
       <CardActionArea>
         <CardMedia
           className={classes.media}
@@ -88,4 +97,6 @@ const mapDispatchToProps = dispatch => ({
     dispatch(addToCart(productID, quantity, token))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MuiCard);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(MuiCard)
+);

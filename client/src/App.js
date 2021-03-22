@@ -10,6 +10,7 @@ import AccountPage from "./pages/account/accountpage.component";
 import SignInPage from "./pages/sign-in/signinpage.component";
 import ProductPage from "./pages/product/productpage.component";
 import RegisterPage from "./pages/register/registerpage.component";
+import ProductInfoPage from "./pages/productInfo/productInfoPage.component";
 import setAuthToken from "./utils/setAuthToken";
 import { store } from "./redux/store";
 import { loadUser } from "./redux/auth/auth.actions";
@@ -28,7 +29,11 @@ function App() {
         <Route exact path="/shop" component={ShopPage} />
         <Route exact path="/about" component={AboutPage} />
         <Route exact path="/account/:userID" component={AccountPage} />
-        <Route exact path="/shop/:productID" component={ProductPage} />
+        <Route
+          exact
+          path="/shop/:department/:productID"
+          component={ProductPage}
+        />
         <Route exact path="/signin" component={SignInPage} />
         <Route exact path="/register" component={RegisterPage} />
       </Switch>
