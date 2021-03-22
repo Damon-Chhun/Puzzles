@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import { FaRegThumbsUp, FaRegThumbsDown } from "react-icons/fa";
+import { FaRegThumbsUp, FaRegThumbsDown, FaTimes } from "react-icons/fa";
 
 export const IndividualPostContainer = styled.div`
-  border: solid 2px purple;
   width: 100%;
   height: 200px;
   display: flex;
@@ -10,10 +9,11 @@ export const IndividualPostContainer = styled.div`
   justify-content: flex-start;
   flex-wrap: nowrap;
   background: white;
+  border-bottom: solid 1px grey;
+  margin-bottom: 5px;
 `;
 
 export const UserContainer = styled.div`
-  border: solid 3px blue;
   width: 20%;
   display: flex;
   flex-direction: column;
@@ -21,12 +21,10 @@ export const UserContainer = styled.div`
   align-items: center;
 `;
 export const TextAndFunctionsContainer = styled.div`
-  border: solid 3px green;
   width: 70%;
 `;
 
 export const Gravatar = styled.img`
-  border: 1px solid black;
   border-radius: 100px;
   height: 100px;
   width: 100px;
@@ -35,39 +33,36 @@ export const Gravatar = styled.img`
 export const Name = styled.h4``;
 
 export const Description = styled.div`
-  border: 2px solid black;
   width: 100%;
   height: 60%;
 `;
 
 export const Date = styled.p`
-  border: 2px solid purple;
   height: 10%;
   width: 100;
   margin: 0;
 `;
 
 export const UserFunctionsContainer = styled.div`
-  border: solid 2px pink;
   width: 100%;
   height: 29%;
   margin: 0;
 `;
 
 export const LikeDislikeButton = styled.button`
-  border: solid 2px green;
   height: 80%;
   width: 80px;
+  margin-left: 10px;
 `;
 
 export const ButtonContainer = styled.div`
-  border: solid 2px green;
   width: 70%;
   height: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;
+  margin-left: 10px;
 `;
 
 export const LikeIcon = styled(FaRegThumbsUp)`
@@ -85,4 +80,22 @@ export const Discussion = styled.button`
   background: #01bf71;
   font-size: 1rem;
   cursor: pointer;
+  margin-left: 10px;
+`;
+
+export const CloseIcon = styled(FaTimes)`
+  color: white;
+`;
+
+export const Icon = styled.div`
+  background: red;
+  font-size: 1rem;
+  cursor: pointer;
+  height: 80%;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px black;
+  margin-left: 10px;
 `;

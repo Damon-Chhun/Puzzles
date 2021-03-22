@@ -13,7 +13,9 @@ import {
   LikeIcon,
   DislikeIcon,
   ButtonContainer,
-  Discussion
+  Discussion,
+  CloseIcon,
+  Icon
 } from "./postItem.styled";
 
 function PostItems({ posts }) {
@@ -43,6 +45,9 @@ function PostItems({ posts }) {
               <DislikeIcon />
             </LikeDislikeButton>
             <Discussion>Discussion</Discussion>
+            <Icon>
+              <CloseIcon />
+            </Icon>
           </ButtonContainer>
         </UserFunctionsContainer>
       </TextAndFunctionsContainer>

@@ -11,6 +11,5 @@ export const ProductPageContainer = styled.div`
 `;
 
 export const PostsContainer = styled.div`
-  border: solid 3px red;
   width: 80%;
 `;
