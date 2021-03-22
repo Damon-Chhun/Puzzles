@@ -94,7 +94,10 @@ module.exports = {
   },
   like: async (req, res) => {
     try {
-      const post = await Posts.findById(req.params.postID);
+      console.log(req.params.postID);
+      let post = await Posts.find({ _id: req.params.postID });
+      post = post[0];
+      console.log(post);
 
       //Check if the post has already been liked
       if (
@@ -110,13 +113,14 @@ module.exports = {
 
       res.json(post.likes);
     } catch (error) {
-      console.error(err.message);
+      console.error(error.message);
       res.status(500).send("Server Error");
     }
   },
   unlike: async (req, res) => {
     try {
-      const post = await Posts.findById(req.params.postID);
+      let post = await Posts.find({ _id: req.params.postID });
+      post = post[0];
 
       //Check if the post has already been liked
       if (
