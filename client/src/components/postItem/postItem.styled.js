@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { FaRegThumbsUp, FaRegThumbsDown, FaTimes } from "react-icons/fa";
+import { Link as LinkRouter } from "react-router-dom";
 
 export const IndividualPostContainer = styled.div`
   width: 100%;
@@ -35,12 +36,15 @@ export const Name = styled.h4``;
 export const Description = styled.div`
   width: 100%;
   height: 60%;
+  padding-left: 20px;
+  padding-top: 10px;
 `;
 
 export const Date = styled.p`
   height: 10%;
   width: 100;
   margin: 0;
+  margin-left: 20px;
 `;
 
 export const UserFunctionsContainer = styled.div`
@@ -53,6 +57,7 @@ export const LikeDislikeButton = styled.button`
   height: 80%;
   width: 80px;
   margin-left: 10px;
+  border: none;
 `;
 
 export const ButtonContainer = styled.div`
@@ -73,7 +78,7 @@ export const DislikeIcon = styled(FaRegThumbsDown)`
   cursor: pointer;
 `;
 
-export const Discussion = styled.button`
+export const Discussion = styled(LinkRouter)`
   width: 160px;
   height: 80%;
   color: white;
@@ -81,6 +86,10 @@ export const Discussion = styled.button`
   font-size: 1rem;
   cursor: pointer;
   margin-left: 10px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const CloseIcon = styled(FaTimes)`

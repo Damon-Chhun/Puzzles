@@ -8,12 +8,13 @@ import Posts from "../../components/posts/posts.component";
 
 import { getReviews } from "../../redux/reviews/reviews.actions";
 import { selectReviewsPosts } from "../../redux/reviews/reviews.selectors";
+import { selectAuthToken } from "../../redux/auth/auth.selectors";
 
 import Header from "../../components/header/header.component";
 
 import { ProductPageContainer, PostsContainer } from "./productPage.styled";
 
-function ProductPage({ shop, getReviews, posts }) {
+function ProductPage({ shop, getReviews, posts, userToken }) {
   const { productID, department } = useParams();
 
   useEffect(() => {
@@ -42,7 +43,7 @@ function ProductPage({ shop, getReviews, posts }) {
         <div>{item.description}</div>
         <div>{item.price}</div>
         <PostsContainer>
-          <Posts posts={posts} />
+          <Posts posts={posts} user={userToken} />
         </PostsContainer>
       </ProductPageContainer>
     </Fragment>
@@ -51,7 +52,8 @@ function ProductPage({ shop, getReviews, posts }) {
 
 const mapStateToProps = createStructuredSelector({
   shop: selectShopCollection,
-  posts: selectReviewsPosts
+  posts: selectReviewsPosts,
+  userToken: selectAuthToken
 });
 
 const mapDispatchToProps = dispatch => ({
