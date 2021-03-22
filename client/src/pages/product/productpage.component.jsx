@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import { withRouter, useParams } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
@@ -8,6 +8,10 @@ import Posts from "../../components/posts/posts.component";
 
 import { getReviews } from "../../redux/reviews/reviews.actions";
 import { selectReviewsPosts } from "../../redux/reviews/reviews.selectors";
+
+import Header from "../../components/header/header.component";
+
+import { ProductPageContainer, PostsContainer } from "./productPage.styled";
 
 function ProductPage({ shop, getReviews, posts }) {
   const { productID, department } = useParams();
@@ -29,14 +33,19 @@ function ProductPage({ shop, getReviews, posts }) {
   const item = shop[categoryIndex].products[productIndex];
 
   return (
-    <div>
-      <div>{item.Department}</div>
-      <div>{item.imageURL}</div>
-      <div>{item.title}</div>
-      <div>{item.description}</div>
-      <div>{item.price}</div>
-      <Posts posts={posts} />
-    </div>
+    <Fragment>
+      <Header />
+      <ProductPageContainer>
+        <div>{item.Department}</div>
+        <div>{item.imageURL}</div>
+        <div>{item.title}</div>
+        <div>{item.description}</div>
+        <div>{item.price}</div>
+        <PostsContainer>
+          <Posts posts={posts} />
+        </PostsContainer>
+      </ProductPageContainer>
+    </Fragment>
   );
 }
 

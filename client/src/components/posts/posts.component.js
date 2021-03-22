@@ -8,7 +8,7 @@ const Posts = ({ posts }) => {
   return (
     <Fragment>
       {posts.map(post => {
-        return <PostItems key={posts._id} posts={posts} />;
+        return <PostItems key={posts._id} posts={post} />;
       })}
     </Fragment>
   );
