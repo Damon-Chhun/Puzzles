@@ -6,7 +6,7 @@ import Item from "../CartItem/CartItem.component";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import {
-  selectCartProducts,
+  selectCartItems,
   selectSubTotal,
   selectTax,
   selectTotal
@@ -53,8 +53,7 @@ const ShopDrawer = ({
     "CART ITEMS HELSDKLFJSDLKFJSLDK:FJSKL:DFJSDFL:KJSDL:KFJ"
   );
   const classes = useStyles();
-
-  CalcSubTotal(cartItems);
+  if (cartItems.length > 0) CalcSubTotal(cartItems.products);
   CalcTax(subTotalState);
   CalcTotal(subTotalState, taxState);
 
@@ -66,8 +65,8 @@ const ShopDrawer = ({
     >
       <Title>Your Items</Title>
       <ListContainer>
-        {cartItems != null
-          ? cartItems.map(({ ...otherCartItemProps }) => {
+        {cartItems.products != null
+          ? cartItems.products.map(({ ...otherCartItemProps }) => {
               return <Item {...otherCartItemProps} token={token} />;
             })
           : null}
@@ -80,7 +79,7 @@ const ShopDrawer = ({
 };
 
 const mapStateToProps = createStructuredSelector({
-  cartItems: selectCartProducts,
+  cartItems: selectCartItems,
   token: selectAuthToken,
   subTotalState: selectSubTotal,
   taxState: selectTax,

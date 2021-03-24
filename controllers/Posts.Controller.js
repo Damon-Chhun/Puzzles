@@ -206,5 +206,22 @@ module.exports = {
       console.error(err.message);
       res.status(500).send("Server Error");
     }
+  },
+  getSingleReview: async (req, res) => {
+    try {
+      console.log(req.params.postID);
+      const review = await Posts.find({ _id: req.params.productID });
+
+      console.log(review);
+
+      //check if there arent any reviews
+      if (review.length == 0) {
+        return res.json([{ text: `They're no reviews for this item` }]);
+      }
+      res.json(review);
+    } catch (error) {
+      console.error(error.message);
+      res.status(404).json("Server Error");
+    }
   }
 };
