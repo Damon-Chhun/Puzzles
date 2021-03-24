@@ -8,14 +8,14 @@ import Posts from "../../components/posts/posts.component";
 
 import { getReviews } from "../../redux/reviews/reviews.actions";
 import { selectReviewsPosts } from "../../redux/reviews/reviews.selectors";
-import { selectUser } from "../../redux/auth/auth.selectors";
+import { selectUser, selectIsAuth } from "../../redux/auth/auth.selectors";
 
 import ReviewForum from "../../components/Review/ReviewForum.component";
 import Header from "../../components/header/header.component";
 
 import { ProductPageContainer, PostsContainer } from "./productPage.styled";
 
-function ProductPage({ shop, getReviews, posts, user }) {
+function ProductPage({ shop, getReviews, posts, user, isAuth }) {
   const { productID, department } = useParams();
 
   useEffect(() => {
@@ -45,7 +45,7 @@ function ProductPage({ shop, getReviews, posts, user }) {
         <div>{item.price}</div>
         <PostsContainer>
           <ReviewForum productId={productID} />
-          <Posts posts={posts} user={user._id} />
+          <Posts posts={posts} user={isAuth != true ? null : user._id} />
         </PostsContainer>
       </ProductPageContainer>
     </Fragment>
@@ -55,7 +55,8 @@ function ProductPage({ shop, getReviews, posts, user }) {
 const mapStateToProps = createStructuredSelector({
   shop: selectShopCollection,
   posts: selectReviewsPosts,
-  user: selectUser
+  user: selectUser,
+  isAuth: selectIsAuth
 });
 
 const mapDispatchToProps = dispatch => ({

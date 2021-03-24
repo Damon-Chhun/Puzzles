@@ -12,6 +12,6 @@ export const selectIsAuth = createSelector(
   reducer => reducer.isAuthenticated
 );
 export const selectUser = createSelector([selectAuth], reducer => {
-  console.log(reducer.user._id);
+  //console.log(reducer.user._id);
   return reducer.user;
 });
