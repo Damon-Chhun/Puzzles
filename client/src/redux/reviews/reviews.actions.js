@@ -88,3 +88,60 @@ export const unlike = postId => async dispatch => {
     });
   }
 };
+
+//delete post
+export const deletePost = postId => async dispatch => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+
+  try {
+    const res = await axios.delete(`/api/posts/${postId}`, config);
+
+    dispatch({
+      type: ActionTypes.DELETE_POST,
+      payload: postId
+    });
+  } catch (error) {
+    dispatch({
+      type: ActionTypes.LIKES_ERROR,
+      payload: { msg: error.response.statusText, status: error.response.status }
+    });
+  }
+};
+
+//Add Post
+export const addPost = (text, postId) => async dispatch => {
+  console.log(postId);
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+
+  const body = JSON.stringify({ text });
+
+  try {
+    const res = await axios.post(`/api/posts/${postId}`, body, config);
+
+    dispatch({
+      type: ActionTypes.ADD_POST,
+      payload: res.data
+    });
+  } catch (error) {
+    dispatch({
+      type: ActionTypes.LIKES_ERROR,
+      payload: { msg: error.response.statusText, status: error.response.status }
+    });
+  }
+};

@@ -2,7 +2,11 @@ import Moment from "react-moment";
 
 import { connect } from "react-redux";
 
-import { addLike, unlike } from "../../redux/reviews/reviews.actions";
+import {
+  addLike,
+  unlike,
+  deletePost
+} from "../../redux/reviews/reviews.actions";
 
 import {
   IndividualPostContainer,
@@ -22,9 +26,9 @@ import {
   Icon
 } from "./postItem.styled";
 
-function PostItems({ posts, user, like, unlike }) {
+function PostItems({ posts, like, unlike, deletePost, user }) {
   console.log(posts);
-  console.log(posts.avatar);
+  console.log(user);
   Gravatar.defaultProps = {
     src: `https:${posts.avatar}`
   };
@@ -50,13 +54,13 @@ function PostItems({ posts, user, like, unlike }) {
               <DislikeIcon onClick={() => unlike(posts._id)} />
             </LikeDislikeButton>
             <Discussion to={`/posts/${posts._id}`}>
-              {posts.comments.length > 0
+              {posts.comments > 0
                 ? `Discussion {posts.comments.length}`
                 : `Discussion`}
             </Discussion>
             {posts.user === user && (
               <Icon>
-                <CloseIcon />
+                <CloseIcon onClick={() => deletePost(posts._id)} />
               </Icon>
             )}
           </ButtonContainer>
@@ -68,7 +72,8 @@ function PostItems({ posts, user, like, unlike }) {
 
 const mapDispatchToProps = dispatch => ({
   like: id => dispatch(addLike(id)),
-  unlike: id => dispatch(unlike(id))
+  unlike: id => dispatch(unlike(id)),
+  deletePost: id => dispatch(deletePost(id))
 });
 
 export default connect(null, mapDispatchToProps)(PostItems);
