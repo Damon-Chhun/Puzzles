@@ -19,7 +19,7 @@ const getReviewsFail = errorMessage => ({
   payload: errorMessage
 });
 
-//register User
+//get reviews
 export function getReviews(department, productID) {
   console.log(department, productID);
   return async dispatch => {
@@ -141,6 +141,27 @@ export const addPost = (text, postId) => async dispatch => {
   } catch (error) {
     dispatch({
       type: ActionTypes.LIKES_ERROR,
+      payload: { msg: error.response.statusText, status: error.response.status }
+    });
+  }
+};
+
+//GET discussion
+export const getDiscussion = postId => async dispatch => {
+  console.log(postId);
+
+  try {
+    const res = await axios.get(`/api/posts/${postId}`);
+
+    console.log(res.data);
+
+    dispatch({
+      type: ActionTypes.GET_DISCUSSION,
+      payload: res.data
+    });
+  } catch (error) {
+    dispatch({
+      type: ActionTypes.GET_DISCUSSION_FAIL,
       payload: { msg: error.response.statusText, status: error.response.status }
     });
   }
