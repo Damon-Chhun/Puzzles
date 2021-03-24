@@ -3,7 +3,8 @@ import ActionTypes from "./reviews.Actiontypes";
 const INITAL_STATE = {
   posts: [],
   loading: false,
-  error: null
+  error: null,
+  discussion: []
 };
 
 const reviewsReducer = (state = INITAL_STATE, action) => {
@@ -55,6 +56,18 @@ const reviewsReducer = (state = INITAL_STATE, action) => {
         ...state,
         posts: [...state.posts, payload],
         loading: false
+      };
+    case ActionTypes.GET_DISCUSSION:
+      return {
+        ...state,
+        loading: false,
+        discussion: payload
+      };
+    case ActionTypes.GET_DISCUSSION_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: payload
       };
 
     default:

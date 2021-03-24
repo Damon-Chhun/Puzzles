@@ -5,6 +5,7 @@ const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
 
 const User = require("../models/User");
+const Posts = require("../models/Posts");
 
 module.exports = {
   registerUser: async (req, res) => {
@@ -64,6 +65,29 @@ module.exports = {
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Server Error");
+    }
+  },
+  getUsersReviews: async (req, res) => {
+    try {
+      console.log(req.params.userID);
+      const user = await Posts.find({ user: req.params.userID });
+
+      if (user === null) {
+        res.status(404).json({ msg: "Error finding post made by user" });
+      }
+
+      const reviews = await Posts.find({ user: req.params.userID });
+      console.log(reviews);
+      if (!reviews) {
+        res.status(404).json({ msg: "Error finding post made by user" });
+      }
+      res.json(reviews);
+    } catch (error) {
+      console.error(error.message);
+      if (!reviews || user === null) {
+        res.status(404).json({ msg: "Error finding post made by user" });
+      }
+      res.status(404).json("Server Error");
     }
   }
 };

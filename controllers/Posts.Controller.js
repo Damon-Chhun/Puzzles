@@ -51,29 +51,6 @@ module.exports = {
       res.status(404).json("Server Error");
     }
   },
-  getUsersReviews: async (req, res) => {
-    try {
-      console.log(req.params.userID);
-      const user = await User.findById(req.params.userID);
-
-      if (user === null) {
-        res.status(404).json({ msg: "Error finding post made by user" });
-      }
-
-      const reviews = await Posts.find({ user: req.params.userID });
-      console.log(reviews);
-      if (!reviews) {
-        res.status(404).json({ msg: "Error finding post made by user" });
-      }
-      res.json(reviews);
-    } catch (error) {
-      console.error(error.message);
-      if (!reviews || user === null) {
-        res.status(404).json({ msg: "Error finding post made by user" });
-      }
-      res.status(404).json("Server Error");
-    }
-  },
   deleteReview: async (req, res) => {
     try {
       const post = await Posts.findById(req.params.postID);
@@ -209,8 +186,9 @@ module.exports = {
   },
   getSingleReview: async (req, res) => {
     try {
+      console.log("getsingleReview");
       console.log(req.params.postID);
-      const review = await Posts.find({ _id: req.params.productID });
+      const review = await Posts.findById(req.params.postID);
 
       console.log(review);
 
