@@ -28,6 +28,13 @@ const reviewsReducer = (state = INITAL_STATE, action) => {
         error: payload
       };
 
+    case ActionTypes.DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter(post => post._id !== payload),
+        loading: false
+      };
+
     case ActionTypes.UPDATE_LIKES:
       return {
         ...state,
@@ -41,6 +48,13 @@ const reviewsReducer = (state = INITAL_STATE, action) => {
         ...state,
         loading: false,
         error: payload
+      };
+
+    case ActionTypes.ADD_POST:
+      return {
+        ...state,
+        posts: [...state.posts, payload],
+        loading: false
       };
 
     default:
