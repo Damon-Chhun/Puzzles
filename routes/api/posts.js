@@ -34,6 +34,12 @@ router.get("/:Department/:productID", PostsController.getProductReviews);
 
 router.get("/:userID", auth, PostsController.getUsersReviews);
 
+//@route    GET api/posts/
+//@desc     Get all reviews from a user
+//@access   Public
+
+router.get("/:postID", PostsController.getUsersReviews);
+
 //@route    DELETE api/posts/:postID
 //@desc     DELETE review
 //@access   Private
