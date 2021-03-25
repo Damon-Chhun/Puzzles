@@ -25,8 +25,9 @@ import {
   CloseIcon,
   Icon
 } from "./postItem.styled";
+import { createStructuredSelector } from "reselect";
 
-function PostItems({ posts, like, unlike, deletePost, user }) {
+function PostItems({ posts, like, unlike, deletePost, user, showActions }) {
   console.log(posts);
   console.log(user);
   Gravatar.defaultProps = {
@@ -45,30 +46,36 @@ function PostItems({ posts, like, unlike, deletePost, user }) {
           Posted on <Moment format="YYYY/MM/DD">{posts.date}</Moment>
         </Date>
         <UserFunctionsContainer>
-          <ButtonContainer>
-            <LikeDislikeButton>
-              <LikeIcon onClick={() => like(posts._id)} />
-              {posts.likes.length > 0 ? posts.likes.length : null}
-            </LikeDislikeButton>
-            <LikeDislikeButton>
-              <DislikeIcon onClick={() => unlike(posts._id)} />
-            </LikeDislikeButton>
-            <Discussion to={`/posts/${posts._id}`}>
-              {posts.comments > 0
-                ? `Discussion {posts.comments.length}`
-                : `Discussion`}
-            </Discussion>
-            {posts.user === user && (
-              <Icon>
-                <CloseIcon onClick={() => deletePost(posts._id)} />
-              </Icon>
-            )}
-          </ButtonContainer>
+          {showActions && (
+            <ButtonContainer>
+              <LikeDislikeButton>
+                <LikeIcon onClick={() => like(posts._id)} />
+                {posts.likes.length > 0 ? posts.likes.length : null}
+              </LikeDislikeButton>
+              <LikeDislikeButton>
+                <DislikeIcon onClick={() => unlike(posts._id)} />
+              </LikeDislikeButton>
+              <Discussion to={`/posts/${posts._id}`}>
+                {posts.comments > 0
+                  ? `Discussion {posts.comments.length}`
+                  : `Discussion`}
+              </Discussion>
+              {posts.user === user && (
+                <Icon>
+                  <CloseIcon onClick={() => deletePost(posts._id)} />
+                </Icon>
+              )}
+            </ButtonContainer>
+          )}
         </UserFunctionsContainer>
       </TextAndFunctionsContainer>
     </IndividualPostContainer>
   );
 }
+
+PostItems.defaultProps = {
+  showActions: true
+};
 
 const mapDispatchToProps = dispatch => ({
   like: id => dispatch(addLike(id)),
