@@ -23,4 +23,9 @@ router.post(
   AuthController.Login
 );
 
+//@route    GET api/auth/getUserInfo
+//@desc     Get Name of a profile, given their user._id
+//@access   Public
+router.get("/:userID", AuthController.getName);
+
 module.exports = router;

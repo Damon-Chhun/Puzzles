@@ -4,7 +4,7 @@ const INITAL_STATE = {
   posts: [],
   loading: false,
   error: null,
-  discussion: []
+  discussion: null
 };
 
 const reviewsReducer = (state = INITAL_STATE, action) => {
@@ -68,6 +68,23 @@ const reviewsReducer = (state = INITAL_STATE, action) => {
         ...state,
         loading: false,
         error: payload
+      };
+    case ActionTypes.POST_COMMENT:
+      return {
+        ...state,
+        loading: false,
+        discussion: { ...state.discussion, comments: payload }
+      };
+    case ActionTypes.DELETE_COMMENT:
+      return {
+        ...state,
+        loading: false,
+        discussion: {
+          ...state.discussion,
+          comment: state.discussion.comments.filter(
+            comment => comment._id != payload
+          )
+        }
       };
 
     default:

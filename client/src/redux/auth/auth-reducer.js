@@ -82,12 +82,12 @@ const authReducer = (state = INITIAL_STATE, action) => {
         ...state
       };
 
-    case ACTIONTYPES.LOAD_USER_SUCCESS:
+    case ACTIONTYPES.GET_USER:
       return {
         ...state,
-        user: payload
+        commentUser: payload
       };
-    case ACTIONTYPES.LOAD_USER_FAIL:
+    case ACTIONTYPES.GET_USER_FAIL:
       return {
         ...state,
         errorMessage: payload

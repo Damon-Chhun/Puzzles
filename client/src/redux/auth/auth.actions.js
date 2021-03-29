@@ -118,3 +118,37 @@ export const loadUser = () => async dispatch => {
     dispatch(loadUserFail(error.response.data.error));
   }
 };
+
+//Get A User with User._Id
+export const getUserName = userID => async dispatch => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+  const body = JSON.stringify({ userID });
+  console.log(userID, "USERID IN getUserInfo Action");
+
+  try {
+    const res = await axios.get(
+      `http://localhost:3000/api/auth/${userID}`,
+      config
+    );
+    console.log(res.data, "LOADUSER");
+
+    await dispatch(getUserSuccess(res.data));
+  } catch (error) {
+    return dispatch(getUserFail("failed"));
+  }
+};
+//Successful GET User
+const getUserSuccess = data => ({
+  type: ACTIONTYPES.GET_USER,
+  payload: data
+});
+
+//Failed GET User
+const getUserFail = errorMessage => ({
+  type: ACTIONTYPES.GET_USER_FAIL,
+  payload: errorMessage
+});
