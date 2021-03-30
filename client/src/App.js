@@ -11,6 +11,7 @@ import SignInPage from "./pages/sign-in/signinpage.component";
 import ProductPage from "./pages/product/productpage.component";
 import RegisterPage from "./pages/register/registerpage.component";
 import DiscussionPage from "./pages/Discussion/DiscussionPage.component";
+import Footer from "./components/footer/footer.component";
 
 import setAuthToken from "./utils/setAuthToken";
 import { store } from "./redux/store";
@@ -39,6 +40,7 @@ function App() {
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/posts/:postID" component={DiscussionPage} />
       </Switch>
+      <Footer />
     </div>
   );
 }

@@ -1,7 +1,10 @@
 import Moment from "react-moment";
 import react, { useEffect } from "react";
+import axios from "axios";
 
 import { connect } from "react-redux";
+
+import { selectCommentUser } from "../../redux/auth/auth.selectors";
 
 import {
   addLike,
@@ -26,9 +29,16 @@ import {
 } from "./CommentItem.styled";
 import { createStructuredSelector } from "reselect";
 
-function CommentItem({ posts, deletePost, user, showActions, getUserInfo }) {
+function CommentItem({
+  posts,
+  deletePost,
+  user,
+  showActions,
+  getUserInfo,
+  getCommentUserName
+}) {
+  console.log(getCommentUserName);
   console.log(user);
-  getUserInfo(user);
 
   console.log(posts);
   console.log(user);
@@ -40,7 +50,7 @@ function CommentItem({ posts, deletePost, user, showActions, getUserInfo }) {
     <IndividualPostContainer>
       <UserContainer>
         <Gravatar />
-        <Name>{posts.name}</Name>
+        <Name>hello</Name>
       </UserContainer>
       <TextAndFunctionsContainer>
         <Description>{posts.text}</Description>
@@ -70,6 +80,10 @@ CommentItem.defaultProps = {
 const mapDispatchToProps = dispatch => ({
   deletePost: id => dispatch(deletePost(id)),
   getUserInfo: userID => dispatch(getUserName(userID))
+});
+
+const mapStateToProps = createStructuredSelector({
+  getCommentUserName: selectCommentUser
 });
 
 export default connect(null, mapDispatchToProps)(CommentItem);

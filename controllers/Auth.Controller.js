@@ -20,7 +20,7 @@ module.exports = {
       const user = await User.findById(req.params.userID).select("-password");
       console.log(user);
       if (user !== null) {
-        res.json(user);
+        res.json(user.name);
       }
     } catch (err) {
       console.error(err.message);
