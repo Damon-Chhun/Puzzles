@@ -15,6 +15,19 @@ module.exports = {
       res.status(500).send("Server Error");
     }
   },
+  getName: async (req, res) => {
+    try {
+      const user = await User.findById(req.params.userID).select("-password");
+      console.log(user);
+      if (user !== null) {
+        res.json(user.name);
+      }
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
+  },
+
   Login: async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

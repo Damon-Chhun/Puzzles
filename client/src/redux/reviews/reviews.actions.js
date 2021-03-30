@@ -166,3 +166,58 @@ export const getDiscussion = postId => async dispatch => {
     });
   }
 };
+
+//Comment on a post
+export const addComment = (text, postId) => async dispatch => {
+  console.log(postId);
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+
+  const body = JSON.stringify({ text });
+
+  try {
+    const res = await axios.post(
+      `/api/posts/comment/${postId.postID}`,
+      body,
+      config
+    );
+
+    dispatch({
+      type: ActionTypes.POST_COMMENT,
+      payload: res.data
+    });
+  } catch (error) {
+    dispatch({
+      type: ActionTypes.LIKES_ERROR,
+      payload: { msg: error.response.statusText, status: error.response.status }
+    });
+  }
+};
+
+//delete comment
+export const deleteComment = (commentID, postId) => async dispatch => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
+  try {
+    const res = await axios.delete(`/api/posts/${postId}/${commentID}`);
+
+    dispatch({
+      type: ActionTypes.DELETE_POST,
+      payload: commentID
+    });
+  } catch (error) {
+    dispatch({
+      type: ActionTypes.LIKES_ERROR,
+      payload: { msg: error.response.statusText, status: error.response.status }
+    });
+  }
+};
