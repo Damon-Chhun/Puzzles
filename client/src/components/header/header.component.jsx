@@ -27,7 +27,16 @@ const Header = ({ toggle, isAuth, signOut }) => (
       </MobileIcon>
       <NavMenu>
         <NavItem>
-          <NavLinks to="/about">About</NavLinks>
+          <NavLinks
+            to="signup"
+            smooth={true}
+            duration={500}
+            spy={true}
+            exact="true"
+            offset={-80}
+          >
+            Sign up
+          </NavLinks>
         </NavItem>
         <NavItem>
           <NavLinks
@@ -42,7 +51,16 @@ const Header = ({ toggle, isAuth, signOut }) => (
           </NavLinks>
         </NavItem>
         <NavItem>
-          <NavLinks to="/register">Sign up</NavLinks>
+          <NavLinks
+            to="about"
+            smooth={true}
+            duration={500}
+            spy={true}
+            exact="true"
+            offset={-80}
+          >
+            About
+          </NavLinks>
         </NavItem>
       </NavMenu>
       <NavButton>

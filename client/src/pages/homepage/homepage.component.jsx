@@ -10,20 +10,15 @@ import Header from "../../components/header/header.component";
 import { Button, ButtonBase } from "@material-ui/core";
 import Directory from "../../components/directory/directory.component";
 import Sidebar from "../../components/sidebar/sidebar.component";
+import Footer from "../../components/footer/footer.component";
+import InfoSection from "../../components/InfoSection/InfoSection.component";
 
 import { Element } from "react-scroll";
 
 const HomePage = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggle = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
-    <Fragment>
-      <Header toggle={toggle} />
-      <Sidebar isOpen={isOpen} toggle={toggle} />
+    <div>
+      <Header />
       <BackgroundContainer>
         <HomeButton
           component={Link}
@@ -35,11 +30,14 @@ const HomePage = () => {
           Finish Your Puzzle
         </HomeButton>
       </BackgroundContainer>
-
+      >
+      <Element name="signup">
+        <InfoSection />
+      </Element>
       <Element name="discover">
         <Directory />
       </Element>
-    </Fragment>
+    </div>
   );
 };
 

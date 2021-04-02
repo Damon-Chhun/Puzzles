@@ -29,7 +29,6 @@ function ShopPage({ categories, fetchShop, shop, cart, token }) {
   }, []);
   return (
     <Fragment>
-      <Header />
       <ShopPageContainer>
         <ShopDrawer />
         <CardContainer>

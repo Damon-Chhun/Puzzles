@@ -36,7 +36,6 @@ function ProductPage({ shop, getReviews, posts, user, isAuth }) {
 
   return (
     <Fragment>
-      <Header />
       <ProductPageContainer>
         <div>{item.Department}</div>
         <div>{item.imageURL}</div>
