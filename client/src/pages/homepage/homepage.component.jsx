@@ -13,6 +13,8 @@ import Sidebar from "../../components/sidebar/sidebar.component";
 import Footer from "../../components/footer/footer.component";
 import InfoSection from "../../components/InfoSection/InfoSection.component";
 
+import { signUpObj } from "../../components/InfoSection/Data";
+
 import { Element } from "react-scroll";
 
 const HomePage = () => {
@@ -32,7 +34,7 @@ const HomePage = () => {
       </BackgroundContainer>
       >
       <Element name="signup">
-        <InfoSection />
+        <InfoSection {...signUpObj} />
       </Element>
       <Element name="discover">
         <Directory />

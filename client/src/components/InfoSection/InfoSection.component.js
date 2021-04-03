@@ -6,7 +6,7 @@ import { ReactComponent as Logo } from "../../assets/svg-1.svg";
 import "./InfoElement.styles.scss";
 import { NavBtnLink } from "../header/header.styled";
 
-const InfoSection = () => {
+const InfoSection = ({ headline, topline, Subtitle }) => {
   const LinkStyles = {
     textDecoration: "none",
     color: "black"
@@ -17,15 +17,9 @@ const InfoSection = () => {
         <div className="InfoRow">
           <div className="Column1">
             <div className="TextWrapper">
-              <p className="TopLine">Join the Family!</p>
-              <h1 className="header">
-                Register with puzzles, gain exclusive offers on new product, and
-                explore you style!
-              </h1>
-              <p className="Subtitle">
-                Track your past purchases, share your thought on items, and
-                interact with other users!
-              </p>
+              <p className="TopLine">{topline}</p>
+              <h1 className="header">{headline}</h1>
+              <p className="Subtitle">{Subtitle}</p>
               <div className="ButtonWrap">
                 <NavBtnLink to="/register">Click me!</NavBtnLink>
               </div>
@@ -33,7 +27,7 @@ const InfoSection = () => {
           </div>
           <div className="Column2">
             <div className="ImgWrap">
-              <Logo />
+              <Logo className="Background" />
             </div>
           </div>
         </div>
