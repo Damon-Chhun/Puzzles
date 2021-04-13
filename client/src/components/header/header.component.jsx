@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { FaBars as Bars } from "react-icons/fa";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -13,7 +13,8 @@ import {
   NavLogo,
   NavMenu,
   NavItem,
-  NavLinks,
+  NavLinksScroll,
+  NavLinksRouter,
   MobileIcon,
   NavBtnLink,
   NavButton
@@ -38,43 +39,87 @@ const Header = ({ isAuth, signOut, isHomepage }) => {
         </MobileIcon>
         <Sidebar isOpen={isOpen} toggle={toggle} isHomepage={isHomepage} />
         <NavMenu>
-          <NavItem>
-            <NavLinks
-              to="signup"
-              smooth={true}
-              duration={500}
-              spy={true}
-              exact="true"
-              offset={-80}
-              s
-            >
-              Sign up
-            </NavLinks>
-          </NavItem>
-          <NavItem>
-            <NavLinks
-              to="discover"
-              smooth={true}
-              duration={500}
-              spy={true}
-              exact="true"
-              offset={-80}
-            >
-              Discover
-            </NavLinks>
-          </NavItem>
-          <NavItem>
-            <NavLinks
-              to="about"
-              smooth={true}
-              duration={500}
-              spy={true}
-              exact="true"
-              offset={-80}
-            >
-              About
-            </NavLinks>
-          </NavItem>
+          {isHomepage == true ? (
+            <Fragment>
+              <NavItem>
+                <NavLinksScroll
+                  to="signup"
+                  smooth={true}
+                  duration={500}
+                  spy={true}
+                  exact="true"
+                  offset={-80}
+                  s
+                >
+                  Sign up
+                </NavLinksScroll>
+              </NavItem>
+              <NavItem>
+                <NavLinksScroll
+                  to="discover"
+                  smooth={true}
+                  duration={500}
+                  spy={true}
+                  exact="true"
+                  offset={-80}
+                >
+                  Discover
+                </NavLinksScroll>
+              </NavItem>
+              <NavItem>
+                <NavLinksScroll
+                  to="about"
+                  smooth={true}
+                  duration={500}
+                  spy={true}
+                  exact="true"
+                  offset={-80}
+                >
+                  About
+                </NavLinksScroll>
+              </NavItem>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <NavItem>
+                <NavLinksRouter
+                  to="register"
+                  smooth={true}
+                  duration={500}
+                  spy={true}
+                  exact="true"
+                  offset={-80}
+                  s
+                >
+                  Sign up
+                </NavLinksRouter>
+              </NavItem>
+              <NavItem>
+                <NavLinksRouter
+                  to="shop"
+                  smooth={true}
+                  duration={500}
+                  spy={true}
+                  exact="true"
+                  offset={-80}
+                >
+                  Discover
+                </NavLinksRouter>
+              </NavItem>
+              <NavItem>
+                <NavLinksRouter
+                  to="about"
+                  smooth={true}
+                  duration={500}
+                  spy={true}
+                  exact="true"
+                  offset={-80}
+                >
+                  About
+                </NavLinksRouter>
+              </NavItem>
+            </Fragment>
+          )}
         </NavMenu>
         <NavButton>
           {isAuth == true ? (
