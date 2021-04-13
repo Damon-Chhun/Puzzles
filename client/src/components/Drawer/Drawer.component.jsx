@@ -128,7 +128,7 @@ const ShopDrawer = ({
           </DrawerCheckoutBtn>
         </CartAndBtn>
         <PriceContainer>
-          <CheckoutPrice>{cartInfo.total}</CheckoutPrice>
+          <CheckoutPrice>$ {cartInfo.total}</CheckoutPrice>
         </PriceContainer>
       </CheckoutWrapper>
     </DrawerContainer>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link as LinkScroll } from "react-scroll";
-import { FaOpencart } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
 
 export const SmoothContainer = styled.div`
   display: flex;
@@ -13,9 +13,8 @@ export const SmoothContainer = styled.div`
   position: sticky;
   top: 0;
   bottom: 0;
-  z-index: 10;
+  //z-index: 0;
   @media screen and (max-width: 768px) {
-    width: 100%;
     margin-right: 0;
   }
 `;
@@ -55,6 +54,7 @@ text-decoration: none;
 padding 0 1rem; 
 height: 100%;
 cursor: pointer;
+font-size: 1vh;
 
 
 &.active {
@@ -67,17 +67,23 @@ cursor: pointer;
 }
 `;
 
-export const CartIcon = styled(FaOpencart)`
+export const CartIcon = styled(FaShoppingCart)`
   color: black;
 `;
 
 export const CartOpenIcon = styled.div`
-  sbackground: transparent;
-  font-size: 3rem;
+  background: transparent;
+  font-size: 3vh;
   cursor: pointer;
   outline: none;
   height: 3.5rem;
   width: 3.5rem;
   position: sticky;
   top: 170px;
+  margin-right: 2vw;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+    margin-right: none;
+  }
 `;

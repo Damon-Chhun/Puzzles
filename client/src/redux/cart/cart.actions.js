@@ -25,7 +25,7 @@ export function addToCart(productID, quantity) {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
-
+  console.log("ADD TO CART ADD TO CART ADD TO CART");
   const config = {
     headers: {
       "Content-Type": "application/json"

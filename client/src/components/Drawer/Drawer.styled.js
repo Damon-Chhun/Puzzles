@@ -95,6 +95,10 @@ export const CheckoutWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: #01bf71;
+  &:hover {
+    opacity: 0.8;
+    transition: all 0.3s ease-in-out;
+  }
 `;
 
 export const DrawerCheckoutBtn = styled.button`
@@ -104,7 +108,7 @@ export const DrawerCheckoutBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.5vw;
+  font-size: 1.7vh;
   width: 100%;
   height: 100%;
   border: none;
@@ -117,7 +121,8 @@ export const DrawerCheckoutBtn = styled.button`
 export const CartIcon = styled(FaShoppingCart)`
   background-color: transparent;
   color: white;
-  font-size: 1.7vw;
+  font-size: 2vh;
+  margin-left: 10px;
 `;
 
 export const CartAndBtn = styled.div`
@@ -141,4 +146,5 @@ export const PriceContainer = styled.div`
 
 export const CheckoutPrice = styled.h4`
   color: white;
+  font-size: 1.6vh;
 `;

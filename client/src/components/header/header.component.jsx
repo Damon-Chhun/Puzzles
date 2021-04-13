@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaBars as Bars } from "react-icons/fa";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectIsAuth } from "../../redux/auth/auth.selectors";
 import { signOut } from "../../redux/auth/auth.actions";
 import Scroll from "react-scroll";
+import Sidebar from "../sidebar/sidebar.component";
 
 import {
   Nav,
@@ -17,9 +18,13 @@ import {
   NavBtnLink,
   NavButton
 } from "./header.styled";
-import SignInPage from "../../pages/sign-in/signinpage.component";
 
-const Header = ({ toggle, isAuth, signOut }) => {
+const Header = ({ isAuth, signOut, isHomepage }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
   const scroll = Scroll.animateScroll;
 
   return (
@@ -31,6 +36,7 @@ const Header = ({ toggle, isAuth, signOut }) => {
         <MobileIcon onClick={toggle}>
           <Bars />
         </MobileIcon>
+        <Sidebar isOpen={isOpen} toggle={toggle} isHomepage={isHomepage} />
         <NavMenu>
           <NavItem>
             <NavLinks
@@ -40,6 +46,7 @@ const Header = ({ toggle, isAuth, signOut }) => {
               spy={true}
               exact="true"
               offset={-80}
+              s
             >
               Sign up
             </NavLinks>

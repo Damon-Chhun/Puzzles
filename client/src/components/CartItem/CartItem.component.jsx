@@ -11,7 +11,9 @@ import {
   NameQuanitityPriceContainer,
   NameAndQuantityContainer,
   Price,
-  RemoveButton
+  RemoveButton,
+  ChangeQuantityBtn,
+  QuantityWrapper
 } from "./CartItem.styled";
 
 function CartItem({
@@ -34,17 +36,27 @@ function CartItem({
     name = "No Name Found, Fix";
   }
   return (
-    <CartItemsContainer
-      onClick={() =>
-        history.push(`${history.location.pathname}${department}/${productID}`)
-      }
-    >
+    <CartItemsContainer>
       <NameQuanitityPriceContainer>
         <NameAndQuantityContainer>
-          <div onClick={() => addToCart(productID, -1, token)}>&#10094;</div>
-          <Quantity>{quantity}</Quantity>
-          <div onClick={() => addToCart(productID, 1, token)}>&#10095;</div>
-          <ItemName>{name}</ItemName>
+          <QuantityWrapper>
+            <ChangeQuantityBtn onClick={() => addToCart(productID, -1, token)}>
+              &#10094;
+            </ChangeQuantityBtn>
+            <Quantity>{quantity}</Quantity>
+            <ChangeQuantityBtn onClick={() => addToCart(productID, 1, token)}>
+              &#10095;
+            </ChangeQuantityBtn>
+          </QuantityWrapper>
+          <ItemName
+            onClick={() =>
+              history.push(
+                `${history.location.pathname}/${department}/${productID}`
+              )
+            }
+          >
+            {name}
+          </ItemName>
         </NameAndQuantityContainer>
         <Price>${price}</Price>
       </NameQuanitityPriceContainer>

@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const CartItemsContainer = styled.div`
   width: 100%;
-
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -13,7 +12,7 @@ export const CartItemsContainer = styled.div`
   &:hover {
     transition: all 0.3x ease-in-out;
     background-color: #eeeee4;
-    cursor: pointer;
+    // cursor: pointer;
   }
 `;
 export const NameQuanitityPriceContainer = styled.div`
@@ -32,18 +31,39 @@ export const NameAndQuantityContainer = styled.div`
   width: 80%;
 `;
 export const ItemName = styled.span`
-  font-size: 1rem;
+  font-size: 1.3vh;
   // text-overflow: ellipsis;
   // white-space: nowrap;
   // overflow: hidden;
-  margin-top: 0;
-  //width: 1000px;
+  padding: 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const QuantityWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
 `;
 
 export const Quantity = styled.h3`
   font-size: 1rem;
-  margin: 25px;
-  margin-top: 0;
+  margin: 10px;
+  margin-top: 10px;
+`;
+
+export const ChangeQuantityBtn = styled.button`
+  z-index: 100;
+  border: none;
+  text-decoration: none;
+  background-color: transparent;
+  font-size: 1.3vh;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 export const Price = styled.h3`
   font-size: 1rem;
@@ -56,12 +76,13 @@ export const Price = styled.h3`
 
 export const RemoveButton = styled.button`
   color: #01bf71;
-  font-size: 1vw;
+  font-size: 1.3vh;
   background: transparent;
   border: none;
   font-weight: bold;
   margin-left: 10px;
   &:hover {
+    transition: all 0.3s ease-in-out;
     text-decoration: #01bf71 underline;
     cursor: pointer;
   }

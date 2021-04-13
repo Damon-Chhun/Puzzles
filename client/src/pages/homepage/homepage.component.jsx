@@ -20,7 +20,7 @@ import { Element } from "react-scroll";
 const HomePage = () => {
   return (
     <Fragment>
-      <Header />
+      <Header isHomepage={true} />
       <HomePageContainer>
         <BackgroundContainer>
           <HomeButton
