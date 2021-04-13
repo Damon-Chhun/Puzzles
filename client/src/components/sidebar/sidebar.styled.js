@@ -37,7 +37,25 @@ export const SidebarWrapper = styled.div`
   color: white;
 `;
 
-export const SidebarLink = styled(LinkScroll)`
+export const SidebarLinkRouter = styled(LinkRouter)`
+  display: flex;
+  align-items: center;
+  color: white;
+  justify-content: center;
+  font-size: 1.5rem;
+  text-decoration: none;
+  list-style: none;
+  transition: 0.2s ease-in-out;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    color: #01bf71;
+    transition: 0.2s ease-in-out;
+  }
+`;
+
+export const SidebarLinkScroll = styled(LinkScroll)`
   display: flex;
   align-items: center;
   color: white;
@@ -85,6 +103,6 @@ export const SidebarMenu = styled.ul`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  margin-right: 40px;
+  margin-right: 10px;
   height: 360px;
 `;

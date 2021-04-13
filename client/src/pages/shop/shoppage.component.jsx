@@ -60,13 +60,9 @@ function ShopPage({
   return (
     <ShopPageContainer>
       <ShopSticky>
-        <Header />
+        <Header isHomepage={false} />
         <SmoothNavBar category={categories} />
       </ShopSticky>
-
-      {/* <CardContainer drawerOpen={drawerIsOpen}>
-        <Cards categories={categories} shop={shop} />
-      </CardContainer> */}
 
       <DataContainer>
         {drawerIsOpen ? (

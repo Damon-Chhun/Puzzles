@@ -21,6 +21,7 @@ const useStyles = makeStyles({
     maxWidth: 335,
     margin: 10,
     height: "40vh",
+    minHeight: "500px",
     display: "flex",
     flexDirection: "column",
     flexWrap: "nowrap",
@@ -32,7 +33,7 @@ const useStyles = makeStyles({
     width: 500,
     backgroundSize: "contain",
     backgroundPosition: "center center",
-    backgroundPositionX: "25%"
+    backgroundPositionX: "30%"
   },
   mainInfo: {
     marginTop: "10px"

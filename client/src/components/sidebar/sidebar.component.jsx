@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectIsAuth } from "../../redux/auth/auth.selectors";
@@ -12,10 +12,11 @@ import {
   SidebarWrapper,
   SidebarMenu,
   SidebarRoute,
-  SidebarLink
+  SidebarLinkRouter,
+  SidebarLinkScroll
 } from "./sidebar.styled";
 
-const Sidebar = ({ toggle, isOpen, isAuth, signOut }) => {
+const Sidebar = ({ toggle, isOpen, isAuth, signOut, isHomepage }) => {
   return (
     <SidebarContainer onClick={toggle} isOpen={isOpen}>
       <Icon onClick={toggle}>
@@ -23,9 +24,62 @@ const Sidebar = ({ toggle, isOpen, isAuth, signOut }) => {
       </Icon>
       <SidebarWrapper>
         <SidebarMenu>
-          <SidebarLink to="about">About</SidebarLink>
-          <SidebarLink to="discover">Discover</SidebarLink>
-          <SidebarLink to="register">Sign Up</SidebarLink>
+          {isHomepage == true ? (
+            <Fragment>
+              <SidebarLinkScroll
+                to="about"
+                smooth={true}
+                duration={500}
+                spy={true}
+                exact="true"
+                offset={-80}
+                onClick={toggle}
+              >
+                About
+              </SidebarLinkScroll>
+              {isAuth != true ? (
+                <SidebarLinkScroll
+                  to="signup"
+                  smooth={true}
+                  duration={500}
+                  spy={true}
+                  exact="true"
+                  offset={-80}
+                  onClick={toggle}
+                >
+                  Sign Up
+                </SidebarLinkScroll>
+              ) : null}
+              <SidebarLinkScroll
+                to="discover"
+                smooth={true}
+                duration={500}
+                spy={true}
+                exact="true"
+                offset={-80}
+                onClick={toggle}
+              >
+                Discover
+              </SidebarLinkScroll>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <SidebarLinkRouter to="about" onClick={toggle}>
+                About
+              </SidebarLinkRouter>
+              {isAuth != true ? (
+                <SidebarLinkRouter to="register" onClick={toggle}>
+                  Sign Up
+                </SidebarLinkRouter>
+              ) : null}
+              <SidebarLinkRouter to="shop" onClick={toggle}>
+                Discover
+              </SidebarLinkRouter>
+            </Fragment>
+          )}
+          <SidebarLinkRouter to="checkout" onClick={toggle}>
+            Cart
+          </SidebarLinkRouter>
         </SidebarMenu>
         <SideButtonWrap>
           {isAuth == true ? (
@@ -33,7 +87,9 @@ const Sidebar = ({ toggle, isOpen, isAuth, signOut }) => {
               Sign out
             </SidebarRoute>
           ) : (
-            <SidebarRoute to="/signin">Sign In</SidebarRoute>
+            <Fragment>
+              <SidebarRoute to="/signin">Sign In</SidebarRoute>
+            </Fragment>
           )}
         </SideButtonWrap>
       </SidebarWrapper>
