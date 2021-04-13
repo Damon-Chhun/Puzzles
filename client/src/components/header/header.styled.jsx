@@ -69,7 +69,7 @@ export const NavItem = styled.li`
   height: 80px;
 `;
 
-export const NavLinks = styled(LinkScroll)`
+export const NavLinksScroll = styled(LinkScroll)`
 color: black;
 display: flex;
 align-items: center;
@@ -81,6 +81,22 @@ cursor: pointer;
 &.active {
   border-bottom: 5px solid #01bf71;
 }
+
+&:hover {
+  transition: all 0.3s ease-in-out;
+  border-bottom: 4px solid #01bf71;
+}
+`;
+
+export const NavLinksRouter = styled(LinkRouter)`
+color: black;
+display: flex;
+align-items: center;
+text-decoration: none;
+padding 0 1rem; 
+height: 100%;
+cursor: pointer;
+
 
 &:hover {
   transition: all 0.3s ease-in-out;
