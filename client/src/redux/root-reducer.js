@@ -22,4 +22,6 @@ const rootReducer = combineReducers({
   reviews: reviewsReducer
 });
 
+//export default rootReducer;
+
 export default persistReducer(persistConfig, rootReducer);

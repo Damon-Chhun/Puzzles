@@ -19,8 +19,13 @@ import { CardButton, AddToCart } from "./MuiCard.styled";
 const useStyles = makeStyles({
   root: {
     maxWidth: 335,
-
-    margin: 10
+    margin: 10,
+    height: "40vh",
+    display: "flex",
+    flexDirection: "column",
+    flexWrap: "nowrap",
+    alignItems: "center",
+    justifyContent: "space-evenly"
   },
   media: {
     height: 240,
@@ -34,7 +39,8 @@ const useStyles = makeStyles({
   },
   cartButton: {
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    alignItems: "space-evenly"
   }
 });
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { RemoveItemFromCart, addToCart } from "../../redux/cart/cart.actions";
@@ -9,7 +10,8 @@ import {
   Quantity,
   NameQuanitityPriceContainer,
   NameAndQuantityContainer,
-  Price
+  Price,
+  RemoveButton
 } from "./CartItem.styled";
 
 function CartItem({
@@ -20,7 +22,8 @@ function CartItem({
   quantity,
   removeItem,
   token,
-  addToCart
+  addToCart,
+  history
 }) {
   console.log(department, name, price, quantity, name);
 
@@ -31,7 +34,11 @@ function CartItem({
     name = "No Name Found, Fix";
   }
   return (
-    <CartItemsContainer>
+    <CartItemsContainer
+      onClick={() =>
+        history.push(`${history.location.pathname}${department}/${productID}`)
+      }
+    >
       <NameQuanitityPriceContainer>
         <NameAndQuantityContainer>
           <div onClick={() => addToCart(productID, -1, token)}>&#10094;</div>
@@ -41,7 +48,9 @@ function CartItem({
         </NameAndQuantityContainer>
         <Price>${price}</Price>
       </NameQuanitityPriceContainer>
-      <div onClick={() => removeItem(token, productID)}>Remove</div>
+      <RemoveButton onClick={() => removeItem(token, productID)}>
+        Remove
+      </RemoveButton>
     </CartItemsContainer>
   );
 }
@@ -52,4 +61,4 @@ const mapDispatchToProps = dispatch => ({
     dispatch(addToCart(productID, quantity, token))
 });
 
-export default connect(null, mapDispatchToProps)(CartItem);
+export default withRouter(connect(null, mapDispatchToProps)(CartItem));

@@ -2,15 +2,20 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Typography from "@material-ui/core/Typography";
+import Scroll from "react-scroll";
+import { Link as LinkRouter } from "react-router-dom";
+import { Link as LinkScroll } from "react-scroll";
+
+import { updateScroll } from "../../redux/shop/shop.actions";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     minWidth: 300,
     height: "100%",
-    //border: "solid 5px blue",
 
     width: "100%"
   },
@@ -83,8 +88,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function ButtonBases({ collections }) {
+function ButtonBases({ collections, updateScroll }) {
   const classes = useStyles();
+  const scroll = Scroll.animateScroll;
 
   return (
     <div className={classes.root}>
@@ -94,6 +100,9 @@ export default function ButtonBases({ collections }) {
           key={image.title}
           className={classes.image}
           focusVisibleClassName={classes.focusVisible}
+          component={LinkRouter}
+          to="/shop"
+          onClick={() => updateScroll(image.title)}
           style={{
             width: "40%"
           }}
@@ -121,3 +130,9 @@ export default function ButtonBases({ collections }) {
     </div>
   );
 }
+
+const mapDispatchToProps = dispatch => ({
+  updateScroll: name => dispatch(updateScroll(name))
+});
+
+export default connect(null, mapDispatchToProps)(ButtonBases);

@@ -1,29 +1,34 @@
 import styled from "styled-components";
 import { Link as LinkScroll } from "react-scroll";
+import { FaOpencart } from "react-icons/fa";
 
 export const SmoothContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background: white;
+  flex-wrap: nowrap;
   height: 80px;
   width: 100%;
   position: sticky;
   top: 0;
   bottom: 0;
   z-index: 10;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    margin-right: 0;
+  }
 `;
 
 export const NavContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 
   height: 80px;
   z-index: 1;
-  width: 100%;
+  width: 95%;
   padding: 0 24;
-  max-width: 1100px;
 `;
 
 export const NavMenu = styled.ul`
@@ -32,9 +37,9 @@ export const NavMenu = styled.ul`
   list-style: none;
   text-align: center;
 
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
+  // @media screen and (max-width: 768px) {
+  //   display: none;
+  // }
 `;
 export const NavItem = styled.li`
   height: 80px;
@@ -60,4 +65,19 @@ cursor: pointer;
   transition: all 0.3s ease-in-out;
   border-bottom: 4px solid #01bf71;
 }
+`;
+
+export const CartIcon = styled(FaOpencart)`
+  color: black;
+`;
+
+export const CartOpenIcon = styled.div`
+  sbackground: transparent;
+  font-size: 3rem;
+  cursor: pointer;
+  outline: none;
+  height: 3.5rem;
+  width: 3.5rem;
+  position: sticky;
+  top: 170px;
 `;

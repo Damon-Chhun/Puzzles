@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import axios from "axios";
 import { connect } from "react-redux";
@@ -12,10 +12,14 @@ import ProductPage from "./pages/product/productpage.component";
 import RegisterPage from "./pages/register/registerpage.component";
 import DiscussionPage from "./pages/Discussion/DiscussionPage.component";
 import Footer from "./components/footer/footer.component";
+import StorePage from "./pages/shop/StorePage.component";
 
 import setAuthToken from "./utils/setAuthToken";
 import { store } from "./redux/store";
 import { loadUser } from "./redux/auth/auth.actions";
+import Header from "./components/header/header.component";
+import Sidebar from "./components/sidebar/sidebar.component";
+import "./main.css";
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
@@ -24,8 +28,16 @@ function App() {
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div>
+      <Sidebar isOpen={isOpen} toggle={toggle} />
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/shop" component={ShopPage} />

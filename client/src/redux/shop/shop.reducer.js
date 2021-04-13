@@ -2,6 +2,7 @@ import { ACTIONTYPE } from "./Shop.ActionTypes";
 
 const INITIAL_STATE = {
   shop: [],
+  scroll: "",
   isFetching: false,
   errorMessage: undefined
 };
@@ -30,6 +31,12 @@ const shopReducer = (state = INITIAL_STATE, action) => {
         isFetching: false,
         shop: null,
         errorMessage: payload
+      };
+
+    case ACTIONTYPE.SCROLL_TO:
+      return {
+        ...state,
+        scroll: payload
       };
 
     default:

@@ -2,21 +2,32 @@ import styled from "styled-components";
 import { Link as LinkScroll } from "react-scroll";
 
 export const ShopPageContainer = styled.div`
-  diplay: flex;
-  justify-content: center;
-  flex-wrap: none;
+  width: 100%
+  min-height: 100vh;
 
   top: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 export const CardContainer = styled.div`
-  margin-right: 400px;
+  width: ${props => (props.drawerOpen ? "70%" : "100%")};
+  display: flex;
+  justify-content: flex-start;
+  flex-grow: 2;
+
+  // @media screen and (max-width: 768px) {
+  //   width: 100%;
+  // }
 `;
 
 export const ShopSticky = styled.div`
+  width: 100%;
   position: sticky;
-  top: 80px;
-  z-index: 10;
+  z-index: 1000;
+  top: 0;
 `;
 
 export const ShopNavBar = styled(LinkScroll)`
@@ -27,6 +38,7 @@ text-decoration: none;
 padding 0 1rem; 
 height: 100%;
 cursor: pointer;
+
 
 
 &.active {
@@ -40,4 +52,8 @@ cursor: pointer;
 `;
 export const Blank = styled.div`
   height: 55px;
+`;
+
+export const DataContainer = styled.div`
+  display: flex;
 `;

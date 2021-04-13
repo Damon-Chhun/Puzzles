@@ -22,3 +22,7 @@ export const selectTotal = createSelector(
   [selectCart],
   reducer => reducer.total
 );
+
+export const selectIsDrawerOpen = createSelector([selectCart], top => {
+  return top.drawerIsOpen;
+});

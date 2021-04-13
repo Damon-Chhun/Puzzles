@@ -3,11 +3,13 @@ import Background from "../../assets/homepage-background-2.jpg";
 import { Button } from "@material-ui/core";
 
 export const HomePageContainer = styled.div`
+  
   display: flex;
   flex-direction: column;
-  flex-wrap: no-wrap;
+  flex-wrap: nowrap;
+  justify-content:flex-start;
   align-items: center;
-  width: 100w;
+  width: 100vw;
 
   overflow-y: scroll;
 

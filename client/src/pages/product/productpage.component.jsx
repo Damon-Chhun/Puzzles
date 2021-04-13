@@ -36,7 +36,6 @@ function ProductPage({ shop, getReviews, posts, user, isAuth }) {
 
   return (
     <Fragment>
-      <Header />
       <ProductPageContainer>
         <div>{item.Department}</div>
         <div>{item.imageURL}</div>
@@ -45,12 +44,16 @@ function ProductPage({ shop, getReviews, posts, user, isAuth }) {
         <div>{item.price}</div>
         <PostsContainer>
           <ReviewForum productId={productID} />
-          <Posts posts={posts} user={isAuth != true ? null : user._id} />
+          <Posts posts={posts} user={user === null ? null : user._id} />
         </PostsContainer>
       </ProductPageContainer>
     </Fragment>
   );
 }
+
+ProductPage.propTypes = {
+  user: {}
+};
 
 const mapStateToProps = createStructuredSelector({
   shop: selectShopCollection,
