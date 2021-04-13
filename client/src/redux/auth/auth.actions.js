@@ -1,7 +1,6 @@
 import axios from "axios";
 import ACTIONTYPES from "./Auth.ActionTypes";
 import setAuthToken from "../../utils/setAuthToken";
-import { FaThermometerEmpty } from "react-icons/fa";
 
 //Start Register
 const registerUserStart = () => ({
@@ -84,9 +83,11 @@ export function login(email, password) {
 }
 
 //Sign out user
-export const signOut = () => ({
-  type: ACTIONTYPES.SIGN_OUT
-});
+export const signOut = () => dispatch => {
+  dispatch({
+    type: ACTIONTYPES.SIGN_OUT
+  });
+};
 
 //Start Load User
 const loadUserStart = () => ({

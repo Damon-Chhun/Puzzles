@@ -19,27 +19,29 @@ import { Element } from "react-scroll";
 
 const HomePage = () => {
   return (
-    <div>
+    <Fragment>
       <Header />
-      <BackgroundContainer>
-        <HomeButton
-          component={Link}
-          color="default"
-          size="large"
-          to="/shop"
-          className="button"
-        >
-          Finish Your Puzzle
-        </HomeButton>
-      </BackgroundContainer>
-      >
-      <Element name="signup">
-        <InfoSection {...signUpObj} />
-      </Element>
-      <Element name="discover">
-        <Directory />
-      </Element>
-    </div>
+      <HomePageContainer>
+        <BackgroundContainer>
+          <HomeButton
+            component={Link}
+            color="default"
+            size="large"
+            to="/shop"
+            className="button"
+          >
+            Finish Your Puzzle
+          </HomeButton>
+        </BackgroundContainer>
+
+        <Element name="signup">
+          <InfoSection {...signUpObj} />
+        </Element>
+        <Element name="discover">
+          <Directory />
+        </Element>
+      </HomePageContainer>
+    </Fragment>
   );
 };
 

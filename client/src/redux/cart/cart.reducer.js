@@ -6,7 +6,8 @@ const INITIAL_STATE = {
   message: null,
   subtotal: 0.0,
   tax: 0.0,
-  total: 0.0
+  total: 0.0,
+  drawerIsOpen: true
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -69,6 +70,17 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         total: payload
+      };
+
+    case ActionTypes.OPEN_DRAWER:
+      return {
+        ...state,
+        drawerIsOpen: true
+      };
+    case ActionTypes.CLOSE_DRAWER:
+      return {
+        ...state,
+        drawerIsOpen: false
       };
 
     default:

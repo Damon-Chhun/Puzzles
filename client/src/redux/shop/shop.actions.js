@@ -61,3 +61,11 @@ const fetchShopFail = error => {
     payload: error
   };
 };
+
+// SCROLL to element state update
+export const updateScroll = name => {
+  return {
+    type: ACTIONTYPE.SCROLL_TO,
+    payload: name
+  };
+};

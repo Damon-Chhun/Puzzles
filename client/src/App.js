@@ -12,6 +12,7 @@ import ProductPage from "./pages/product/productpage.component";
 import RegisterPage from "./pages/register/registerpage.component";
 import DiscussionPage from "./pages/Discussion/DiscussionPage.component";
 import Footer from "./components/footer/footer.component";
+import StorePage from "./pages/shop/StorePage.component";
 
 import setAuthToken from "./utils/setAuthToken";
 import { store } from "./redux/store";

@@ -5,10 +5,17 @@ import {
   NavContainer,
   NavMenu,
   NavLinks,
-  NavItem
+  NavItem,
+  CartIcon,
+  CartOpenIcon
 } from "./SmoothNavBar.styled";
 
-const SmoothNavbar = ({ category }) => {
+import { openDrawer } from "../../redux/cart/cart.actions";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectIsDrawerOpen } from "../../redux/cart/cart.selectors";
+
+const SmoothNavbar = ({ category, drawerIsOpen, openDrawer }) => {
   return (
     <SmoothContainer>
       <NavContainer>
@@ -29,8 +36,21 @@ const SmoothNavbar = ({ category }) => {
           ))}
         </NavMenu>
       </NavContainer>
+      {drawerIsOpen ? null : (
+        <CartOpenIcon onClick={() => openDrawer()}>
+          <CartIcon />
+        </CartOpenIcon>
+      )}
     </SmoothContainer>
   );
 };
 
-export default SmoothNavbar;
+const mapStateToProps = createStructuredSelector({
+  drawerIsOpen: selectIsDrawerOpen
+});
+
+const mapDispatchToProps = dispatch => ({
+  openDrawer: () => dispatch(openDrawer())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SmoothNavbar);

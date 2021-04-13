@@ -173,3 +173,13 @@ export function CalcTotal(subTotal, tax) {
     payload: total
   };
 }
+
+//OPEN DRAWER
+export const openDrawer = () => ({
+  type: ActionTypes.OPEN_DRAWER
+});
+
+//CLOSE DRAWER
+export const closeDrawer = () => ({
+  type: ActionTypes.CLOSE_DRAWER
+});

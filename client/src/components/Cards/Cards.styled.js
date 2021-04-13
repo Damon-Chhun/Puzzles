@@ -2,15 +2,15 @@ import styled from "styled-components";
 
 export const CardsContainer = styled.div`
   width: 100%;
-  height: 75%
+  height: 75%;
 
-  margin-left:20px;
-
- 
+  //margin-left: 20px;
 `;
 
 export const DepartmentContainer = styled.h2`
-  margin-left: 110px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: flex-start;
 `;
 
 export const CategoryContainer = styled.div`
@@ -28,5 +28,5 @@ export const Category = styled.div`
   align-items: center;
   min-height: 800px;
   margin-bottom: 50px;
-  padding-left: 100px;
+  //padding-left: 100px;
 `;

@@ -15,3 +15,8 @@ export const selectShopCategories = createSelector(
       return element.department;
     })
 );
+
+export const selectShopScroll = createSelector(
+  [selectShop],
+  reducer => reducer.scroll
+);

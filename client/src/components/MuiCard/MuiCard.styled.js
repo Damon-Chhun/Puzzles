@@ -6,6 +6,13 @@ export const CardButton = styled(CardActions)`
   display: flex;
   justify-content: center;
   background-color: #01bf71;
+  width: 80%;
+  border-radius: 12px;
+
+  &:hover {
+    transition: all 0.4s ease-in-out;
+    opacity: 0.7;
+  }
 `;
 
 export const AddToCart = styled(Button)`
@@ -15,3 +22,5 @@ export const AddToCart = styled(Button)`
     color: black;
   }
 `;
+
+export const InfoWrapper = styled.div;
