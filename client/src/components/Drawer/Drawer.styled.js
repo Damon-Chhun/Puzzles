@@ -72,9 +72,13 @@ export const MoneyWrapper = styled.div`
   padding: 5px;
 `;
 
-export const Calculation = styled.h3``;
+export const Calculation = styled.h3`
+  font-size: 1.4vh;
+`;
 
-export const CalculationName = styled.h3``;
+export const CalculationName = styled.h3`
+  font-size: 1.4vh;
+`;
 
 export const CalculationWrapper = styled.div`
   width 45%;
@@ -146,5 +150,5 @@ export const PriceContainer = styled.div`
 
 export const CheckoutPrice = styled.h4`
   color: white;
-  font-size: 1.6vh;
+  font-size: 1.4vh;
 `;

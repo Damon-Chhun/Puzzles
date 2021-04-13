@@ -50,7 +50,7 @@ export const QuantityWrapper = styled.div`
 `;
 
 export const Quantity = styled.h3`
-  font-size: 1rem;
+  font-size: 1.3vh;
   margin: 10px;
   margin-top: 10px;
 `;
@@ -66,7 +66,7 @@ export const ChangeQuantityBtn = styled.button`
   }
 `;
 export const Price = styled.h3`
-  font-size: 1rem;
+  font-size: 1.3vh;
 
   width: 20%;
   display: flex;
