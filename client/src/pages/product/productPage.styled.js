@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ProductPageContainer = styled.div`
-  border: solid 2px black;
+  border: dashed 5px pink;
   width: 100%;
   background: #f3f6f9;
   display: flex;

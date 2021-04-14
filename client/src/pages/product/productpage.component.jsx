@@ -37,6 +37,7 @@ function ProductPage({ shop, getReviews, posts, user, isAuth }) {
   return (
     <Fragment>
       <ProductPageContainer>
+        <Header isHomepage={false} />
         <div>{item.Department}</div>
         <div>{item.imageURL}</div>
         <div>{item.title}</div>

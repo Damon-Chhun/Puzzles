@@ -4,10 +4,10 @@ export const CartItemsContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  align-items: flex-start;
+  flex-wrap: nowrap;
+  align-items: space-evenly;
   justify-content: flex-start;
-  height: 150px;
+  // height: 10vh;
 
   &:hover {
     transition: all 0.3x ease-in-out;
@@ -27,7 +27,7 @@ export const NameAndQuantityContainer = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  height: 100px;
+  //height: 100px;
   width: 80%;
 `;
 export const ItemName = styled.span`
@@ -72,6 +72,14 @@ export const Price = styled.h3`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const RemoveWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 export const RemoveButton = styled.button`

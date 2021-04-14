@@ -2,26 +2,31 @@ import styled from "styled-components";
 import { FaTimes, FaOpencart, FaShoppingCart } from "react-icons/fa";
 
 export const DrawerContainer = styled.div`
+  border: solid 5px black;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: nowrap;
-
+  height: 81.5vh;
   width: 30%;
   max-width: 700px;
-  height: 87vh;
+
   position: sticky;
-  top: 170px;
+  top: 200px;
   border: solid 3px #ececec;
   @media screen and (max-width: 768px) {
+    display: none;
+  }
+
+  @media screen and (max-height: 700px) {
     display: none;
   }
 `;
 
 export const TopLineWrapper = styled.div`
   width: 100%;
-  height: 10%;
+  //height: 8.5vh;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -45,11 +50,11 @@ export const Icon = styled.div`
 export const Title = styled.h1`
   display: flex;
   justify-content: flex-start;
+  font-size: 3vh;
 `;
 
 export const CartItemsContainer = styled.div`
   border: dashed 5px brown;
-  border: 2px solid blue;
 `;
 
 export const ItemContainer = styled.div``;
@@ -62,7 +67,8 @@ export const ListContainer = styled.div`
 `;
 
 export const MoneyWrapper = styled.div`
-  height: 15%;
+  top:0;
+  height: 80%;
   width: 100%;
   display: flex;
   flex-direction rows;
@@ -70,30 +76,32 @@ export const MoneyWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 5px;
+  z-index:1000;
 `;
 
 export const Calculation = styled.h3`
-  font-size: 1.4vh;
+  font-size: 1.3vh;
 `;
 
 export const CalculationName = styled.h3`
-  font-size: 1.4vh;
+  font-size: 1.3vh;
 `;
 
 export const CalculationWrapper = styled.div`
+
   width 45%;
   height:100%;
   display: flex;
   flex-direction: column;
   flex-wrap:nowrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: ${props => props.align}
   
 `;
 
 export const CheckoutWrapper = styled.div`
   width: 100%;
-  height: 7%;
+  height: 20%;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
@@ -151,4 +159,18 @@ export const PriceContainer = styled.div`
 export const CheckoutPrice = styled.h4`
   color: white;
   font-size: 1.4vh;
+`;
+
+export const StickyWrapper = styled.div`
+  background-color: white;
+  width: 100%;
+  bottom: 0px;
+  position: sticky;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 1000;
 `;

@@ -13,7 +13,8 @@ import {
   Price,
   RemoveButton,
   ChangeQuantityBtn,
-  QuantityWrapper
+  QuantityWrapper,
+  RemoveWrapper
 } from "./CartItem.styled";
 
 function CartItem({
@@ -60,9 +61,11 @@ function CartItem({
         </NameAndQuantityContainer>
         <Price>${price}</Price>
       </NameQuanitityPriceContainer>
-      <RemoveButton onClick={() => removeItem(token, productID)}>
-        Remove
-      </RemoveButton>
+      <RemoveWrapper>
+        <RemoveButton onClick={() => removeItem(token, productID)}>
+          Remove
+        </RemoveButton>
+      </RemoveWrapper>
     </CartItemsContainer>
   );
 }
