@@ -32,8 +32,8 @@ const useStyles = makeStyles({
     height: 240,
     width: 500,
     backgroundSize: "contain",
-    backgroundPosition: "center center",
-    backgroundPositionX: "30%"
+    backgroundPosition: "center",
+    backgroundPositionX: "20%"
   },
   mainInfo: {
     marginTop: "10px"
@@ -49,16 +49,14 @@ function MuiCard({ info, addToCart, token, history }) {
   const classes = useStyles();
 
   return (
-    <Card
-      className={classes.root}
-      elevation={10}
-      onClick={() =>
-        history.push(
-          `${history.location.pathname}/${info.Department}/${info._id}`
-        )
-      }
-    >
-      <CardActionArea>
+    <Card className={classes.root} elevation={10}>
+      <CardActionArea
+        onClick={() =>
+          history.push(
+            `${history.location.pathname}/${info.Department}/${info._id}`
+          )
+        }
+      >
         <CardMedia
           className={classes.media}
           image={info.imageURL}

@@ -19,7 +19,7 @@ export const AddToCart = styled(Button)`
   && {
     width: 100%;
     height: 100%;
-    color: black;
+    color: white;
   }
 `;
 

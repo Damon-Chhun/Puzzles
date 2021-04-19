@@ -43,7 +43,8 @@ import {
   CartIcon,
   CartAndBtn,
   PriceContainer,
-  CheckoutPrice
+  CheckoutPrice,
+  StickyWrapper
 } from "./Drawer.styled";
 
 const useStyles = makeStyles({
@@ -104,33 +105,36 @@ const ShopDrawer = ({
             })
           : null}
       </ListContainer>
-      <MoneyWrapper>
-        <CalculationWrapper align={"flex-start"}>
-          <CalculationName>SubTotal:</CalculationName>
-          <CalculationName>Tax:</CalculationName>
-          <CalculationName>Total:</CalculationName>
-        </CalculationWrapper>
 
-        <CalculationWrapper align={"flex-end"}>
-          <Calculation>$ {cartInfo.subtotal}</Calculation>
+      <StickyWrapper>
+        <MoneyWrapper>
+          <CalculationWrapper align={"flex-start"}>
+            <CalculationName>SubTotal:</CalculationName>
+            <CalculationName>Tax:</CalculationName>
+            <CalculationName>Total:</CalculationName>
+          </CalculationWrapper>
 
-          <Calculation>$ {cartInfo.tax}</Calculation>
+          <CalculationWrapper align={"flex-end"}>
+            <Calculation>$ {cartInfo.subtotal}</Calculation>
 
-          <Calculation>$ {cartInfo.total}</Calculation>
-        </CalculationWrapper>
-      </MoneyWrapper>
+            <Calculation>$ {cartInfo.tax}</Calculation>
 
-      <CheckoutWrapper>
-        <CartAndBtn>
-          <CartIcon />
-          <DrawerCheckoutBtn>
-            Checkout ({cartItems.products.length})
-          </DrawerCheckoutBtn>
-        </CartAndBtn>
-        <PriceContainer>
-          <CheckoutPrice>$ {cartInfo.total}</CheckoutPrice>
-        </PriceContainer>
-      </CheckoutWrapper>
+            <Calculation>$ {cartInfo.total}</Calculation>
+          </CalculationWrapper>
+        </MoneyWrapper>
+
+        <CheckoutWrapper>
+          <CartAndBtn>
+            <CartIcon />
+            <DrawerCheckoutBtn>
+              Checkout ({cartItems.products.length})
+            </DrawerCheckoutBtn>
+          </CartAndBtn>
+          <PriceContainer>
+            <CheckoutPrice>$ {cartInfo.total}</CheckoutPrice>
+          </PriceContainer>
+        </CheckoutWrapper>
+      </StickyWrapper>
     </DrawerContainer>
   );
 };

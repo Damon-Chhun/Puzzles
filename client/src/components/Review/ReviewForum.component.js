@@ -4,15 +4,24 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addPost } from "../../redux/reviews/reviews.actions";
 
+import {
+  PostReviewContainer,
+  H3Wrapper,
+  H3Text,
+  FormContainer,
+  TextArea,
+  Input
+} from "./Review.styled";
+
 const ReviewForum = ({ addPost, productId }) => {
   const [text, setText] = useState("");
   console.log(productId);
   return (
-    <div>
-      <div>
-        <h3>Say something...</h3>
-      </div>
-      <form
+    <PostReviewContainer>
+      <H3Wrapper>
+        <H3Text>Write a Review!</H3Text>
+      </H3Wrapper>
+      <FormContainer
         className="form"
         onSubmit={e => {
           e.preventDefault();
@@ -20,7 +29,7 @@ const ReviewForum = ({ addPost, productId }) => {
           setText("");
         }}
       >
-        <textarea
+        <TextArea
           name="text"
           cols="30"
           rows="5"
@@ -28,10 +37,10 @@ const ReviewForum = ({ addPost, productId }) => {
           value={text}
           onChange={e => setText(e.target.value)}
           required
-        ></textarea>
-        <input type="submit" value="Submit" />
-      </form>
-    </div>
+        ></TextArea>
+      </FormContainer>
+      <Input type="submit" value="Post Review!" />
+    </PostReviewContainer>
   );
 };
 
