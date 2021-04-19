@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { FaTimes, FaOpencart, FaShoppingCart } from "react-icons/fa";
 
 export const DrawerContainer = styled.div`
-  border: solid 5px black;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

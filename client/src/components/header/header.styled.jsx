@@ -124,7 +124,7 @@ export const NavBtnLink = styled(LinkRouter)`
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
-  color: #010606;
+  color: black;
 
   &:hover {
     transition: all 0.2s ease-in-out;

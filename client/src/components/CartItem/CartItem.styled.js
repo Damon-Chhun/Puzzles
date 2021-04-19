@@ -7,6 +7,7 @@ export const CartItemsContainer = styled.div`
   flex-wrap: nowrap;
   align-items: space-evenly;
   justify-content: flex-start;
+  border-bottom: solid 2px #ececec;
   // height: 10vh;
 
   &:hover {

@@ -32,8 +32,8 @@ const useStyles = makeStyles({
     height: 240,
     width: 500,
     backgroundSize: "contain",
-    backgroundPosition: "center center",
-    backgroundPositionX: "30%"
+    backgroundPosition: "center",
+    backgroundPositionX: "20%"
   },
   mainInfo: {
     marginTop: "10px"

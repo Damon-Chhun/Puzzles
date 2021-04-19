@@ -35,7 +35,6 @@ const authReducer = (state = INITIAL_STATE, action) => {
       localStorage.setItem("token", payload.token);
       return {
         ...state,
-        user: null,
         isAuthenticated: true,
         loading: false
       };
@@ -77,9 +76,10 @@ const authReducer = (state = INITIAL_STATE, action) => {
         errorMessage: payload
       };
 
-    case ACTIONTYPES.LOAD_USER_START:
+    case ACTIONTYPES.LOAD_USER_SUCCESS:
       return {
-        ...state
+        ...state,
+        user: payload
       };
 
     case ACTIONTYPES.GET_USER:
