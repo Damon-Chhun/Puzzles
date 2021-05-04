@@ -73,17 +73,27 @@ export function addToCart(
 
 //add to cart while not authorized
 
-export function addToCartUNAUTH(_id, title, price, Department, imageURL) {
-  console.log(_id, title, price, Department, imageURL);
+export function addToCartUNAUTH(
+  productID,
+  title,
+  price,
+  Department,
+  imageURL,
+  quantity
+) {
+  console.log(productID, title, price, Department, imageURL);
   return {
-    type: ActionTypes.ADD_TO_CART_UNAUTH,
+    type:
+      quantity > 0
+        ? ActionTypes.ADD_TO_CART_UNAUTH
+        : ActionTypes.REMOVE_FROM_CART_UNAUTH,
     payload: {
-      _id,
+      productID,
       name: title,
       price,
       Department,
       imageURL,
-      quantity: 0
+      quantity
     }
   };
 }
