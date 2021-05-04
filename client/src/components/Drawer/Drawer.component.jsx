@@ -1,9 +1,6 @@
 import React, { useEffect } from "react";
-import { Drawer } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import Item from "../CartItem/CartItem.component";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 
+import Item from "../CartItem/CartItem.component";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import {
@@ -11,9 +8,10 @@ import {
   selectSubTotal,
   selectTax,
   selectTotal,
-  selectIsDrawerOpen
+  selectIsDrawerOpen,
+  selectUnAuthCart
 } from "../../redux/cart/cart.selectors";
-import { selectAuthToken } from "../../redux/auth/auth.selectors";
+import { selectAuthToken, selectIsAuth } from "../../redux/auth/auth.selectors";
 
 import getCartInfo from "./utill";
 
@@ -47,21 +45,6 @@ import {
   StickyWrapper
 } from "./Drawer.styled";
 
-const useStyles = makeStyles({
-  drawer: {
-    marginTop: "160px",
-    width: "400px",
-    height: "100%%",
-    marginTop: "80px",
-    border: "1px solid grey",
-    display: "flex",
-    justifyContent: "flex-start;",
-    textAlign: "center",
-    position: "sticky",
-    bottom: "0px"
-  }
-});
-
 const ShopDrawer = ({
   cartItems,
   token,
@@ -72,17 +55,29 @@ const ShopDrawer = ({
   taxState,
   totalState,
   closeDrawer,
-  isDrawerOpen
+  isDrawerOpen,
+  auth,
+  UnAuthCart
 }) => {
   console.log(
     cartItems,
     "CART ITEMS HELSDKLFJSDLKFJSLDK:FJSKL:DFJSDFL:KJSDL:KFJ"
   );
 
-  let cartInfo = {};
+  let cartInfo = {
+    subtotal: 0.0,
+    tax: 0.0,
+    total: 0.0,
+    quantity: 0
+  };
+  //let UnAuthCartInfo = {};
 
-  if (cartItems.products.length > 0) {
-    cartInfo = getCartInfo(cartItems.products);
+  if (auth == true) {
+    if (cartItems.products != undefined) {
+      cartInfo = getCartInfo(cartItems.products);
+    }
+  } else {
+    cartInfo = getCartInfo(UnAuthCart);
   }
 
   console.log(cartInfo);
@@ -98,13 +93,24 @@ const ShopDrawer = ({
 
         <Title>Your Items</Title>
       </TopLineWrapper>
-      <ListContainer>
-        {cartItems.products != null
-          ? cartItems.products.map(({ ...otherCartItemProps }) => {
-              return <Item {...otherCartItemProps} token={token} />;
-            })
-          : null}
-      </ListContainer>
+
+      {auth == true ? (
+        <ListContainer>
+          {cartItems.products != null
+            ? cartItems.products.map(({ ...otherCartItemProps }) => {
+                return <Item {...otherCartItemProps} token={token} />;
+              })
+            : null}
+        </ListContainer>
+      ) : (
+        <ListContainer>
+          {UnAuthCart.length > 0
+            ? UnAuthCart.map(({ ...otherCartItemProps }) => {
+                return <Item {...otherCartItemProps} token={token} />;
+              })
+            : null}
+        </ListContainer>
+      )}
 
       <StickyWrapper>
         <MoneyWrapper>
@@ -127,7 +133,7 @@ const ShopDrawer = ({
           <CartAndBtn>
             <CartIcon />
             <DrawerCheckoutBtn>
-              Checkout ({cartItems.products.length})
+              Checkout ({cartInfo.quantity})
             </DrawerCheckoutBtn>
           </CartAndBtn>
           <PriceContainer>
@@ -145,7 +151,9 @@ const mapStateToProps = createStructuredSelector({
   subTotalState: selectSubTotal,
   taxState: selectTax,
   totalState: selectTotal,
-  isDrawerOpen: selectIsDrawerOpen
+  isDrawerOpen: selectIsDrawerOpen,
+  auth: selectIsAuth,
+  UnAuthCart: selectUnAuthCart
 });
 
 const mapDispatchToProps = dispatch => ({

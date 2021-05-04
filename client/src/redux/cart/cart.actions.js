@@ -21,10 +21,19 @@ const AddToCartFail = error => ({
 
 //add to cart
 
-export function addToCart(productID, quantity) {
+export function addToCart(
+  productID,
+  quantity,
+  imageURL,
+  title,
+  price,
+  Department,
+  auth
+) {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
+  console.log(productID, quantity, imageURL, title, price, Department, auth);
   console.log("ADD TO CART ADD TO CART ADD TO CART");
   const config = {
     headers: {
@@ -38,13 +47,43 @@ export function addToCart(productID, quantity) {
 
   return async dispatch => {
     try {
-      dispatch(AddToCartStart());
-      const res = await axios.post("/api/shop", body, config);
+      if (auth !== true) {
+        dispatch(
+          addToCartUNAUTH(
+            productID,
+            title,
+            price,
+            Department,
+            imageURL,
+            quantity
+          )
+        );
+      } else {
+        dispatch(AddToCartStart());
+        const res = await axios.post("/api/shop", body, config);
 
-      console.log(res.data);
-      dispatch(AddToCartSucess(res.data));
+        console.log(res.data);
+        dispatch(AddToCartSucess(res.data));
+      }
     } catch (error) {
       dispatch(AddToCartFail("Fail"));
+    }
+  };
+}
+
+//add to cart while not authorized
+
+export function addToCartUNAUTH(_id, title, price, Department, imageURL) {
+  console.log(_id, title, price, Department, imageURL);
+  return {
+    type: ActionTypes.ADD_TO_CART_UNAUTH,
+    payload: {
+      _id,
+      name: title,
+      price,
+      Department,
+      imageURL,
+      quantity: 0
     }
   };
 }
@@ -112,7 +151,7 @@ const RemoveCartItemFail = error => {
   };
 };
 
-export function RemoveItemFromCart(productID) {
+export function RemoveItemFromCart(productID, auth) {
   return async dispatch => {
     if (localStorage.token) {
       setAuthToken(localStorage.token);
@@ -126,14 +165,27 @@ export function RemoveItemFromCart(productID) {
     };
     const body = JSON.stringify({ productID });
     try {
-      console.log("dispatch CHECKK CHECK CHECK CHECK");
-      await dispatch(RemoveCartItemStart());
-      const res = await axios.post("/api/shop/removeCartItem", body, config);
-      console.log(res.data, "RES.DATA REQUEST");
-      await dispatch(RemoveCartItemSuccess(res.data));
+      console.log(auth);
+      if (auth !== true) {
+        dispatch(RemoveItemFromCartUNAUTH(productID));
+      } else {
+        console.log("dispatch CHECKK CHECK CHECK CHECK");
+        await dispatch(RemoveCartItemStart());
+        const res = await axios.post("/api/shop/removeCartItem", body, config);
+        console.log(res.data, "RES.DATA REQUEST");
+        await dispatch(RemoveCartItemSuccess(res.data));
+      }
     } catch (error) {
       dispatch(RemoveCartItemFail("Fail"));
     }
+  };
+}
+
+//RemoveItem From Cart UNAUTH
+export function RemoveItemFromCartUNAUTH(productID) {
+  return {
+    type: ActionTypes.REMOVE_FROM_CART_UNAUTH,
+    payload: productID
   };
 }
 

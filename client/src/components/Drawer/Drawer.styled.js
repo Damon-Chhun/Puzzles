@@ -10,10 +10,12 @@ export const DrawerContainer = styled.div`
   height: 81.5vh;
   width: 30%;
   max-width: 700px;
+  background-color: white;
 
   position: sticky;
-  top: 200px;
-  border: solid 3px #ececec;
+  top: 190px;
+  border: solid 2.5px black;
+  border-radius: 12px;
   @media screen and (max-width: 768px) {
     display: none;
   }
@@ -106,6 +108,7 @@ export const CheckoutWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: #01bf71;
+  border-radius: 12px;
   &:hover {
     opacity: 0.8;
     transition: all 0.3s ease-in-out;
@@ -123,6 +126,7 @@ export const DrawerCheckoutBtn = styled.button`
   width: 100%;
   height: 100%;
   border: none;
+  border-radius: 12px;
 
   &:hover {
     cursor: pointer;

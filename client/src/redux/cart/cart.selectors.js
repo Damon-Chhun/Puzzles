@@ -7,6 +7,11 @@ export const selectCartItems = createSelector([selectCart], reducer => {
   return reducer.cartItems;
 });
 
+export const selectUnAuthCart = createSelector([selectCart], reducer => {
+  console.log(reducer, "Selector");
+  return reducer.UnAuthCart;
+});
+
 export const selectCartProducts = createSelector([selectCartItems], object => {
   console.log(object, "SELECTOR");
   return object.products;

@@ -1,4 +1,5 @@
 import { ActionTypes } from "./cart.ActionTypes";
+import { addItemToCart, removeItem } from "./cart.util";
 
 const INITIAL_STATE = {
   isHidden: true,
@@ -7,13 +8,19 @@ const INITIAL_STATE = {
   subtotal: 0.0,
   tax: 0.0,
   total: 0.0,
-  drawerIsOpen: true
+  drawerIsOpen: true,
+  UnAuthCart: []
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
   const { payload, type } = action;
 
   switch (type) {
+    case ActionTypes.SIGN_OUT:
+      console.log("SIGNING OUT");
+      //localStorage.clear("persist:persistedStore");
+      return INITIAL_STATE;
+
     case ActionTypes.ADD_TO_CART_START:
       return {
         ...state
@@ -22,6 +29,11 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         cartItems: payload
+      };
+    case ActionTypes.ADD_TO_CART_UNAUTH:
+      return {
+        ...state,
+        UnAuthCart: addItemToCart(state.UnAuthCart, payload)
       };
     case ActionTypes.ADD_TO_CART_FAIL:
       return {
@@ -56,6 +68,13 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         cartItems: payload
       };
+
+    case ActionTypes.REMOVE_FROM_CART_UNAUTH:
+      return {
+        ...state,
+        UnAuthCart: removeItem(state.UnAuthCart, payload)
+      };
+
     case ActionTypes.CALC_SUBTOTAL:
       return {
         ...state,

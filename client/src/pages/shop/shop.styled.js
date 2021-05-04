@@ -9,6 +9,7 @@ export const ShopPageContainer = styled.div`
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
+  background-color: #ececec;
 `;
 
 export const CardContainer = styled.div`
@@ -16,9 +17,9 @@ export const CardContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-grow: 2;
-
-  // @media screen and (max-width: 768px) {
-  //   width: 100%;
+  //border: solid 5px black;
+  // @media screen and (max-width: 873px) {
+  //   justify-content: center;
   // }
 `;
 

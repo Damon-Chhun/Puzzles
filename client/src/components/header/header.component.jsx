@@ -6,6 +6,7 @@ import { selectIsAuth } from "../../redux/auth/auth.selectors";
 import { signOut } from "../../redux/auth/auth.actions";
 import Scroll from "react-scroll";
 import Sidebar from "../sidebar/sidebar.component";
+import { withRouter } from "react-router-dom";
 
 import {
   Nav,
@@ -20,7 +21,7 @@ import {
   NavButton
 } from "./header.styled";
 
-const Header = ({ isAuth, signOut, isHomepage }) => {
+const Header = ({ isAuth, signOut, isHomepage, history }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
@@ -96,14 +97,15 @@ const Header = ({ isAuth, signOut, isHomepage }) => {
               </NavItem>
               <NavItem>
                 <NavLinksRouter
-                  to="shop"
+                  to="/shop"
                   smooth={true}
                   duration={500}
                   spy={true}
                   exact="true"
                   offset={-80}
+                  replace
                 >
-                  Discover
+                  Shop
                 </NavLinksRouter>
               </NavItem>
               <NavItem>
@@ -143,4 +145,4 @@ const mapStateToProps = createStructuredSelector({
   isAuth: selectIsAuth
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

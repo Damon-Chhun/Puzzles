@@ -7,6 +7,12 @@ function getCartInfo(cartItems) {
     )
     .toFixed(2);
 
+  // calculate quantity
+  const quantity = cartItems.reduce(
+    (accumulator, element) => accumulator + element.quantity,
+    0
+  );
+
   console.log(subtotal, "SUBTOTAL CALCSUBTOTAL ACTION");
 
   //calculate tax
@@ -21,7 +27,8 @@ function getCartInfo(cartItems) {
   return {
     subtotal,
     tax,
-    total
+    total,
+    quantity
   };
 }
 

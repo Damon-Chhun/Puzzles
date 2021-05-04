@@ -35,7 +35,7 @@ export function register({ firstName, lastName, email, password }) {
       const res = await axios.post("/api/users/", body, config);
       dispatch(registerUserSuccess(res.data));
     } catch (error) {
-      dispatch(registerUserFail(error.response.data.error));
+      dispatch(registerUserFail(error.msg));
     }
   };
 }
@@ -70,11 +70,12 @@ export function login(email, password) {
   return async dispatch => {
     try {
       await dispatch(loginUserStart());
-      const res = await axios.post("/api/auth/", body, config);
+      const res = await axios.post("/api/auth", body, config);
       console.log(res.data, "AUTH ACTION");
       await dispatch(loginUserSuccess(res.data));
     } catch (error) {
       const errors = error.response.data.errors;
+      console.log(errors);
       if (errors) {
         errors.forEach(errors => dispatch(loginUserFail(errors.msg, "danger")));
       }
