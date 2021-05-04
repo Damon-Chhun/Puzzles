@@ -14,13 +14,8 @@ const authReducer = (state = INITIAL_STATE, action) => {
   switch (type) {
     case ACTIONTYPES.SIGN_OUT:
       console.log("SIGNING OUT");
-
-      return {
-        ...state,
-        isAuthenticated: null,
-        token: null,
-        user: null
-      };
+      localStorage.clear("persist:persistedStore");
+      return INITIAL_STATE;
 
     case ACTIONTYPES.REGISTER_START:
       console.log("register start");

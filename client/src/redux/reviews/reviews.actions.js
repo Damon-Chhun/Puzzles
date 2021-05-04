@@ -29,7 +29,7 @@ export function getReviews(department, productID) {
       console.log(res.data, "GET REVIEWS GET REVIEWS GET REVIEWS GET REVIEWS");
       dispatch(getReviewsSuccess(res.data));
     } catch (error) {
-      dispatch(getReviewsFail(error.response.data.error));
+      dispatch(getReviewsFail("failed to get reviews"));
     }
   };
 }

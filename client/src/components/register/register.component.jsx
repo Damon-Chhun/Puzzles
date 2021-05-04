@@ -2,8 +2,19 @@ import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { register } from "../../redux/auth/auth.actions";
+import { loadCartOnLogin } from "../../redux/cart/cart.actions";
 
-export const Register = ({ register, isAuthenticated }) => {
+import {
+  LoginComponentContainer,
+  Title,
+  InputName,
+  InputContainer,
+  InputField,
+  EmailAndPassword,
+  SignInInput
+} from "./register.styled";
+
+export const Register = ({ register, isAuthenticated, history, loadCart }) => {
   const [formData, setFormData] = useState({
     email: "",
     firstName: "",
@@ -23,6 +34,8 @@ export const Register = ({ register, isAuthenticated }) => {
       console.log("Passwords do not match");
     } else {
       register({ firstName, lastName, email, password });
+      await loadCart();
+      history.goBack();
     }
   };
 
@@ -32,70 +45,84 @@ export const Register = ({ register, isAuthenticated }) => {
   }
 
   return (
-    <div>
-      <h2>Register</h2>
-      <span>Create An Account</span>
+    <LoginComponentContainer>
+      <Title>Register</Title>
+      {/* <span>Create An Account</span> */}
 
       <form onSubmit={e => onSubmit(e)}>
         <div>
-          <input
-            name="firstName"
-            type="name"
-            placeholder="First Name"
-            value={firstName}
-            onChange={e => onChange(e)}
-            required
-          />
+          <EmailAndPassword>
+            <InputContainer>
+              <InputName>First Name</InputName>
+              <InputField
+                name="firstName"
+                type="name"
+                placeholder="First Name"
+                value={firstName}
+                onChange={e => onChange(e)}
+                required
+              />
+            </InputContainer>
+            <InputContainer>
+              <InputName>Last Name</InputName>
+              <InputField
+                name="lastName"
+                type="name"
+                placeholder="Last Name"
+                value={lastName}
+                onChange={e => onChange(e)}
+                required
+              />
+            </InputContainer>
+            <InputContainer>
+              <InputName>Email</InputName>
+              <InputField
+                name="email"
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={e => onChange(e)}
+                required
+              />
+            </InputContainer>
+            <InputContainer>
+              <InputName>Create Password</InputName>
+              <InputField
+                name="password"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={e => onChange(e)}
+                required
+              />
+            </InputContainer>
+            <InputContainer>
+              <InputName>Confirm Password</InputName>
+              <InputField
+                name="password2"
+                type="password"
+                placeholder="Confirm Password"
+                value={password2}
+                onChange={e => onChange(e)}
+                required
+              />
+            </InputContainer>
+          </EmailAndPassword>
 
-          <input
-            name="lastName"
-            type="name"
-            placeholder="Last Name"
-            value={lastName}
-            onChange={e => onChange(e)}
-            required
-          />
-
-          <input
-            name="email"
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={e => onChange(e)}
-            required
-          />
-
-          <input
-            name="password"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={e => onChange(e)}
-            required
-          />
-
-          <input
-            name="password2"
-            type="password"
-            placeholder="Confirm Password"
-            value={password2}
-            onChange={e => onChange(e)}
-            required
-          />
-
-          <input type="submit" value="Register" />
+          <SignInInput type="submit" value="Register" />
           <a>
             Already Have an Account? <Link to="/signin">Sign In</Link>
           </a>
         </div>
       </form>
-    </div>
+    </LoginComponentContainer>
   );
 };
 
 const mapDispatchToProps = dispatch => ({
   register: ({ firstName, lastName, email, password }) =>
-    dispatch(register({ firstName, lastName, email, password }))
+    dispatch(register({ firstName, lastName, email, password })),
+  loadCart: token => dispatch(loadCartOnLogin(token))
 });
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated

@@ -45,6 +45,7 @@ export const Input = styled.input`
   height: 20%;
   letter-spacing: 0.2rem;
   border-radius: 12px;
+  border: none;
 
   background-color: #01bf71;
   color: black;

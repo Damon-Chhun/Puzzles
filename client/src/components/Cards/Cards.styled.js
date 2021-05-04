@@ -29,4 +29,8 @@ export const Category = styled.div`
   min-height: 800px;
   margin-bottom: 50px;
   //padding-left: 100px;
+
+  @media screen and (max-width: 873px) {
+    justify-content: center;
+  }
 `;

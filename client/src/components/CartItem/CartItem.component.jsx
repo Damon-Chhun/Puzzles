@@ -16,36 +16,70 @@ import {
   QuantityWrapper,
   RemoveWrapper
 } from "./CartItem.styled";
+import { createStructuredSelector } from "reselect";
+import { selectIsAuth } from "../../redux/auth/auth.selectors";
+import { addItemToCart } from "../../redux/cart/cart.util";
 
 function CartItem({
   department,
   name,
   price,
-  productID,
+  _id,
+  imageURL,
+  Department,
   quantity,
   removeItem,
   token,
   addToCart,
-  history
+  history,
+  auth
 }) {
-  console.log(department, name, price, quantity, name);
+  const title = name;
+  const productID = _id;
+  console.log(Department, title, price, quantity, title, imageURL);
 
   console.log(token, "TOKEN TOKEN TOKEN TOKEN TOKEN");
   console.log(productID, "PRODUCTID PRODUCT ID PRODUCT ID");
 
-  if (!name) {
-    name = "No Name Found, Fix";
+  if (!title) {
+    title = "No Name Found, Fix";
   }
   return (
     <CartItemsContainer>
       <NameQuanitityPriceContainer>
         <NameAndQuantityContainer>
           <QuantityWrapper>
-            <ChangeQuantityBtn onClick={() => addToCart(productID, -1, token)}>
+            <ChangeQuantityBtn
+              onClick={() =>
+                addItemToCart(
+                  productID,
+                  -1,
+                  imageURL,
+                  title,
+                  price,
+                  Department,
+                  auth,
+                  token
+                )
+              }
+            >
               &#10094;
             </ChangeQuantityBtn>
             <Quantity>{quantity}</Quantity>
-            <ChangeQuantityBtn onClick={() => addToCart(productID, 1, token)}>
+            <ChangeQuantityBtn
+              onClick={() =>
+                addToCart(
+                  productID,
+                  1,
+                  imageURL,
+                  title,
+                  price,
+                  Department,
+                  auth,
+                  token
+                )
+              }
+            >
               &#10095;
             </ChangeQuantityBtn>
           </QuantityWrapper>
@@ -56,13 +90,13 @@ function CartItem({
               )
             }
           >
-            {name}
+            {title}
           </ItemName>
         </NameAndQuantityContainer>
         <Price>${price}</Price>
       </NameQuanitityPriceContainer>
       <RemoveWrapper>
-        <RemoveButton onClick={() => removeItem(token, productID)}>
+        <RemoveButton onClick={() => removeItem(productID, auth)}>
           Remove
         </RemoveButton>
       </RemoveWrapper>
@@ -70,10 +104,37 @@ function CartItem({
   );
 }
 
-const mapDispatchToProps = dispatch => ({
-  removeItem: (token, item) => dispatch(RemoveItemFromCart(token, item)),
-  addToCart: (productID, quantity, token) =>
-    dispatch(addToCart(productID, quantity, token))
+const mapStateToProps = createStructuredSelector({
+  auth: selectIsAuth
 });
 
-export default withRouter(connect(null, mapDispatchToProps)(CartItem));
+const mapDispatchToProps = dispatch => ({
+  removeItem: (productID, auth) =>
+    dispatch(RemoveItemFromCart(productID, auth)),
+  addToCart: (
+    productID,
+    quantity,
+    imageURL,
+    title,
+    price,
+    Department,
+    auth,
+    token
+  ) =>
+    dispatch(
+      addToCart(
+        productID,
+        quantity,
+        imageURL,
+        title,
+        price,
+        Department,
+        auth,
+        token
+      )
+    )
+});
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(CartItem)
+);
