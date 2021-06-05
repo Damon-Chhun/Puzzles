@@ -11,7 +11,8 @@ import {
   InputContainer,
   InputField,
   EmailAndPassword,
-  SignInInput
+  SignInInput,
+  TextWrapper
 } from "./login.styled";
 
 const Login = ({ login, history, loadCart }) => {
@@ -59,9 +60,9 @@ const Login = ({ login, history, loadCart }) => {
         </EmailAndPassword>
 
         <SignInInput type="submit" value="Sign In" />
-        <a>
+        <TextWrapper>
           Don't Have An Account? <Link to="/register">Sign up</Link>
-        </a>
+        </TextWrapper>
       </form>
     </LoginComponentContainer>
   );

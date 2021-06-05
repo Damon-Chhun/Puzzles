@@ -14,12 +14,13 @@ export const LoginComponentContainer = styled.div`
 `;
 
 export const EmailAndPassword = styled.div`
+  //border: dashed 5px pink;
   height: 300px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
 `;
 
 export const Title = styled.h2`
@@ -67,4 +68,8 @@ export const SignInInput = styled.input`
     background: black;
     color: #01bf71;
   }
+`;
+
+export const TextWrapper = styled.a`
+  margin-left: 15px;
 `;

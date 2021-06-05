@@ -12,6 +12,7 @@ import Directory from "../../components/directory/directory.component";
 import Sidebar from "../../components/sidebar/sidebar.component";
 import Footer from "../../components/footer/footer.component";
 import InfoSection from "../../components/InfoSection/InfoSection.component";
+import AboutSection from "../../components/AboutSection/AboutSection.component";
 
 import { signUpObj } from "../../components/InfoSection/Data";
 
@@ -33,6 +34,10 @@ const HomePage = () => {
             Finish Your Puzzle
           </HomeButton>
         </BackgroundContainer>
+
+        <Element name="about">
+          <AboutSection />
+        </Element>
 
         <Element name="signup">
           <InfoSection {...signUpObj} />

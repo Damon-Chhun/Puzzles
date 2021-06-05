@@ -44,6 +44,18 @@ const Header = ({ isAuth, signOut, isHomepage, history }) => {
             <Fragment>
               <NavItem>
                 <NavLinksScroll
+                  to="about"
+                  smooth={true}
+                  duration={500}
+                  spy={true}
+                  exact="true"
+                  offset={-80}
+                >
+                  About
+                </NavLinksScroll>
+              </NavItem>
+              <NavItem>
+                <NavLinksScroll
                   to="signup"
                   smooth={true}
                   duration={500}
@@ -65,18 +77,6 @@ const Header = ({ isAuth, signOut, isHomepage, history }) => {
                   offset={-80}
                 >
                   Discover
-                </NavLinksScroll>
-              </NavItem>
-              <NavItem>
-                <NavLinksScroll
-                  to="about"
-                  smooth={true}
-                  duration={500}
-                  spy={true}
-                  exact="true"
-                  offset={-80}
-                >
-                  About
                 </NavLinksScroll>
               </NavItem>
             </Fragment>

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const LoginComponentContainer = styled.div`
+
   height: 650px;
   width: 450px;
   border: 1px solid black;
@@ -67,4 +68,8 @@ export const SignInInput = styled.input`
     background: black;
     color: #01bf71;
   }
+`;
+
+export const TextWrapper = styled.a`
+  margin-left: 15px;
 `;

@@ -11,22 +11,25 @@ import { connect } from "react-redux";
 
 const useStyles = makeStyles(theme => ({
   root: {
+    //border: "solid 5px pink",
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "space-evenly",
+    justifyContent: "center",
     minWidth: 300,
     height: "100%",
-
     width: "100%"
   },
   image: {
     outline: "solid 2px black",
     position: "relative",
+    width: "48%",
+    ["@media (max-width: 1012px)"]: { width: "100%" },
+
     margin: 10,
 
     [theme.breakpoints.down("xs")]: {
-      width: "100% !important", // Overrides inline-style
-      height: 100
+      maxWidth: "100% !important", // Overrides inline-style
+      height: "auto"
     },
     "&:hover, &$focusVisible": {
       zIndex: 1,
@@ -91,6 +94,7 @@ const useStyles = makeStyles(theme => ({
 function ButtonBases({ collections, updateScroll }) {
   const classes = useStyles();
   const scroll = Scroll.animateScroll;
+  console.log(window.innerWidth);
 
   return (
     <div className={classes.root}>
@@ -103,9 +107,6 @@ function ButtonBases({ collections, updateScroll }) {
           component={LinkRouter}
           to="/shop"
           onClick={() => updateScroll(image.title)}
-          style={{
-            width: "40%"
-          }}
         >
           <span
             className={classes.imageSrc}

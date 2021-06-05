@@ -15,7 +15,8 @@ export const ShopPageContainer = styled.div`
 export const CardContainer = styled.div`
   width: ${props => (props.drawerOpen ? "70%" : "100%")};
   display: flex;
-  justify-content: flex-start;
+  //border: solid 5px black;
+  justify-content: center;
   flex-grow: 2;
   //border: solid 5px black;
   // @media screen and (max-width: 873px) {

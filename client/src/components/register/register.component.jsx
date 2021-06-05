@@ -11,7 +11,8 @@ import {
   InputContainer,
   InputField,
   EmailAndPassword,
-  SignInInput
+  SignInInput,
+  TextWrapper
 } from "./register.styled";
 
 export const Register = ({ register, isAuthenticated, history, loadCart }) => {
@@ -57,7 +58,6 @@ export const Register = ({ register, isAuthenticated, history, loadCart }) => {
               <InputField
                 name="firstName"
                 type="name"
-                placeholder="First Name"
                 value={firstName}
                 onChange={e => onChange(e)}
                 required
@@ -68,7 +68,6 @@ export const Register = ({ register, isAuthenticated, history, loadCart }) => {
               <InputField
                 name="lastName"
                 type="name"
-                placeholder="Last Name"
                 value={lastName}
                 onChange={e => onChange(e)}
                 required
@@ -79,7 +78,6 @@ export const Register = ({ register, isAuthenticated, history, loadCart }) => {
               <InputField
                 name="email"
                 type="email"
-                placeholder="Email"
                 value={email}
                 onChange={e => onChange(e)}
                 required
@@ -90,7 +88,6 @@ export const Register = ({ register, isAuthenticated, history, loadCart }) => {
               <InputField
                 name="password"
                 type="password"
-                placeholder="Password"
                 value={password}
                 onChange={e => onChange(e)}
                 required
@@ -101,7 +98,6 @@ export const Register = ({ register, isAuthenticated, history, loadCart }) => {
               <InputField
                 name="password2"
                 type="password"
-                placeholder="Confirm Password"
                 value={password2}
                 onChange={e => onChange(e)}
                 required
@@ -110,9 +106,9 @@ export const Register = ({ register, isAuthenticated, history, loadCart }) => {
           </EmailAndPassword>
 
           <SignInInput type="submit" value="Register" />
-          <a>
+          <TextWrapper>
             Already Have an Account? <Link to="/signin">Sign In</Link>
-          </a>
+          </TextWrapper>
         </div>
       </form>
     </LoginComponentContainer>

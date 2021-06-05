@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
-  border: solid 1px black;
+  //border: solid 1px black;
   height: 45vh;
   min-height: 400px;
   width: 10vw;
@@ -53,9 +53,10 @@ export const ImageContainer = styled.div`
 
 export const Image = styled.img`
   //border: solid 5px green;
-  width: 80%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   text-align: center;
+  border-radius: 16px;
 `;
 
 export const Name = styled.h3`
@@ -79,7 +80,8 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const Button = styled.button`
-  border-radius: 12px;
+  border-radius: 16px;
+  border: none;
   background-color: #01bf71;
   color: white;
   height: 100%;

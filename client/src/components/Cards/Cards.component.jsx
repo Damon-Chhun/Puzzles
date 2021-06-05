@@ -21,7 +21,6 @@ function Cards({ categories, shop, token }) {
         return (
           <Element name={element}>
             <CategoryContainer>
-              <DepartmentContainer>{element}</DepartmentContainer>
               <Category>
                 {shop[index].products.map(item => (
                   // <ItemCard info={item} />

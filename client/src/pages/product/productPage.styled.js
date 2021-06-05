@@ -20,6 +20,7 @@ export const ProductPageContainer = styled.div`
 
 export const ImageContainer = styled.div`
   //border: solid 5px purple;
+  padding-top: 20px;
   height: 60vh;
   width: 35vw;
   display: flex;
@@ -35,8 +36,9 @@ export const ImageContainer = styled.div`
 
 export const Image = styled.img`
   //border: dashed 5px black;
-  height: 70%;
-  width: 70%;
+  height: auto;
+
+  max-width: 100%;
   background-size: centers;
   background-position: 50% 50%;
   image-rendering: -webkit-optimize-contrast;

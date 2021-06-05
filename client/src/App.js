@@ -13,6 +13,7 @@ import RegisterPage from "./pages/register/registerpage.component";
 import DiscussionPage from "./pages/Discussion/DiscussionPage.component";
 import Footer from "./components/footer/footer.component";
 import StorePage from "./pages/shop/StorePage.component";
+import CheckoutPage from "./pages/checkout /checkout.component";
 
 import setAuthToken from "./utils/setAuthToken";
 import { store } from "./redux/store";
@@ -51,6 +52,7 @@ function App() {
         <Route exact path="/signin" component={SignInPage} />
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/posts/:postID" component={DiscussionPage} />
+        <Route exact path="/checkout" component={CheckoutPage} />
       </Switch>
       <Footer />
     </div>

@@ -83,10 +83,8 @@ export function addToCartUNAUTH(
 ) {
   console.log(productID, title, price, Department, imageURL);
   return {
-    type:
-      quantity > 0
-        ? ActionTypes.ADD_TO_CART_UNAUTH
-        : ActionTypes.REMOVE_FROM_CART_UNAUTH,
+    type: ActionTypes.ADD_TO_CART_UNAUTH,
+
     payload: {
       productID,
       name: title,
@@ -201,7 +199,15 @@ export function RemoveItemFromCartUNAUTH(productID) {
 
 export function CalcSubTotal(cartItems) {
   console.log(cartItems, "CALC SUBTOTAL ARGUMENT");
-  const subTotal = cartItems
+
+  if (cartItems.products == undefined) {
+    return {
+      type: ActionTypes.CALC_SUBTOTAL,
+      payload: 0
+    };
+  }
+
+  const subTotal = cartItems.products
     .reduce(
       (accumulator, element) => accumulator + element.quantity * element.price,
       0
@@ -244,4 +250,10 @@ export const openDrawer = () => ({
 //CLOSE DRAWER
 export const closeDrawer = () => ({
   type: ActionTypes.CLOSE_DRAWER
+});
+
+//save total, subtotal, and tax info to reducer
+export const SaveCostInfo = cartInfo => ({
+  type: ActionTypes.SAVE_CART_INFO,
+  payload: cartInfo
 });
