@@ -55,11 +55,11 @@ function PostItems({ posts, like, unlike, deletePost, user, showActions }) {
               <LikeDislikeButton>
                 <DislikeIcon onClick={() => unlike(posts._id)} />
               </LikeDislikeButton>
-              <Discussion to={`/posts/${posts._id}`}>
+              {/* <Discussion to={`/posts/${posts._id}`}>
                 {posts.comments > 0
                   ? `Discussion {posts.comments.length}`
                   : `Discussion`}
-              </Discussion>
+              </Discussion> */}
               {posts.user === user && (
                 <Icon>
                   <CloseIcon onClick={() => deletePost(posts._id)} />

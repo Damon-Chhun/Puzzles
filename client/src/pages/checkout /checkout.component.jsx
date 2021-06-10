@@ -35,10 +35,10 @@ const CheckoutPage = ({ cartItems, unAuthCartItems, auth, total }) => (
       </div>
     </div>
     {auth !== true
-      ? unAuthCartItems.map(unAuthCartItem => (
+      ? unAuthCartItems.products.map(unAuthCartItem => (
           <CheckoutItem key={unAuthCartItem.id} Item={unAuthCartItem} />
         ))
-      : cartItems.map(cartItem => (
+      : cartItems.products.map(cartItem => (
           <CheckoutItem key={cartItem.id} Item={cartItem} />
         ))}
 

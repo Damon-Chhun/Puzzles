@@ -9,7 +9,8 @@ import {
   selectTax,
   selectTotal,
   selectIsDrawerOpen,
-  selectUnAuthCart
+  selectUnAuthCart,
+  selectCartItemsProducts
 } from "../../redux/cart/cart.selectors";
 import { selectAuthToken, selectIsAuth } from "../../redux/auth/auth.selectors";
 
@@ -59,7 +60,8 @@ const ShopDrawer = ({
   isDrawerOpen,
   auth,
   UnAuthCart,
-  SaveCostInfo
+  SaveCostInfo,
+  AuthProducts
 }) => {
   console.log(
     cartItems,
@@ -68,6 +70,7 @@ const ShopDrawer = ({
 
   useEffect(() => {
     console.log("use effect processing");
+    console.log(AuthProducts);
     if (auth !== true) {
       console.log("unauth");
       CalcSubTotal(UnAuthCart);
@@ -98,15 +101,15 @@ const ShopDrawer = ({
 
       {auth == true ? (
         <ListContainer>
-          {cartItems.products != null
-            ? cartItems.products.map(({ ...otherCartItemProps }) => {
+          {AuthProducts != null
+            ? AuthProducts.map(({ ...otherCartItemProps }) => {
                 return <Item {...otherCartItemProps} token={token} />;
               })
             : null}
         </ListContainer>
       ) : (
         <ListContainer>
-          {UnAuthCart.products.length > 0
+          {UnAuthCart.products != null
             ? UnAuthCart.products.map(({ ...otherCartItemProps }) => {
                 return <Item {...otherCartItemProps} token={token} />;
               })
@@ -134,7 +137,7 @@ const ShopDrawer = ({
         <CheckoutWrapper>
           <CartAndBtn>
             <CartIcon />
-            <DrawerCheckoutBtn>Checkout (testing atm)</DrawerCheckoutBtn>
+            <DrawerCheckoutBtn to="/checkout">Checkout</DrawerCheckoutBtn>
           </CartAndBtn>
           <PriceContainer>
             <CheckoutPrice>$ {totalState}</CheckoutPrice>
@@ -153,7 +156,8 @@ const mapStateToProps = createStructuredSelector({
   totalState: selectTotal,
   isDrawerOpen: selectIsDrawerOpen,
   auth: selectIsAuth,
-  UnAuthCart: selectUnAuthCart
+  UnAuthCart: selectUnAuthCart,
+  AuthProducts: selectCartItemsProducts
 });
 
 const mapDispatchToProps = dispatch => ({

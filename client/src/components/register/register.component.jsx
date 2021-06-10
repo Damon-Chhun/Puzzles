@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { register } from "../../redux/auth/auth.actions";
+import { register, signOut } from "../../redux/auth/auth.actions";
 import { loadCartOnLogin } from "../../redux/cart/cart.actions";
 
 import {
@@ -15,7 +15,13 @@ import {
   TextWrapper
 } from "./register.styled";
 
-export const Register = ({ register, isAuthenticated, history, loadCart }) => {
+export const Register = ({
+  register,
+  isAuthenticated,
+  history,
+  loadCart,
+  signOut
+}) => {
   const [formData, setFormData] = useState({
     email: "",
     firstName: "",
@@ -36,7 +42,7 @@ export const Register = ({ register, isAuthenticated, history, loadCart }) => {
     } else {
       register({ firstName, lastName, email, password });
       await loadCart();
-      history.goBack();
+      history.push("/");
     }
   };
 
@@ -105,7 +111,7 @@ export const Register = ({ register, isAuthenticated, history, loadCart }) => {
             </InputContainer>
           </EmailAndPassword>
 
-          <SignInInput type="submit" value="Register" />
+          <SignInInput type="submit" value="Register" to="/" />
           <TextWrapper>
             Already Have an Account? <Link to="/signin">Sign In</Link>
           </TextWrapper>
@@ -118,10 +124,13 @@ export const Register = ({ register, isAuthenticated, history, loadCart }) => {
 const mapDispatchToProps = dispatch => ({
   register: ({ firstName, lastName, email, password }) =>
     dispatch(register({ firstName, lastName, email, password })),
-  loadCart: token => dispatch(loadCartOnLogin(token))
+  loadCart: token => dispatch(loadCartOnLogin(token)),
+  signOut: () => dispatch(signOut())
 });
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Register)
+);

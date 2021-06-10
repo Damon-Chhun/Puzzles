@@ -28,15 +28,6 @@ export const removeItem = (cartItem, itemToRemove) => {
     console.log(cartItem);
     return cartItem;
   }
-  // if (existingItems.quantity !== -1) {
-  //   return cartItem.filter(item => item.productID !== itemToRemove.productID);
-  // }
-
-  // return cartItem.map(item =>
-  //   item.productID === itemToRemove.productID
-  //     ? { ...item, quantity: item.quantity - 1 }
-  //     : item
-  // );
 };
 
 export const addItemToUnAuthCart = (cartItems, cartItemsToAdd) => {
@@ -80,13 +71,19 @@ export const removeUnAuthItem = (cartItem, itemToRemove) => {
     console.log(cartItem);
     return cartItem;
   }
-  // if (existingItems.quantity !== -1) {
-  //   return cartItem.filter(item => item.productID !== itemToRemove.productID);
-  // }
+};
 
-  // return cartItem.map(item =>
-  //   item.productID === itemToRemove.productID
-  //     ? { ...item, quantity: item.quantity - 1 }
-  //     : item
-  // );
+export const removeUnAuthItemAction = (cartItem, itemToRemove) => {
+  console.log(cartItem, itemToRemove);
+  const existingItems = cartItem.products.findIndex(
+    item => item.productID === itemToRemove
+  );
+  console.log(existingItems);
+
+  if (existingItems >= 0) {
+    console.log(existingItems, cartItem.products.length);
+    cartItem.products.splice(existingItems, 1);
+    console.log(cartItem);
+    return cartItem;
+  }
 };

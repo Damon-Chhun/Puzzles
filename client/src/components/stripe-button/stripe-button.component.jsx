@@ -19,7 +19,7 @@ const StripeCheckoutButton = ({ price }) => {
       billingAddress
       shippingAddress
       allowRememberMe
-      image="../../../public/favicon.ico"
+      // image="../../../public/favicon.ico"
       description={`Your total is $${price}`}
       amount={priceForStripe}
       panelLabel="Pay Now"

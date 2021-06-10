@@ -17,6 +17,7 @@ module.exports = {
       console.log(doesCartExist);
       const item = await Shop.findById(productID);
       console.log(item, "ITEM ITEM ITEM ITEM");
+      console.log(item.Department, "DEPRAESDKLFJSDKLFJSDLFJSDLO:");
 
       if (!doesCartExist && quantity < 0) {
         // If trying to reduce a product in a cart that doesn't exist
@@ -47,7 +48,8 @@ module.exports = {
             quantity,
             name: item.title,
             department: item.Department,
-            price: item.price
+            price: item.price,
+            imageURL: item.imageURL
           });
           await doesCartExist.save();
           res.json(doesCartExist);
@@ -62,8 +64,10 @@ module.exports = {
             {
               productID,
               quantity,
+              Department: item.Department,
               item: item.name,
-              price: item.price
+              price: item.price,
+              imageURL: ""
             }
           ]
         });
@@ -132,7 +136,7 @@ module.exports = {
       console.log(itemRemoved, "ITEM REMOVED FROM CART");
       console.log(cart, "CART CART CART CART");
       await cart.save();
-      res.json(cart);
+      res.json(itemRemoved);
     } catch (error) {}
   }
 };

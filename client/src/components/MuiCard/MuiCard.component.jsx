@@ -39,7 +39,7 @@ function MuiCard({ info, addToCart, token, history, match, props, auth }) {
       <ButtonWrapper>
         <Button
           onClick={() =>
-            addToCart(_id, 1, imageURL, title, price, Department, auth, token)
+            addToCart(_id, 1, imageURL, title, price, auth, token, Department)
           }
         >
           Add To Cart
@@ -61,9 +61,9 @@ const mapDispatchToProps = dispatch => ({
     imageURL,
     title,
     price,
-    Department,
     auth,
-    token
+    token,
+    Department
   ) =>
     dispatch(
       addToCart(
@@ -72,9 +72,9 @@ const mapDispatchToProps = dispatch => ({
         imageURL,
         title,
         price,
-        Department,
         auth,
-        token
+        token,
+        Department
       )
     )
 });

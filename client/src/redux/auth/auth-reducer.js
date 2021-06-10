@@ -41,7 +41,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
         token: null,
         isAuthenticated: false,
         loading: false,
-        errorMessage: payload.message
+        errorMessage: "error"
       };
 
     case ACTIONTYPES.LOGIN_START:

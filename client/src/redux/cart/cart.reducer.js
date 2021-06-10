@@ -1,10 +1,20 @@
 import { ActionTypes } from "./cart.ActionTypes";
-import { addItemToCart, removeItem, addItemToUnAuthCart } from "./cart.util";
+import {
+  addItemToCart,
+  removeItem,
+  addItemToUnAuthCart,
+  removeUnAuthItem,
+  removeUnAuthItemAction
+} from "./cart.util";
 import { getCartInfo } from "../../components/Drawer/utill";
 
 const INITIAL_STATE = {
   isHidden: true,
-  cartItems: { products: [] },
+  cartItems: {
+    _id: null,
+    userId: null,
+    products: []
+  },
   message: null,
   subtotal: 0.0,
   tax: 0.0,
@@ -28,16 +38,14 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state
       };
     case ActionTypes.ADD_TO_CART_SUCCESS:
-      // console.log(payload);
-      // const moneyInfo = getCartInfo(payload);
-      // console.log(moneyInfo.total);
+      console.log(payload);
       return {
         ...state,
-        cartItems: payload
-        // tax: moneyInfo.tax,
-        // total: moneyInfo.total,
-        // subtotal: moneyInfo.subtotal,
-        // quantity: moneyInfo.quantity
+        cartItems: {
+          _id: payload._id,
+          userId: payload.userId,
+          products: payload.products
+        }
       };
     case ActionTypes.ADD_TO_CART_UNAUTH:
       console.log(payload);
@@ -77,16 +85,25 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state
       };
     case ActionTypes.REMOVE_ITEM_FROM_CART_SUCCESS:
+      console.log(payload[0].productID);
+      let newPayload = removeItem(state.cartItems, payload[0].productID);
       return {
         ...state,
-        cartItems: payload
+        cartItems: {
+          _id: newPayload._id,
+          userId: newPayload.userId,
+          products: newPayload.products
+        }
       };
 
     case ActionTypes.REMOVE_FROM_CART_UNAUTH:
       console.log(payload, state.UnAuthCart);
       return {
         ...state,
-        UnAuthCart: removeItem(state.UnAuthCart, payload)
+        UnAuthCart: {
+          ...state.UnAuthCart,
+          products: removeUnAuthItem(state.UnAuthCart.products, payload)
+        }
       };
 
     case ActionTypes.CALC_SUBTOTAL:

@@ -33,25 +33,3 @@ const InfoSection = ({ headline, topline, Subtitle }) => {
 };
 
 export default InfoSection;
-
-{
-  /* <InfoWrapper>
-        <InfoRow>
-          <Column1>
-            <TextWrapper>
-              <TopLine>hello</TopLine>
-              <Header>hello</Header>
-              <Subtitle>hello</Subtitle>
-              <ButtonWrap>
-                <Button to="/"></Button>
-              </ButtonWrap>
-            </TextWrapper>
-          </Column1>
-          <Column2>
-            <ImgWrap>
-              <Img />
-            </ImgWrap>
-          </Column2>
-        </InfoRow>
-      </InfoWrapper> */
-}

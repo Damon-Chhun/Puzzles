@@ -8,7 +8,7 @@ const AddToCartStart = () => ({
 });
 
 //Success add to cart
-const AddToCartSucess = cart => ({
+const AddToCartSuccess = cart => ({
   type: ActionTypes.ADD_TO_CART_SUCCESS,
   payload: cart
 });
@@ -27,13 +27,14 @@ export function addToCart(
   imageURL,
   title,
   price,
-  Department,
-  auth
+  auth,
+  token,
+  department
 ) {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
-  console.log(productID, quantity, imageURL, title, price, Department, auth);
+  console.log(productID, quantity, imageURL, title, price, auth);
   console.log("ADD TO CART ADD TO CART ADD TO CART");
   const config = {
     headers: {
@@ -42,6 +43,7 @@ export function addToCart(
   };
   console.log(quantity, "QUANTITY");
   console.log(productID, "PRODUCTID");
+  console.log(auth);
 
   const body = JSON.stringify({ productID, quantity });
 
@@ -53,17 +55,25 @@ export function addToCart(
             productID,
             title,
             price,
-            Department,
             imageURL,
-            quantity
+            quantity,
+            department
           )
         );
       } else {
         dispatch(AddToCartStart());
-        const res = await axios.post("/api/shop", body, config);
+        let res = await axios.post("/api/shop", body, config);
 
+        const indexOfProduct = res.data.products.findIndex(
+          product => product.productID == productID
+        );
+        console.log(indexOfProduct);
+        console.log(imageURL);
         console.log(res.data);
-        dispatch(AddToCartSucess(res.data));
+        res.data.products[indexOfProduct].imageURL = imageURL;
+        console.log(res.data);
+
+        dispatch(AddToCartSuccess(res.data));
       }
     } catch (error) {
       dispatch(AddToCartFail("Fail"));
@@ -77,11 +87,11 @@ export function addToCartUNAUTH(
   productID,
   title,
   price,
-  Department,
   imageURL,
-  quantity
+  quantity,
+  department
 ) {
-  console.log(productID, title, price, Department, imageURL);
+  console.log(productID, title, price, imageURL);
   return {
     type: ActionTypes.ADD_TO_CART_UNAUTH,
 
@@ -89,9 +99,9 @@ export function addToCartUNAUTH(
       productID,
       name: title,
       price,
-      Department,
       imageURL,
-      quantity
+      quantity,
+      department
     }
   };
 }
@@ -172,6 +182,7 @@ export function RemoveItemFromCart(productID, auth) {
       }
     };
     const body = JSON.stringify({ productID });
+
     try {
       console.log(auth);
       if (auth !== true) {

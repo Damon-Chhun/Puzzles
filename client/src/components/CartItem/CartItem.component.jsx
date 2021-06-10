@@ -20,13 +20,12 @@ import { createStructuredSelector } from "reselect";
 import { selectIsAuth } from "../../redux/auth/auth.selectors";
 
 function CartItem({
-  department,
   name,
   price,
   _id,
   productID,
   imageURL,
-  Department,
+  department,
   quantity,
   removeItem,
   token,
@@ -35,7 +34,7 @@ function CartItem({
   auth
 }) {
   //const productID = _id;
-  console.log(Department, name, price, quantity, imageURL);
+  console.log(department, name, price, quantity, imageURL);
 
   console.log(token, "TOKEN TOKEN TOKEN TOKEN TOKEN");
   console.log(productID, "PRODUCTID PRODUCT ID PRODUCT ID");
@@ -57,9 +56,9 @@ function CartItem({
                   imageURL,
                   name,
                   price,
-                  Department,
                   auth,
-                  token
+                  token,
+                  department
                 )
               }
             >
@@ -74,9 +73,9 @@ function CartItem({
                   imageURL,
                   name,
                   price,
-                  Department,
                   auth,
-                  token
+                  token,
+                  department
                 )
               }
             >
@@ -117,9 +116,9 @@ const mapDispatchToProps = dispatch => ({
     imageURL,
     name,
     price,
-    Department,
     auth,
-    token
+    token,
+    department
   ) =>
     dispatch(
       addToCart(
@@ -128,9 +127,9 @@ const mapDispatchToProps = dispatch => ({
         imageURL,
         name,
         price,
-        Department,
         auth,
-        token
+        token,
+        department
       )
     )
 });
