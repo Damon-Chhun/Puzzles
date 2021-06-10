@@ -83,10 +83,10 @@ function ProductPage({
           </AddBtn>
         </InfoContainer>
 
-        <CollectionPreview
+        {/* <CollectionPreview
           shop={shop[categoryIndex]}
           productIndex={productIndex}
-        />
+        /> */}
 
         <PostsContainer>
           <ReviewForum productId={productID} />

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CollectionPreviewContainer = styled.div`
-  //border: dashed 5px pink;
+  border: dashed 5px pink;
   width: 90%;
   height: 50vh;
   display: flex;
@@ -10,4 +10,5 @@ export const CollectionPreviewContainer = styled.div`
   justify-content: center;
   align-items: center;
   overflow-x: scroll;
+  overflow-y: hidden;
 `;

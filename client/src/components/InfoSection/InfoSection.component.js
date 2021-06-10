@@ -7,12 +7,8 @@ import "./InfoElement.styles.scss";
 import { NavBtnLink } from "../header/header.styled";
 
 const InfoSection = ({ headline, topline, Subtitle }) => {
-  const LinkStyles = {
-    textDecoration: "none",
-    color: "black"
-  };
   return (
-    <div className="InfoContainer">
+    <div style={{ background: "#101522" }} className="InfoContainer">
       <div className="InfoWrapper">
         <div className="InfoRow">
           <div className="Column1">
@@ -21,7 +17,7 @@ const InfoSection = ({ headline, topline, Subtitle }) => {
               <h1 className="header">{headline}</h1>
               <p className="Subtitle">{Subtitle}</p>
               <div className="ButtonWrap">
-                <NavBtnLink to="/register">Click me!</NavBtnLink>
+                <NavBtnLink to="/register">Register!</NavBtnLink>
               </div>
             </div>
           </div>
@@ -37,25 +33,3 @@ const InfoSection = ({ headline, topline, Subtitle }) => {
 };
 
 export default InfoSection;
-
-{
-  /* <InfoWrapper>
-        <InfoRow>
-          <Column1>
-            <TextWrapper>
-              <TopLine>hello</TopLine>
-              <Header>hello</Header>
-              <Subtitle>hello</Subtitle>
-              <ButtonWrap>
-                <Button to="/"></Button>
-              </ButtonWrap>
-            </TextWrapper>
-          </Column1>
-          <Column2>
-            <ImgWrap>
-              <Img />
-            </ImgWrap>
-          </Column2>
-        </InfoRow>
-      </InfoWrapper> */
-}

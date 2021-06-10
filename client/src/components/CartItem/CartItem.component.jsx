@@ -18,15 +18,14 @@ import {
 } from "./CartItem.styled";
 import { createStructuredSelector } from "reselect";
 import { selectIsAuth } from "../../redux/auth/auth.selectors";
-import { addItemToCart } from "../../redux/cart/cart.util";
 
 function CartItem({
-  department,
   name,
   price,
   _id,
+  productID,
   imageURL,
-  Department,
+  department,
   quantity,
   removeItem,
   token,
@@ -34,15 +33,15 @@ function CartItem({
   history,
   auth
 }) {
-  const title = name;
-  const productID = _id;
-  console.log(Department, title, price, quantity, title, imageURL);
+  //const productID = _id;
+  console.log(department, name, price, quantity, imageURL);
 
   console.log(token, "TOKEN TOKEN TOKEN TOKEN TOKEN");
   console.log(productID, "PRODUCTID PRODUCT ID PRODUCT ID");
+  console.log(_id, "_ID TESTINGSIGHNDFIGHJSDFKLGHJFLDKJGLDFKJ");
 
-  if (!title) {
-    title = "No Name Found, Fix";
+  if (!name) {
+    name = "No Name Found, Fix";
   }
   return (
     <CartItemsContainer>
@@ -51,15 +50,15 @@ function CartItem({
           <QuantityWrapper>
             <ChangeQuantityBtn
               onClick={() =>
-                addItemToCart(
+                addToCart(
                   productID,
                   -1,
                   imageURL,
-                  title,
+                  name,
                   price,
-                  Department,
                   auth,
-                  token
+                  token,
+                  department
                 )
               }
             >
@@ -72,11 +71,11 @@ function CartItem({
                   productID,
                   1,
                   imageURL,
-                  title,
+                  name,
                   price,
-                  Department,
                   auth,
-                  token
+                  token,
+                  department
                 )
               }
             >
@@ -90,7 +89,7 @@ function CartItem({
               )
             }
           >
-            {title}
+            {name}
           </ItemName>
         </NameAndQuantityContainer>
         <Price>${price}</Price>
@@ -115,22 +114,22 @@ const mapDispatchToProps = dispatch => ({
     productID,
     quantity,
     imageURL,
-    title,
+    name,
     price,
-    Department,
     auth,
-    token
+    token,
+    department
   ) =>
     dispatch(
       addToCart(
         productID,
         quantity,
         imageURL,
-        title,
+        name,
         price,
-        Department,
         auth,
-        token
+        token,
+        department
       )
     )
 });

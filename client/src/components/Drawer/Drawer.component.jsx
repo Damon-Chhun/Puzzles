@@ -9,7 +9,8 @@ import {
   selectTax,
   selectTotal,
   selectIsDrawerOpen,
-  selectUnAuthCart
+  selectUnAuthCart,
+  selectCartItemsProducts
 } from "../../redux/cart/cart.selectors";
 import { selectAuthToken, selectIsAuth } from "../../redux/auth/auth.selectors";
 
@@ -20,7 +21,8 @@ import {
   CalcTax,
   CalcTotal,
   openDrawer,
-  closeDrawer
+  closeDrawer,
+  SaveCostInfo
 } from "../../redux/cart/cart.actions";
 
 import {
@@ -57,30 +59,33 @@ const ShopDrawer = ({
   closeDrawer,
   isDrawerOpen,
   auth,
-  UnAuthCart
+  UnAuthCart,
+  SaveCostInfo,
+  AuthProducts
 }) => {
   console.log(
     cartItems,
     "CART ITEMS HELSDKLFJSDLKFJSLDK:FJSKL:DFJSDFL:KJSDL:KFJ"
   );
 
-  let cartInfo = {
-    subtotal: 0.0,
-    tax: 0.0,
-    total: 0.0,
-    quantity: 0
-  };
-  //let UnAuthCartInfo = {};
-
-  if (auth == true) {
-    if (cartItems.products != undefined) {
-      cartInfo = getCartInfo(cartItems.products);
+  useEffect(() => {
+    console.log("use effect processing");
+    console.log(AuthProducts);
+    if (auth !== true) {
+      console.log("unauth");
+      CalcSubTotal(UnAuthCart);
+      CalcTax(subTotalState);
+      CalcTotal(subTotalState, taxState);
+    } else {
+      console.log("auth");
+      CalcSubTotal(cartItems);
+      CalcTax(subTotalState);
+      CalcTotal(subTotalState, taxState);
     }
-  } else {
-    cartInfo = getCartInfo(UnAuthCart);
-  }
+  });
 
-  console.log(cartInfo);
+  //console.log(cartInfo);
+  // SaveCostInfo(cartInfo);
 
   return (
     <DrawerContainer>
@@ -96,16 +101,16 @@ const ShopDrawer = ({
 
       {auth == true ? (
         <ListContainer>
-          {cartItems.products != null
-            ? cartItems.products.map(({ ...otherCartItemProps }) => {
+          {AuthProducts != null
+            ? AuthProducts.map(({ ...otherCartItemProps }) => {
                 return <Item {...otherCartItemProps} token={token} />;
               })
             : null}
         </ListContainer>
       ) : (
         <ListContainer>
-          {UnAuthCart.length > 0
-            ? UnAuthCart.map(({ ...otherCartItemProps }) => {
+          {UnAuthCart.products != null
+            ? UnAuthCart.products.map(({ ...otherCartItemProps }) => {
                 return <Item {...otherCartItemProps} token={token} />;
               })
             : null}
@@ -121,23 +126,21 @@ const ShopDrawer = ({
           </CalculationWrapper>
 
           <CalculationWrapper align={"flex-end"}>
-            <Calculation>$ {cartInfo.subtotal}</Calculation>
+            <Calculation>$ {subTotalState}</Calculation>
 
-            <Calculation>$ {cartInfo.tax}</Calculation>
+            <Calculation>$ {taxState}</Calculation>
 
-            <Calculation>$ {cartInfo.total}</Calculation>
+            <Calculation>$ {totalState}</Calculation>
           </CalculationWrapper>
         </MoneyWrapper>
 
         <CheckoutWrapper>
           <CartAndBtn>
             <CartIcon />
-            <DrawerCheckoutBtn>
-              Checkout ({cartInfo.quantity})
-            </DrawerCheckoutBtn>
+            <DrawerCheckoutBtn to="/checkout">Checkout</DrawerCheckoutBtn>
           </CartAndBtn>
           <PriceContainer>
-            <CheckoutPrice>$ {cartInfo.total}</CheckoutPrice>
+            <CheckoutPrice>$ {totalState}</CheckoutPrice>
           </PriceContainer>
         </CheckoutWrapper>
       </StickyWrapper>
@@ -153,7 +156,8 @@ const mapStateToProps = createStructuredSelector({
   totalState: selectTotal,
   isDrawerOpen: selectIsDrawerOpen,
   auth: selectIsAuth,
-  UnAuthCart: selectUnAuthCart
+  UnAuthCart: selectUnAuthCart,
+  AuthProducts: selectCartItemsProducts
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -161,7 +165,8 @@ const mapDispatchToProps = dispatch => ({
   CalcTax: subTotal => dispatch(CalcTax(subTotal)),
   CalcTotal: (subTotal, tax) => dispatch(CalcTotal(subTotal, tax)),
   openDrawer: () => dispatch(openDrawer()),
-  closeDrawer: () => dispatch(closeDrawer())
+  closeDrawer: () => dispatch(closeDrawer()),
+  SaveCostInfo: cartInfo => dispatch(SaveCostInfo(cartInfo))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShopDrawer);

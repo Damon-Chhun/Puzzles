@@ -1,7 +1,9 @@
 import styled from "styled-components";
+import { Link as LinkRouter } from "react-router-dom";
 
 export const PostReviewContainer = styled.div`
   border: solid 3px #ececec;
+
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -13,6 +15,14 @@ export const PostReviewContainer = styled.div`
   height: 200px;
   width: 100%;
   padding: 10px;
+`;
+
+export const SignInFirstWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const H3Wrapper = styled.div`
@@ -48,6 +58,32 @@ export const Input = styled.input`
   border: none;
 
   background-color: #01bf71;
+  color: black;
+
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    background: black;
+    color: #01bf71;
+  }
+`;
+
+export const NavButton = styled.nav`
+  display: flex;
+  align-items: center;
+  margin: 20px;
+`;
+
+export const NavBtnLink = styled(LinkRouter)`
+  border-radius: 50px;
+  background: #01bf71;
+  white-space: nowrap;
+  padding: 10px 22px;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
   color: black;
 
   &:hover {

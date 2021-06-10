@@ -39,7 +39,7 @@ function MuiCard({ info, addToCart, token, history, match, props, auth }) {
       <ButtonWrapper>
         <Button
           onClick={() =>
-            addToCart(_id, 1, imageURL, title, price, Department, auth, token)
+            addToCart(_id, 1, imageURL, title, price, auth, token, Department)
           }
         >
           Add To Cart
@@ -61,9 +61,9 @@ const mapDispatchToProps = dispatch => ({
     imageURL,
     title,
     price,
-    Department,
     auth,
-    token
+    token,
+    Department
   ) =>
     dispatch(
       addToCart(
@@ -72,9 +72,9 @@ const mapDispatchToProps = dispatch => ({
         imageURL,
         title,
         price,
-        Department,
         auth,
-        token
+        token,
+        Department
       )
     )
 });
@@ -82,45 +82,3 @@ const mapDispatchToProps = dispatch => ({
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(MuiCard)
 );
-
-// <Card className={classes.root} elevation={10}>
-//   <CardActionArea
-//     onClick={() =>
-//       history.push(
-//         `${history.location.pathname}/${info.Department}/${info._id}`
-//       )
-//     }
-//   >
-//     <CardMedia
-//       className={classes.media}
-//       image={info.imageURL}
-//       title="Contemplative Reptile"
-//     />
-//     <CardContent>
-//       <Typography gutterBottom variant="h5" component="h2">
-//         {info.Department}
-//       </Typography>
-
-//       <Typography variant="body2" color="textSecondary" component="p">
-//         {info.title}
-//       </Typography>
-//       <Typography
-//         gutterBottom
-//         variant="h5"
-//         component="h2"
-//         className={classes.mainInfo}
-//       >
-//         ${info.price}
-//       </Typography>
-//     </CardContent>
-//   </CardActionArea>
-//   <CardButton className="cartButton">
-//     <AddToCart
-//       size="small"
-//       color="primary"
-//       onClick={() => addToCart(info._id, 1, token)}
-//     >
-//       Add to Cart
-//     </AddToCart>
-//   </CardButton>
-// </Card>

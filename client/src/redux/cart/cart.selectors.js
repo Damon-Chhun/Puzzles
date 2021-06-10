@@ -12,6 +12,11 @@ export const selectUnAuthCart = createSelector([selectCart], reducer => {
   return reducer.UnAuthCart;
 });
 
+export const selectCartItemsProducts = createSelector([selectCart], reducer => {
+  console.log(reducer, "Selector");
+  return reducer.cartItems.products;
+});
+
 export const selectCartProducts = createSelector([selectCartItems], object => {
   console.log(object, "SELECTOR");
   return object.products;

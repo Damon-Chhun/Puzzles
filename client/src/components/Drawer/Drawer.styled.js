@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { FaTimes, FaOpencart, FaShoppingCart } from "react-icons/fa";
+import { Link as LinkRouter } from "react-router-dom";
 
 export const DrawerContainer = styled.div`
   display: flex;
@@ -14,8 +15,8 @@ export const DrawerContainer = styled.div`
 
   position: sticky;
   top: 190px;
-  border: solid 2.5px black;
-  border-radius: 12px;
+  //border: solid 2.5px black;
+  border-radius: 16px;
   @media screen and (max-width: 768px) {
     display: none;
   }
@@ -115,7 +116,7 @@ export const CheckoutWrapper = styled.div`
   }
 `;
 
-export const DrawerCheckoutBtn = styled.button`
+export const DrawerCheckoutBtn = styled(LinkRouter)`
   color: white;
   background-color: transparent;
   font-weight: bold;
@@ -127,6 +128,7 @@ export const DrawerCheckoutBtn = styled.button`
   height: 100%;
   border: none;
   border-radius: 12px;
+  text-decoration: none;
 
   &:hover {
     cursor: pointer;

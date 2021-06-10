@@ -1,15 +1,27 @@
 import { ActionTypes } from "./cart.ActionTypes";
-import { addItemToCart, removeItem } from "./cart.util";
+import {
+  addItemToCart,
+  removeItem,
+  addItemToUnAuthCart,
+  removeUnAuthItem,
+  removeUnAuthItemAction
+} from "./cart.util";
+import { getCartInfo } from "../../components/Drawer/utill";
 
 const INITIAL_STATE = {
   isHidden: true,
-  cartItems: [],
+  cartItems: {
+    _id: null,
+    userId: null,
+    products: []
+  },
   message: null,
   subtotal: 0.0,
   tax: 0.0,
   total: 0.0,
+  quantity: 0,
   drawerIsOpen: true,
-  UnAuthCart: []
+  UnAuthCart: { products: [] }
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -26,14 +38,23 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state
       };
     case ActionTypes.ADD_TO_CART_SUCCESS:
+      console.log(payload);
       return {
         ...state,
-        cartItems: payload
+        cartItems: {
+          _id: payload._id,
+          userId: payload.userId,
+          products: payload.products
+        }
       };
     case ActionTypes.ADD_TO_CART_UNAUTH:
+      console.log(payload);
+
       return {
         ...state,
-        UnAuthCart: addItemToCart(state.UnAuthCart, payload)
+        UnAuthCart: {
+          products: addItemToUnAuthCart(state.UnAuthCart.products, payload)
+        }
       };
     case ActionTypes.ADD_TO_CART_FAIL:
       return {
@@ -64,15 +85,25 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state
       };
     case ActionTypes.REMOVE_ITEM_FROM_CART_SUCCESS:
+      console.log(payload[0].productID);
+      let newPayload = removeItem(state.cartItems, payload[0].productID);
       return {
         ...state,
-        cartItems: payload
+        cartItems: {
+          _id: newPayload._id,
+          userId: newPayload.userId,
+          products: newPayload.products
+        }
       };
 
     case ActionTypes.REMOVE_FROM_CART_UNAUTH:
+      console.log(payload, state.UnAuthCart);
       return {
         ...state,
-        UnAuthCart: removeItem(state.UnAuthCart, payload)
+        UnAuthCart: {
+          ...state.UnAuthCart,
+          products: removeUnAuthItem(state.UnAuthCart.products, payload)
+        }
       };
 
     case ActionTypes.CALC_SUBTOTAL:
@@ -100,6 +131,14 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         drawerIsOpen: false
+      };
+
+    case ActionTypes.SAVE_CART_INFO:
+      return {
+        ...state,
+        total: payload.total,
+        tax: payload.tax,
+        subtotal: payload.subtotal
       };
 
     default:
