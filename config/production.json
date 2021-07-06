@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://Damon:bladewolf99@puzzles.sorir.mongodb.net/Puzzles?retryWrites=true&w=majority",
+  "jwtSecret": "TheFlyingFinn"
+}
