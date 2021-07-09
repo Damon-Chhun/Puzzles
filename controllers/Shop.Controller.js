@@ -79,7 +79,7 @@ module.exports = {
       await doesCartExist.save();
       return res.json(doesCartExist);
     } catch (error) {
-      console.error(error.message);
+      console.log(error.message);
       res.status(500).send("something went wrong :(");
     }
   },
@@ -97,7 +97,7 @@ module.exports = {
       await doesCartExist.remove();
       res.json({ msg: "Cart removed" });
     } catch (err) {
-      console.error(err.message);
+      console.log(err.message);
       res.status(500).json("Server Error");
     }
   },
@@ -108,7 +108,7 @@ module.exports = {
       console.log("GetShop");
       res.send(products);
     } catch (error) {
-      console.error(error.message);
+      console.log(error.message);
       res.status(404).json("Server Error");
     }
   },
@@ -118,7 +118,7 @@ module.exports = {
       console.log(cart, "GET CART ITEMS !!!!!!");
       res.send(cart);
     } catch (error) {
-      console.error(error.message);
+      console.log(error.message);
       res.status(404).json("Server Error");
     }
   },

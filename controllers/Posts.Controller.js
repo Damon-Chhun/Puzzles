@@ -30,7 +30,7 @@ module.exports = {
 
       res.json(post);
     } catch (err) {
-      console.error(err.message);
+      console.log(err.message);
       res.status(500).json("Server Error");
     }
   },
@@ -47,7 +47,7 @@ module.exports = {
       }
       res.json(review);
     } catch (error) {
-      console.error(error.message);
+      console.log(error.message);
       res.status(404).json("Server Error");
     }
   },
@@ -65,7 +65,7 @@ module.exports = {
 
       res.json({ msg: "Post removed" });
     } catch (error) {
-      console.error(err.message);
+      console.log(err.message);
       res.status(500).send("Server Error");
     }
   },
@@ -90,7 +90,7 @@ module.exports = {
 
       res.json(post.likes);
     } catch (error) {
-      console.error(error.message);
+      console.log(error.message);
       res.status(500).send("Server Error");
     }
   },
@@ -117,7 +117,7 @@ module.exports = {
 
       res.json(post.likes);
     } catch (error) {
-      console.error(err.message);
+      console.log(err.message);
       res.status(500).send("Server Error");
     }
   },
@@ -146,7 +146,7 @@ module.exports = {
 
       res.json(post.comments);
     } catch (err) {
-      console.error(err.message);
+      console.log(err.message);
       res.status(500).json("Server Error");
     }
   },
@@ -180,7 +180,7 @@ module.exports = {
 
       res.json(post);
     } catch (error) {
-      console.error(err.message);
+      console.log(err.message);
       res.status(500).send("Server Error");
     }
   },
@@ -198,7 +198,7 @@ module.exports = {
       }
       res.json(review);
     } catch (error) {
-      console.error(error.message);
+      console.log(error.message);
       res.status(404).json("Server Error");
     }
   }

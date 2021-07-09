@@ -11,7 +11,7 @@ module.exports = {
       console.log(user);
       res.json(user);
     } catch (err) {
-      console.error(err.message);
+      console.log(err.message);
       res.status(500).send("Server Error");
     }
   },
@@ -23,7 +23,7 @@ module.exports = {
         res.json(user.name);
       }
     } catch (err) {
-      console.error(err.message);
+      console.log(err.message);
       res.status(500).send("Server Error");
     }
   },
@@ -72,7 +72,7 @@ module.exports = {
         }
       );
     } catch (error) {
-      console.rror(error.message);
+      console.log(error.message);
       res.status(500).send("Server Error");
     }
   }

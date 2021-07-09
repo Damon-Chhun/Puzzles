@@ -63,7 +63,7 @@ module.exports = {
         }
       );
     } catch (error) {
-      console.error(error.message);
+      console.log(error.message);
       res.status(500).send("Server Error");
     }
   },
@@ -83,7 +83,7 @@ module.exports = {
       }
       res.json(reviews);
     } catch (error) {
-      console.error(error.message);
+      console.log(error.message);
       if (!reviews || user === null) {
         res.status(404).json({ msg: "Error finding post made by user" });
       }
