@@ -17,8 +17,10 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center",
     minWidth: 300,
     height: "100%",
-    width: "100%"
+    width: "100%",
+    padding: 0
   },
+
   image: {
     outline: "solid 2px black",
     position: "relative",

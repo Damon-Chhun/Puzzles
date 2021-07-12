@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const DirectoryContainer = styled.div`
+  //border: solid 5px purple;
   height: 120vh;
   width: 100vw;
   display: flex;

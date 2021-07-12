@@ -3,16 +3,16 @@ import Background from "../../assets/homepage-background-2.jpg";
 import { Button } from "@material-ui/core";
 
 export const HomePageContainer = styled.div`
-  
+  //border: solid 5px purple;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content:flex-start;
   align-items: center;
-  width: 100vw;
-
+  width: 100%;
+  
   overflow-y: scroll;
-
+  overflow-x:hidden;
   }
 `;
 
