@@ -9,8 +9,9 @@ export const CartItemsContainer = styled.div`
   flex-wrap: nowrap;
   align-items: space-evenly;
   justify-content: flex-start;
-  border-bottom: solid 2px #ececec;
-  // height: 10vh;
+
+  overflow-x: hidden;
+  padding-right: 10px;
 
   &:hover {
     transition: all 0.3x ease-in-out;
@@ -75,6 +76,8 @@ export const Price = styled.h3`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  color: #212121;
 `;
 
 export const RemoveWrapper = styled.div`

@@ -24,6 +24,8 @@ export const DrawerContainer = styled.div`
   @media screen and (max-height: 700px) {
     display: none;
   }
+
+  padding: 12px;
 `;
 
 export const TopLineWrapper = styled.div`
@@ -65,7 +67,6 @@ export const ListContainer = styled.div`
   height: 70%;
   width: 100%;
   overflow-y: scroll;
-  border-bottom: 1px solid grey;
 `;
 
 export const MoneyWrapper = styled.div`
@@ -83,10 +84,12 @@ export const MoneyWrapper = styled.div`
 
 export const Calculation = styled.h3`
   font-size: 1.3vh;
+  color: #212121;
 `;
 
 export const CalculationName = styled.h3`
   font-size: 1.3vh;
+  color: #212121;
 `;
 
 export const CalculationWrapper = styled.div`
@@ -138,8 +141,9 @@ export const DrawerCheckoutBtn = styled(LinkRouter)`
 export const CartIcon = styled(FaShoppingCart)`
   background-color: transparent;
   color: white;
-  font-size: 2vh;
-  margin-left: 10px;
+  font-size: 30px;
+
+  margin-left: 20px;
 `;
 
 export const CartAndBtn = styled.div`

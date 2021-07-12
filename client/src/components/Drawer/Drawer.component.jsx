@@ -122,15 +122,12 @@ const ShopDrawer = ({
           <CalculationWrapper align={"flex-start"}>
             <CalculationName>SubTotal:</CalculationName>
             <CalculationName>Tax:</CalculationName>
-            <CalculationName>Total:</CalculationName>
           </CalculationWrapper>
 
           <CalculationWrapper align={"flex-end"}>
             <Calculation>$ {subTotalState}</Calculation>
 
             <Calculation>$ {taxState}</Calculation>
-
-            <Calculation>$ {totalState}</Calculation>
           </CalculationWrapper>
         </MoneyWrapper>
 

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
-  //border: solid 1px black;
+  //border: solid 3px purple;
   height: 45vh;
   min-height: 400px;
   width: 10vw;
@@ -14,6 +14,8 @@ export const CardContainer = styled.div`
   background-color: white;
   margin: 15px;
   margin-top: 5px;
+
+  padding: 12px;
 `;
 
 export const MainInfoWrapper = styled.div`
