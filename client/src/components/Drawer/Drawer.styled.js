@@ -17,7 +17,9 @@ export const DrawerContainer = styled.div`
   position: sticky;
   top: 190px;
   //border: solid 2.5px black;
-  border-radius: 16px;
+  //border-radius: 16px;
+
+  box-shadow: 10px 5px 5px #919191;
   @media screen and (max-width: 768px) {
     display: none;
   }

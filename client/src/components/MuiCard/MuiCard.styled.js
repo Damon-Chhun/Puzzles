@@ -69,7 +69,6 @@ export const Image = styled.div`
   //border: solid 5px green;
 
   height: 100%;
-
   background-image: url(${props => props.imageURL});
   background-repeat: no-repeat;
   background-size: contain;
