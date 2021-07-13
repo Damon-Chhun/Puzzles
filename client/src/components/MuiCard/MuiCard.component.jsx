@@ -18,7 +18,8 @@ import {
   Name,
   Price,
   ButtonWrapper,
-  Button
+  Button,
+  InfoWrapper
 } from "./MuiCard.styled";
 
 function MuiCard({ info, addToCart, token, history, match, props, auth }) {
@@ -29,12 +30,13 @@ function MuiCard({ info, addToCart, token, history, match, props, auth }) {
       <MainInfoWrapper
         onClick={() => history.push(`/shop/${Department}/${_id}`)}
       >
-        <Header>{Department}</Header>
         <ImageContainer>
-          <Image src={imageURL} />
+          <Image imageURL={imageURL} />
         </ImageContainer>
-        <Name>{title}</Name>
-        <Price>$ {price}</Price>
+        <InfoWrapper>
+          <Name>{title}</Name>
+          <Price>$ {price}</Price>
+        </InfoWrapper>
       </MainInfoWrapper>
       <ButtonWrapper>
         <Button

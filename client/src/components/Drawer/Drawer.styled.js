@@ -10,6 +10,7 @@ export const DrawerContainer = styled.div`
   flex-wrap: nowrap;
   height: 81.5vh;
   width: 30%;
+  min-width: 350px;
   max-width: 700px;
   background-color: white;
 

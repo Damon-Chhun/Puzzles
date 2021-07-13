@@ -1,21 +1,24 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
-  //border: solid 3px purple;
+  //border: solid 1px #ececec;
   height: 45vh;
   min-height: 400px;
-  width: 10vw;
-  min-width: 300px;
-  border-radius: 12px;
+  width: 15vw;
+  min-width: 350px;
+  //border-radius: 12px;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
   background-color: white;
   margin: 15px;
-  margin-top: 5px;
+  //margin-top: 5px;
 
-  padding: 12px;
+  //padding: 12px;
+  padding-top: 0;
+
+  box-shadow: 10px 5px 5px #919191;
 `;
 
 export const MainInfoWrapper = styled.div`
@@ -23,9 +26,9 @@ export const MainInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
-  padding: 5px;
+  margin: 0;
   height: 90%;
   width: 100%;
 
@@ -33,6 +36,19 @@ export const MainInfoWrapper = styled.div`
     transition: all 0.3s ease-in-out;
     opacity: 0.5;
   }
+`;
+
+export const InfoWrapper = styled.div`
+  //border: dashed 5px blue;
+  height: 35%;
+  padding: 12px;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const Header = styled.span`
@@ -44,26 +60,25 @@ export const Header = styled.span`
 `;
 
 export const ImageContainer = styled.div`
-  //border: solid 5px pink;
-  height: 65%;
+  // border: solid 5px pink;
   width: 100%;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 65%;
 `;
 
-export const Image = styled.img`
+export const Image = styled.div`
   //border: solid 5px green;
-  max-width: 100%;
-  max-height: 100%;
-  text-align: center;
-  border-radius: 16px;
+
+  height: 100%;
+
+  background-image: url(${props => props.imageURL});
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 `;
 
 export const Name = styled.h3`
   //border: dashed 3px purple;
-
+  text-align: center;
   font-size: 1.4vh;
   height: 20%;
   width: 100%;
@@ -82,7 +97,7 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const Button = styled.button`
-  border-radius: 16px;
+  //border-radius: 16px;
   border: none;
   background-color: #01bf71;
   color: white;
