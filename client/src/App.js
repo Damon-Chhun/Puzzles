@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
-import axios from "axios";
+
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+
+import { selectIsAuthLoading } from "./redux/auth/auth.selectors";
+import { selectIsCartLoading } from "./redux/cart/cart.selectors";
+import { selectIsReviewsLoading } from "./redux/reviews/reviews.selectors";
+import { selectIsShopLoading } from "./redux/shop/shop.selectors";
+
+import Spinner from "./components/spinner/spinner.component";
 
 import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shoppage.component";
@@ -12,22 +20,22 @@ import ProductPage from "./pages/product/productpage.component";
 import RegisterPage from "./pages/register/registerpage.component";
 import DiscussionPage from "./pages/Discussion/DiscussionPage.component";
 import Footer from "./components/footer/footer.component";
-import StorePage from "./pages/shop/StorePage.component";
+
 import CheckoutPage from "./pages/checkout /checkout.component";
 
 import setAuthToken from "./utils/setAuthToken";
 import { store } from "./redux/store";
 import { loadUser } from "./redux/auth/auth.actions";
-import Header from "./components/header/header.component";
-import Sidebar from "./components/sidebar/sidebar.component";
+
 import "./main.css";
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
-function App() {
+function App({ loadingShop }) {
   useEffect(() => {
     store.dispatch(loadUser());
+    let ShopWithSpinner = Spinner(ShopPage);
   }, []);
 
   // const [isOpen, setIsOpen] = useState(false);
@@ -59,4 +67,11 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = createStructuredSelector({
+  loadingShop: selectIsShopLoading,
+  loadingAuth: selectIsAuthLoading,
+  loadingReviews: selectIsReviewsLoading,
+  loadingCart: selectIsCartLoading
+});
+
+export default connect(mapStateToProps, null)(App);

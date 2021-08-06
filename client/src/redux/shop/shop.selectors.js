@@ -20,3 +20,8 @@ export const selectShopScroll = createSelector(
   [selectShop],
   reducer => reducer.scroll
 );
+
+export const selectIsShopLoading = createSelector([selectShop], reducer => {
+  console.log(reducer.isLoading);
+  return reducer.isLoading;
+});

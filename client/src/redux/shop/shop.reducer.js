@@ -3,7 +3,7 @@ import { ACTIONTYPE } from "./Shop.ActionTypes";
 const INITIAL_STATE = {
   shop: [],
   scroll: "",
-  isFetching: false,
+  isLoading: false,
   errorMessage: undefined
 };
 
@@ -14,21 +14,21 @@ const shopReducer = (state = INITIAL_STATE, action) => {
     case ACTIONTYPE.FETCH_SHOP_START:
       return {
         ...state,
-        isFetching: true
+        isLoading: true
       };
 
     case ACTIONTYPE.FETCH_SHOP_SUCCESS:
       console.log(payload);
       return {
         ...state,
-        isFetching: false,
+        isLoading: false,
         shop: payload
       };
 
     case ACTIONTYPE.FETCH_SHOP_FAIL:
       return {
         ...state,
-        isFetching: false,
+        isLoading: false,
         shop: null,
         errorMessage: payload
       };

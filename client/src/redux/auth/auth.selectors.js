@@ -18,3 +18,6 @@ export const selectUser = createSelector([selectAuth], reducer => {
 export const selectCommentUser = createSelector([selectAuth], reducer => {
   return reducer.commentUser.name;
 });
+export const selectIsAuthLoading = createSelector([selectAuth], reducer => {
+  return reducer.isLoading;
+});

@@ -11,3 +11,10 @@ export const selectDiscussion = createSelector([selectReviews], post => {
   console.log(post.discussion);
   return post.discussion;
 });
+
+export const selectIsReviewsLoading = createSelector(
+  [selectReviews],
+  reducer => {
+    return reducer.isLoading;
+  }
+);

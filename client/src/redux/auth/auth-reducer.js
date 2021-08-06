@@ -3,7 +3,7 @@ import ACTIONTYPES from "./Auth.ActionTypes";
 const INITIAL_STATE = {
   isAuthenticated: null,
   token: localStorage.getItem("token"),
-  loading: false,
+  isLoading: false,
   errorMessage: undefined,
   user: null
 };
@@ -23,7 +23,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isAuthenticated: false,
-        loading: true
+        isLoading: true
       };
 
     case ACTIONTYPES.REGISTER_SUCCESS:
@@ -31,7 +31,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isAuthenticated: true,
-        loading: false
+        isLoading: false
       };
 
     case ACTIONTYPES.REGISTER_FAIL:
@@ -40,7 +40,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
         ...state,
         token: null,
         isAuthenticated: false,
-        loading: false,
+        isLoading: false,
         errorMessage: "error"
       };
 
@@ -50,7 +50,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isAuthenticated: false,
-        loading: true
+        isLoading: true
       };
 
     case ACTIONTYPES.LOGIN_SUCCESS:
@@ -58,7 +58,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isAuthenticated: true,
-        loading: false
+        isLoading: false
       };
 
     case ACTIONTYPES.LOGIN_FAIL:
@@ -67,7 +67,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
         ...state,
         token: null,
         isAuthenticated: false,
-        loading: false,
+        isLoading: false,
         errorMessage: payload
       };
 

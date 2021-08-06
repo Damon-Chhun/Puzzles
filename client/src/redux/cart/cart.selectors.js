@@ -36,3 +36,7 @@ export const selectTotal = createSelector(
 export const selectIsDrawerOpen = createSelector([selectCart], top => {
   return top.drawerIsOpen;
 });
+
+export const selectIsCartLoading = createSelector([selectCart], reducer => {
+  return reducer.isLoading;
+});

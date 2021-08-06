@@ -4,14 +4,19 @@ import Cards from "../../components/Cards/Cards.component";
 import Scroll from "react-scroll";
 
 import { connect } from "react-redux";
+import { compose } from "redux";
+
 import {
   selectShopCategories,
   selectShopCollection,
-  selectShopScroll
+  selectShopScroll,
+  selectIsShopLoading
 } from "../../redux/shop/shop.selectors";
 import { selectIsDrawerOpen } from "../../redux/cart/cart.selectors";
 import { createStructuredSelector } from "reselect";
 import { fetchShop } from "../../redux/shop/shop.actions";
+
+import Spinner from "../../components/spinner/spinner.component";
 
 import {
   ShopPageContainer,
@@ -41,12 +46,14 @@ function ShopPage({
   drawerIsOpen,
   openDrawer,
   closeDrawer,
-  Section
+  Section,
+  isLoading
 }) {
   let scroller = Scroll.scroller;
 
   useEffect(() => {
     fetchShop();
+    console.log(isLoading);
     loadCartOnLogin(token);
     scroller.scrollTo(`${Section}`, {
       duration: 2000,
@@ -87,7 +94,8 @@ const mapStateToProps = createStructuredSelector({
   shop: selectShopCollection,
   token: selectAuthToken,
   drawerIsOpen: selectIsDrawerOpen,
-  Section: selectShopScroll
+  Section: selectShopScroll,
+  isLoading: selectIsShopLoading
 });
 
 const mapDispatchToProps = dispatch => ({

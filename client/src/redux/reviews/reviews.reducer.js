@@ -2,7 +2,7 @@ import ActionTypes from "./reviews.Actiontypes";
 
 const INITAL_STATE = {
   posts: [],
-  loading: false,
+  isLoading: false,
   error: null,
   discussion: null
 };
@@ -14,18 +14,18 @@ const reviewsReducer = (state = INITAL_STATE, action) => {
     case ActionTypes.GET_REVIEWS_START:
       return {
         ...state,
-        loading: true
+        isLoading: true
       };
     case ActionTypes.GET_REVIEWS_SUCCESS:
       return {
         ...state,
-        loading: false,
+        isLoading: false,
         posts: payload
       };
     case ActionTypes.GET_REVIEWS_FAIL:
       return {
         ...state,
-        loading: false,
+        isLoading: false,
         error: payload
       };
 
@@ -33,7 +33,7 @@ const reviewsReducer = (state = INITAL_STATE, action) => {
       return {
         ...state,
         posts: state.posts.filter(post => post._id !== payload),
-        loading: false
+        isLoading: false
       };
 
     case ActionTypes.UPDATE_LIKES:
@@ -47,7 +47,7 @@ const reviewsReducer = (state = INITAL_STATE, action) => {
     case ActionTypes.LIKES_ERROR:
       return {
         ...state,
-        loading: false,
+        isLoading: false,
         error: payload
       };
 
@@ -55,30 +55,30 @@ const reviewsReducer = (state = INITAL_STATE, action) => {
       return {
         ...state,
         posts: [...state.posts, payload],
-        loading: false
+        isLoading: false
       };
     case ActionTypes.GET_DISCUSSION:
       return {
         ...state,
-        loading: false,
+        isLoading: false,
         discussion: payload
       };
     case ActionTypes.GET_DISCUSSION_FAIL:
       return {
         ...state,
-        loading: false,
+        isLoading: false,
         error: payload
       };
     case ActionTypes.POST_COMMENT:
       return {
         ...state,
-        loading: false,
+        isLoading: false,
         discussion: { ...state.discussion, comments: payload }
       };
     case ActionTypes.DELETE_COMMENT:
       return {
         ...state,
-        loading: false,
+        isLoading: false,
         discussion: {
           ...state.discussion,
           comment: state.discussion.comments.filter(

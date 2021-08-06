@@ -10,6 +10,7 @@ import { getCartInfo } from "../../components/Drawer/utill";
 
 const INITIAL_STATE = {
   isHidden: true,
+  isLoading: false,
   cartItems: {
     _id: null,
     userId: null,
@@ -35,7 +36,8 @@ const cartReducer = (state = INITIAL_STATE, action) => {
 
     case ActionTypes.ADD_TO_CART_START:
       return {
-        ...state
+        ...state,
+        isLoading: true
       };
     case ActionTypes.ADD_TO_CART_SUCCESS:
       console.log(payload);
@@ -45,7 +47,8 @@ const cartReducer = (state = INITIAL_STATE, action) => {
           _id: payload._id,
           userId: payload.userId,
           products: payload.products
-        }
+        },
+        isLoading: false
       };
     case ActionTypes.ADD_TO_CART_UNAUTH:
       console.log(payload);
@@ -63,12 +66,14 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       };
     case ActionTypes.LOAD_CART_ON_LOGIN_START:
       return {
-        ...state
+        ...state,
+        isLoading: true
       };
     case ActionTypes.LOAD_CART_ON_LOGIN_SUCCESS:
       return {
         ...state,
-        cartItems: payload
+        cartItems: payload,
+        isLoading: false
       };
     case ActionTypes.LOAD_CART_ON_LOGIN_FAIL:
       return {
@@ -82,7 +87,8 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       };
     case ActionTypes.REMOVE_ITEM_FROM_CART_START:
       return {
-        ...state
+        ...state,
+        isLoading: true
       };
     case ActionTypes.REMOVE_ITEM_FROM_CART_SUCCESS:
       console.log(payload[0].productID);
@@ -93,7 +99,8 @@ const cartReducer = (state = INITIAL_STATE, action) => {
           _id: newPayload._id,
           userId: newPayload.userId,
           products: newPayload.products
-        }
+        },
+        isLoading: false
       };
 
     case ActionTypes.REMOVE_FROM_CART_UNAUTH:
