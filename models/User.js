@@ -3,7 +3,11 @@ const Shop = require("./Shop");
 const Posts = require("./Posts");
 
 const UserSchema = new mongoose.Schema({
-  name: {
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
     type: String,
     required: true
   },

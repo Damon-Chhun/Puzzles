@@ -12,7 +12,10 @@ const UserController = require("../../controllers/User.Controller");
 router.post(
   "/",
   [
-    check("name", "Name is Required")
+    check("firstName", "First name is Required")
+      .not()
+      .isEmpty(),
+    check("lastName", "Last name is Required")
       .not()
       .isEmpty(),
     check("email", "Please include a valid email").isEmail(),

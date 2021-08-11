@@ -26,8 +26,7 @@ export function register({ firstName, lastName, email, password }) {
       "Content-Type": "application/json"
     }
   };
-  const name = `${firstName} ${lastName}`;
-  const body = JSON.stringify({ name, email, password });
+  const body = JSON.stringify({ firstName, lastName, email, password });
   console.log(body);
   return async dispatch => {
     try {
