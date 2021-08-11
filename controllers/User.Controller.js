@@ -15,7 +15,7 @@ module.exports = {
     }
     console.log(req.body);
 
-    const { name, email, password } = req.body;
+    const { firstName, lastName, email, password } = req.body;
 
     try {
       let user = await User.findOne({ email });
@@ -35,7 +35,8 @@ module.exports = {
       });
 
       user = new User({
-        name,
+        firstName,
+        lastName,
         email,
         avatar,
         password
