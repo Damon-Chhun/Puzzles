@@ -15,7 +15,7 @@ const INITIAL_STATE = {
       linkUrl: "shop/laptops"
     },
     {
-      title: "hats",
+      title: "Hats",
       imageUrl:
         "https://images.unsplash.com/photo-1502383978052-700eb1d18aa1?ixid=MXwxMjA3fDB8MHxzZWFyY2h8ODh8fGhhdHN8ZW58MHwwfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
       id: 3,
