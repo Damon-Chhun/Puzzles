@@ -84,7 +84,7 @@ const Header = ({ isAuth, signOut, isHomepage, history }) => {
             <Fragment>
               <NavItem>
                 <NavLinksRouter
-                  to="register"
+                  to="/register"
                   smooth={true}
                   duration={500}
                   spy={true}
