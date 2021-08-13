@@ -2,14 +2,6 @@ import { buildUser } from "../support/generate";
 
 describe("login", () => {
   it("should login an existing user", () => {
-    // const user = buildUser();
-    // console.log(user);
-    // cy.request({
-    //   url: "http://localhost:5000/api/users/",
-    //   method: "POST",
-    //   body: user
-    // }).then(response => ({ ...response.body.user, ...user }));
-
     cy.createUser().then(user => {
       cy.visit("/");
       cy.findByText(/^Sign in$/).click();
