@@ -15,6 +15,11 @@ Cypress.Commands.add("checkHomeUrl", overrides => {
   cy.url().should("eq", `${Cypress.config().baseUrl}/`);
 });
 
+Cypress.Commands.add("checkShopUrl", overrides => {
+  //check shop url
+  cy.url().should("eq", `${Cypress.config().baseUrl}/shop`);
+});
+
 Cypress.Commands.add("checkAuthToken", overrides => {
   //check if localstorage is updated!
   cy.window()
