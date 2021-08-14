@@ -64,6 +64,7 @@ module.exports = {
             {
               productID,
               quantity,
+              name: item.title,
               Department: item.Department,
               item: item.name,
               price: item.price,
