@@ -6,7 +6,6 @@ export const CardContainer = styled.div`
   min-height: 400px;
   width: 15vw;
   min-width: 350px;
-  //border-radius: 12px;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -69,7 +68,7 @@ export const Image = styled.div`
   //border: solid 5px green;
 
   height: 100%;
-  background-image: url(${props => props.imageURL});
+  background-image: url(${(props) => props.imageURL});
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;

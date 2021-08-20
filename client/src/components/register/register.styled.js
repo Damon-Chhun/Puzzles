@@ -5,13 +5,15 @@ export const LoginComponentContainer = styled.div`
   height: 650px;
   width: 450px;
   border: 1px solid black;
-  border-radius: 12px;
+  //border-radius: 12px;
+  box-shadow: 10px 5px 5px #919191;
   background: white;
   display: flex;
   flex-wrap: wrap;
   flex-direction column;
   justify-content:flex-start;
   align-items: center;
+  padding: 15px;
 `;
 
 export const EmailAndPassword = styled.div`
@@ -37,7 +39,7 @@ export const InputContainer = styled.div`
 
 export const InputField = styled.input`
   height: 35px;
-  border-radius: 12px;
+  //border-radius: 12px;
   background: #f0ffeb;
   font-size: 1.2rem;
   color: black;
@@ -49,7 +51,7 @@ export const InputName = styled.label`
 `;
 
 export const SignInInput = styled.input`
-  border-radius: 12px;
+  //border-radius: 12px;
   background: #01bf71;
   white-space: nowrap;
   padding: 10px 22px;
@@ -61,7 +63,7 @@ export const SignInInput = styled.input`
   text-decoration: none;
   color: #010606;
   width: 90%;
-  margin-left: 15px;
+  margin: 20px;
 
   &:hover {
     transition: all 0.2s ease-in-out;
@@ -72,4 +74,5 @@ export const SignInInput = styled.input`
 
 export const TextWrapper = styled.a`
   margin-left: 15px;
+  padding: 2px;
 `;

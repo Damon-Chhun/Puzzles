@@ -47,6 +47,7 @@ function App({ loadingShop }) {
   return (
     <div>
       {/* <Sidebar isOpen={isOpen} toggle={toggle} /> */}
+
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/shop" component={ShopPage} />
@@ -71,7 +72,7 @@ const mapStateToProps = createStructuredSelector({
   loadingShop: selectIsShopLoading,
   loadingAuth: selectIsAuthLoading,
   loadingReviews: selectIsReviewsLoading,
-  loadingCart: selectIsCartLoading
+  loadingCart: selectIsCartLoading,
 });
 
 export default connect(mapStateToProps, null)(App);

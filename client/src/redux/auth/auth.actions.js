@@ -1,112 +1,121 @@
 import axios from "axios";
 import ACTIONTYPES from "./Auth.ActionTypes";
 import setAuthToken from "../../utils/setAuthToken";
+import { setAlert } from "../alert/alert.actions";
+import { loadCartOnLogin } from "../cart/cart.actions";
 
 //Start Register
 const registerUserStart = () => ({
-  type: ACTIONTYPES.REGISTER_START
+  type: ACTIONTYPES.REGISTER_START,
 });
 
 //Successful Register
-const registerUserSuccess = data => ({
+const registerUserSuccess = (data) => ({
   type: ACTIONTYPES.REGISTER_SUCCESS,
-  payload: data
+  payload: data,
 });
 
 //Failed Register
-const registerUserFail = errorMessage => ({
+const registerUserFail = (errorMessage) => ({
   type: ACTIONTYPES.REGISTER_FAIL,
-  payload: errorMessage
+  payload: errorMessage,
 });
 
 //register User
 export function register({ firstName, lastName, email, password }) {
   const config = {
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   };
   const body = JSON.stringify({ firstName, lastName, email, password });
   console.log(body);
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       dispatch(registerUserStart());
       const res = await axios.post("/api/users/", body, config);
       dispatch(registerUserSuccess(res.data));
     } catch (error) {
-      dispatch(registerUserFail(error.msg));
+      const errors = error.response.data.errors;
+      console.log(errors);
+      if (errors) {
+        errors.forEach((errors) => dispatch(registerUserFail(error.msg)));
+        errors.forEach((errors) => dispatch(setAlert(error.msg, "danger")));
+      }
     }
   };
 }
 
 //Start Login
 const loginUserStart = () => ({
-  type: ACTIONTYPES.LOGIN_START
+  type: ACTIONTYPES.LOGIN_START,
 });
 
 //Successful Login
-const loginUserSuccess = data => ({
+const loginUserSuccess = (data) => ({
   type: ACTIONTYPES.LOGIN_SUCCESS,
-  payload: data
+  payload: data,
 });
 
 //Failed Login
-const loginUserFail = errorMessage => ({
+const loginUserFail = (errorMessage) => ({
   type: ACTIONTYPES.LOGIN_FAIL,
-  payload: errorMessage
+  payload: errorMessage,
 });
 
 //Login User
 export function login(email, password) {
   const config = {
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   };
   const body = JSON.stringify({ email, password });
   console.log(email, "EMAIL");
   console.log(password, "PASSWORD");
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       await dispatch(loginUserStart());
       const res = await axios.post("/api/auth", body, config);
       console.log(res.data, "AUTH ACTION");
       await dispatch(loginUserSuccess(res.data));
+      await dispatch(loadCartOnLogin());
     } catch (error) {
       const errors = error.response.data.errors;
       console.log(errors);
       if (errors) {
-        errors.forEach(errors => dispatch(loginUserFail(errors.msg, "danger")));
+        errors.forEach((errors) => dispatch(loginUserFail(errors.msg)));
+        errors.forEach((errors) => dispatch(setAlert(error.msg, "danger")));
       }
     }
   };
 }
 
 //Sign out user
-export const signOut = () => dispatch => {
+export const signOut = () => (dispatch) => {
   dispatch({
-    type: ACTIONTYPES.SIGN_OUT
+    type: ACTIONTYPES.SIGN_OUT,
   });
 };
 
 //Start Load User
 const loadUserStart = () => ({
-  type: ACTIONTYPES.LOAD_USER_START
+  type: ACTIONTYPES.LOAD_USER_START,
 });
 
 //Successful Load User
-const loadUserSuccess = data => ({
+const loadUserSuccess = (data) => ({
   type: ACTIONTYPES.LOAD_USER_SUCCESS,
-  payload: data
+  payload: data,
 });
 
 //Failed Load User
-const loadUserFail = errorMessage => ({
+const loadUserFail = (errorMessage) => ({
   type: ACTIONTYPES.LOAD_USER_FAIL,
-  payload: errorMessage
+  payload: errorMessage,
 });
 
-export const loadUser = () => async dispatch => {
+export const loadUser = () => async (dispatch) => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
@@ -121,11 +130,11 @@ export const loadUser = () => async dispatch => {
 };
 
 //Get A User with User._Id
-export const getUserName = userID => async dispatch => {
+export const getUserName = (userID) => async (dispatch) => {
   const config = {
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   };
   const body = JSON.stringify({ userID });
   console.log(userID, "USERID IN getUserInfo Action");
@@ -143,13 +152,13 @@ export const getUserName = userID => async dispatch => {
   }
 };
 //Successful GET User
-const getUserSuccess = data => ({
+const getUserSuccess = (data) => ({
   type: ACTIONTYPES.GET_USER,
-  payload: data
+  payload: data,
 });
 
 //Failed GET User
-const getUserFail = errorMessage => ({
+const getUserFail = (errorMessage) => ({
   type: ACTIONTYPES.GET_USER_FAIL,
-  payload: errorMessage
+  payload: errorMessage,
 });

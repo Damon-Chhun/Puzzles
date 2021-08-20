@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { login } from "../../redux/auth/auth.actions";
 import { loadCartOnLogin } from "../../redux/cart/cart.actions";
+import {setAlert} from '../../redux/alert/alert.actions'
 
 import {
   LoginComponentContainer,
@@ -29,8 +30,9 @@ const Login = ({ login, history, loadCart }) => {
   const onSubmit = async text => {
     text.preventDefault();
     await login(email, password);
-    await loadCart();
+    if(localStorage.token){
     await history.goBack();
+    }
   };
   return (
     <LoginComponentContainer>
@@ -70,7 +72,8 @@ const Login = ({ login, history, loadCart }) => {
 
 const mapDispatchToProps = dispatch => ({
   login: (email, password) => dispatch(login(email, password)),
-  loadCart: token => dispatch(loadCartOnLogin(token))
+  loadCart: token => dispatch(loadCartOnLogin(token)),
+  setAlert: (msg, alertType) => dispatch(setAlert(msg, alertType))
 });
 
 export default withRouter(connect(null, mapDispatchToProps)(Login));
