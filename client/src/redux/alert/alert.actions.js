@@ -3,6 +3,7 @@ import { ActionTypes } from "./alert.ActionTypes";
 
 export const setAlert = (msg, alertType) => (dispatch) => {
   const id = uuidv4();
+  console.log(msg, alertType);
   dispatch({
     type: ActionTypes.SET_ALERT,
     payload: { msg, alertType, id },
@@ -10,6 +11,6 @@ export const setAlert = (msg, alertType) => (dispatch) => {
 
   setTimeout(
     () => dispatch({ type: ActionTypes.REMOVE_ALERT, payload: id }),
-    5000
+    3000
   );
 };

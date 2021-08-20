@@ -8,8 +8,8 @@ export default function SignInPage() {
   return (
     <div>
       <Header />
-      <Alerts />
       <SignInPageContainer>
+      <Alerts />
         <Login />
       </SignInPageContainer>
     </div>

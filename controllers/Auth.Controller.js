@@ -58,8 +58,8 @@ module.exports = {
 
       const payload = {
         user: {
-          id: user.id
-        }
+          id: user.id,
+        },
       };
 
       jsonwebtoken.sign(
@@ -75,5 +75,5 @@ module.exports = {
       console.log(error.message);
       res.status(500).send("Server Error");
     }
-  }
+  },
 };

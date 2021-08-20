@@ -35,10 +35,16 @@ export function register({ firstName, lastName, email, password }) {
       dispatch(registerUserStart());
       const res = await axios.post("/api/users/", body, config);
       dispatch(registerUserSuccess(res.data));
+      dispatch(loadCartOnLogin());
     } catch (error) {
       const errors = error.response.data.errors;
+
+      console.log(error.response.data.errors);
+
       console.log(errors);
+
       if (errors) {
+        console.log(errors.msg, errors);
         errors.forEach((errors) => dispatch(registerUserFail(error.msg)));
         errors.forEach((errors) => dispatch(setAlert(error.msg, "danger")));
       }
@@ -85,7 +91,7 @@ export function login(email, password) {
       console.log(errors);
       if (errors) {
         errors.forEach((errors) => dispatch(loginUserFail(errors.msg)));
-        errors.forEach((errors) => dispatch(setAlert(error.msg, "danger")));
+        errors.forEach((errors) => dispatch(setAlert(errors.msg, "danger")));
       }
     }
   };
