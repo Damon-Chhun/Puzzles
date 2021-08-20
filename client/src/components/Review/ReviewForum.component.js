@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { addPost } from "../../redux/reviews/reviews.actions";
 
 import { selectIsAuth } from "../../redux/auth/auth.selectors";
+import { setAlert } from "../../redux/alert/alert.actions";
 
 import { createStructuredSelector } from "reselect";
 
@@ -17,12 +18,13 @@ import {
   Input,
   NavButton,
   NavBtnLink,
-  SignInFirstWrapper
+  SignInFirstWrapper,
 } from "./Review.styled";
 
 const ReviewForum = ({ addPost, productId, auth }) => {
   const [text, setText] = useState("");
   console.log(productId);
+
   return (
     <PostReviewContainer>
       {auth !== true ? (
@@ -43,9 +45,10 @@ const ReviewForum = ({ addPost, productId, auth }) => {
           </H3Wrapper>
           <FormContainer
             className="form"
-            onSubmit={e => {
+            onSubmit={(e) => {
               e.preventDefault();
-              addPost(text, productId);
+              console.log(text, productId);
+              addPost({ text }, productId);
               setText("");
             }}
           >
@@ -55,11 +58,11 @@ const ReviewForum = ({ addPost, productId, auth }) => {
               rows="5"
               placeholder="Share Your Thoughts..."
               value={text}
-              onChange={e => setText(e.target.value)}
+              onChange={(e) => setText(e.target.value)}
               required
             ></TextArea>
+            <Input type="submit" value="Post Review!" />
           </FormContainer>
-          <Input type="submit" value="Post Review!" />
         </Fragment>
       )}
     </PostReviewContainer>
@@ -67,11 +70,11 @@ const ReviewForum = ({ addPost, productId, auth }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  auth: selectIsAuth
+  auth: selectIsAuth,
 });
 
-const mapDispatchToProps = dispatch => ({
-  addPost: (text, productId) => dispatch(addPost(text, productId))
+const mapDispatchToProps = (dispatch) => ({
+  addPost: (text, productId) => dispatch(addPost(text, productId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewForum);

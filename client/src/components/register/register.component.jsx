@@ -3,6 +3,7 @@ import { Link, Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { register, signOut } from "../../redux/auth/auth.actions";
 import { loadCartOnLogin } from "../../redux/cart/cart.actions";
+import {setAlert} from '../../redux/alert/alert.actions'
 
 import {
   LoginComponentContainer,
@@ -20,7 +21,8 @@ export const Register = ({
   isAuthenticated,
   history,
   loadCart,
-  signOut
+  signOut,
+  setAlert
 }) => {
   const [formData, setFormData] = useState({
     email: "",
@@ -39,6 +41,7 @@ export const Register = ({
     e.preventDefault();
     if (password !== password2) {
       console.log("Passwords do not match");
+      setAlert("Passwords do not match", "danger")
     } else {
       register({ firstName, lastName, email, password });
       await loadCart();
@@ -125,7 +128,8 @@ const mapDispatchToProps = dispatch => ({
   register: ({ firstName, lastName, email, password }) =>
     dispatch(register({ firstName, lastName, email, password })),
   loadCart: token => dispatch(loadCartOnLogin(token)),
-  signOut: () => dispatch(signOut())
+  signOut: () => dispatch(signOut()),
+  setAlert: (msg, alertType) => dispatch(setAlert(msg, alertType))
 });
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated

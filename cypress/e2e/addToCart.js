@@ -43,6 +43,8 @@ describe("addToCartAuth", () => {
     cy.visit("/");
     cy.createUser().then(user => {
       cy.login(user).then(() => {
+        cy.get(".MuiButton-label").click();
+        cy.get(":nth-child(1) > .sc-kHOZQx").click();
         cy.addItemToCart().then(() => {
           cy.window()
             .its("store")

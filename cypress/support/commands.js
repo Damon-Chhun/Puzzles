@@ -24,7 +24,7 @@ Cypress.Commands.add("checkAuthToken", overrides => {
   //check if localstorage is updated!
   cy.window()
     .its("localStorage.token")
-    .should("to.be", "string");
+    .should("be.a", "string");
 });
 Cypress.Commands.add("login", user => {
   cy.findByText(/^Sign in$/).click();
@@ -36,8 +36,8 @@ Cypress.Commands.add("login", user => {
 });
 Cypress.Commands.add("addItemToCart", overrides => {
   //add To Cart while signed out!
-  cy.get(".MuiButton-label").click();
-  cy.get(":nth-child(1) > .sc-kHOZQx").click();
+  // cy.get(".MuiButton-label").click();
+  // cy.get(":nth-child(1) > .sc-kHOZQx").click();
   cy.checkShopUrl();
 
   //check if redux state updates with backend api fetch
@@ -55,4 +55,21 @@ Cypress.Commands.add("addItemToCart", overrides => {
     '[name="Phones"] > .sc-clIAKW > .sc-faUofl > :nth-child(1) > .sc-hiwReK > .sc-ehCIER'
   ).click();
   cy.get(".sc-bQtJOP").should("have.text", "$ 42.67");
+});
+
+Cypress.Commands.add("addItemToCartPOST", () => {
+  const token = window.localStorage.getItem("token");
+  console.log(token);
+  cy.request({
+    url: "http://localhost:5000/api/shop/",
+    method: "POST",
+    body: {
+      productID: "60184d7420688c0f704eb77f",
+      quantity: "1"
+    },
+    headers: {
+      "Content-Type": "application/json",
+      "x-auth-token": `${token}`
+    }
+  }).then(response => console.log(response));
 });
