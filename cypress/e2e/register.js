@@ -17,12 +17,7 @@ describe("register", () => {
     cy.get(":nth-child(5) > .sc-edESPO").type(user.password);
     cy.get(".sc-iWBMBB").click();
 
-    //check that if registered successful, returned to home
-    cy.url().should("eq", `${Cypress.config().baseUrl}/`);
-
-    //check if localstorage is updated!
-    cy.window()
-      .its("localStorage.token")
-      .should("be.a", "string");
+    cy.checkHomeUrl();
+    cy.checkAuthToken();
   });
 });

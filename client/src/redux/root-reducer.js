@@ -7,6 +7,7 @@ import directoryReducer from "./directory/directory.reducer";
 import authReducer from "./auth/auth-reducer";
 import cartReducer from "./cart/cart.reducer";
 import reviewsReducer from "./reviews/reviews.reducer";
+import alertReducer from "./alert/alert.reducer";
 
 const persistConfig = {
   key: "root",
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
   directory: directoryReducer,
   auth: authReducer,
   cart: cartReducer,
-  reviews: reviewsReducer
+  reviews: reviewsReducer,
+  alert: alertReducer
 });
 
 //export default rootReducer;

@@ -10,6 +10,7 @@ export const ProductPageContainer = styled.div`
   justify-content: space-around;
   align-items: flex-start;
   flex-wrap: wrap;
+  padding: 15spx;
 
   @media screen and (max-width: 930px) {
     flex-direction: column;
@@ -76,27 +77,41 @@ export const MainInfoWrapper = styled.div`
 export const Span = styled.span`
   //border: dashed 5px green;
   margin: 15px;
-  letter-spacing: 0.2rem;
-  font-size: 1vh;
+  //letter-spacing: 0.1rem;
+  font-size: 2vh;
+  font-family: "Open Sans";
+
+  @media screen and (max-width: 930px) {
+    margin-left: 30px;
+  }
 `;
 export const Name = styled.h2`
   //border: dashed 5px brown;
   margin-left: 15px;
   letter-spacing: 0.2rem;
   font-size: 1.5vh;
+
+  @media screen and (max-width: 930px) {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
 `;
 
 export const Description = styled.h3`
   //border: dashed 5px purple;
-  letter-spacing: 0.2rem;
+  letter-spacing: 0.1rem;
   line-height: 2;
   padding-left: 15px;
   font-weight: normal;
   white-space: pre-line;
-  font-size: 1.3vh;
+  font-size: 1.4vh;
+  font-family: "Open Sans";
 
   @media screen and (max-width: 930px) {
     letter-spacing: 0.1rem;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
 `;
 
 export const PostsContainer = styled.div`
@@ -105,12 +120,11 @@ export const PostsContainer = styled.div`
 `;
 
 export const AddBtn = styled.button`
-  border: dashed 5px blue;
   border-radius: 50px;
   background: #01bf71;
   white-space: nowrap;
-  padding: 10px 22px;
-  font-size: 1vh;
+  padding: 15px;
+  font-size: 1.3vh;
   outline: none;
   border: none;
   cursor: pointer;
@@ -119,10 +133,16 @@ export const AddBtn = styled.button`
   color: #010606;
   margin-left: 15px;
   margin-top: 35px;
+  font-family: "Open Sans";
 
   &:hover {
     transition: all 0.2s ease-in-out;
     background: black;
     color: #01bf71;
+  }
+
+  @media screen and (max-width: 930px) {
+    margin-left: 30px;
+    margin-right: 30px;
   }
 `;

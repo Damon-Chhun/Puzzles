@@ -30,7 +30,7 @@ const Login = ({ login, history, loadCart }) => {
     text.preventDefault();
     await login(email, password);
     await loadCart();
-    history.goBack();
+    await history.goBack();
   };
   return (
     <LoginComponentContainer>

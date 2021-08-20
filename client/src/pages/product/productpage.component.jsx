@@ -6,8 +6,14 @@ import { selectShopCollection } from "../../redux/shop/shop.selectors";
 import Posts from "../../components/posts/posts.component";
 import CollectionPreview from "../../components/CollectionPreview/CollectionPreview.component";
 
-import { addToCart } from "../../redux/cart/cart.actions";
 
+import Typography from '@material-ui/core/Typography';
+import { Breadcrumbs } from '@material-ui/core';
+import Link from '@material-ui/core/Link';
+import { makeStyles } from '@material-ui/core/styles';
+
+
+import { addToCart } from '../../redux/cart/cart.actions'
 import { getReviews } from "../../redux/reviews/reviews.actions";
 import { selectReviewsPosts } from "../../redux/reviews/reviews.selectors";
 import {
@@ -32,6 +38,14 @@ import {
   AddBtn
 } from "./productPage.styled";
 
+const useStyles = makeStyles({
+  root: {
+    paddingLeft: "40px"
+  },
+  
+});
+
+
 function ProductPage({
   shop,
   getReviews,
@@ -42,6 +56,7 @@ function ProductPage({
   token
 }) {
   const { productID, department } = useParams();
+  const classes = useStyles();
 
   useEffect(() => {
     getReviews(department, productID);
@@ -62,8 +77,19 @@ function ProductPage({
   return (
     <Fragment>
       <Header isHomepage={false} />
+    
+      <Breadcrumbs aria-label="breadcrumb" classes={{root: classes.root}}>
+        <Link color="inherit" href="/" >
+          Home
+        </Link>
+        <Link color="inherit" href="/shop" >
+          Shop
+        </Link>
+        <Typography color="textPrimary">{item.Department}</Typography>
+      </Breadcrumbs>
 
       <ProductPageContainer>
+
         <ImageContainer>
           <Image src={item.imageURL} />
         </ImageContainer>

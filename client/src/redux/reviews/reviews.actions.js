@@ -118,7 +118,7 @@ export const deletePost = postId => async dispatch => {
 
 //Add Post
 export const addPost = (text, postId) => async dispatch => {
-  console.log(postId);
+  console.log(postId, text);
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
@@ -129,7 +129,9 @@ export const addPost = (text, postId) => async dispatch => {
     }
   };
 
-  const body = JSON.stringify({ text });
+  const body = JSON.stringify(text);
+
+  console.log(body);
 
   try {
     const res = await axios.post(`/api/posts/${postId}`, body, config);
