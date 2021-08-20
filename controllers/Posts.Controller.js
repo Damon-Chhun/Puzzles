@@ -23,7 +23,7 @@ module.exports = {
         user: req.user.id,
         name: user.name,
         avatar: user.avatar,
-        productID: product.id
+        productID: product.id,
       });
 
       const post = await newPost.save();
@@ -58,7 +58,9 @@ module.exports = {
 
       //check user
       if (post.user.toString() !== req.user.id) {
-        return res.status(401).json({ msg: "User not authorized" });
+        return res
+          .status(401)
+          .json({ errors: [{ msg: "User not authorized" }] });
       }
 
       await post.remove();
@@ -78,10 +80,12 @@ module.exports = {
 
       //Check if the post has already been liked
       if (
-        post.likes.filter(like => like.user.toString() === req.user.id).length >
-        0
+        post.likes.filter((like) => like.user.toString() === req.user.id)
+          .length > 0
       ) {
-        return res.status(400).json({ msg: "Post is already liked" });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "Post is already liked" }] });
       }
 
       post.likes.unshift({ user: req.user.id });
@@ -101,14 +105,16 @@ module.exports = {
 
       //Check if the post has already been liked
       if (
-        post.likes.filter(like => like.user.toString() === req.user.id)
+        post.likes.filter((like) => like.user.toString() === req.user.id)
           .length === 0
       ) {
-        return res.status(400).json({ msg: "Post is not liked yet" });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "Post is not liked yet" }] });
       }
 
       const removeIndex = post.likes
-        .map(like => like.user.toString())
+        .map((like) => like.user.toString())
         .indexOf(req.user.id);
 
       post.likes.splice(removeIndex, 1);
@@ -137,7 +143,7 @@ module.exports = {
         text: req.body.text,
         user: req.user.id,
         name: user.name,
-        avatar: user.avatar
+        avatar: user.avatar,
       };
 
       post.comments.unshift(newComment);
@@ -156,22 +162,26 @@ module.exports = {
 
       //pull out comment
       const comment = post.comments.find(
-        comment => comment.id.toString() === req.params.commentID
+        (comment) => comment.id.toString() === req.params.commentID
       );
 
       //check if comment exists
       if (!comment) {
-        return res.status(404).json({ msg: "comment doesn't exist" });
+        return res
+          .status(404)
+          .json({ errors: [{ msg: "comment doesn't exist" }] });
       }
 
       //check user
       if (comment.user.toString() !== req.user.id) {
-        return res.status(404).json({ msg: "User is Not Authorized" });
+        return res
+          .status(404)
+          .json({ errors: [{ msg: "User is Not Authorized" }] });
       }
 
       //Get remove index
       const removeIndex = post.comments
-        .map(comment => comment.user.toString())
+        .map((comment) => comment.user.toString())
         .indexOf(req.user.id);
 
       post.comments.splice(removeIndex, 1);
@@ -201,5 +211,5 @@ module.exports = {
       console.log(error.message);
       res.status(404).json("Server Error");
     }
-  }
+  },
 };

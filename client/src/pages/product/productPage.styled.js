@@ -11,6 +11,7 @@ export const ProductPageContainer = styled.div`
   align-items: flex-start;
   flex-wrap: wrap;
   padding: 15spx;
+  //margin-top: 30px;
 
   @media screen and (max-width: 930px) {
     flex-direction: column;

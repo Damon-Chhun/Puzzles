@@ -45,7 +45,6 @@ export const Register = ({
       setAlert("Passwords do not match", "danger")
     } else {
       register({ firstName, lastName, email, password });
-      //await loadCart();
       history.push("/");
     }
   };

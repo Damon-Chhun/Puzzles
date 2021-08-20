@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { selectShopCollection } from "../../redux/shop/shop.selectors";
 import Posts from "../../components/posts/posts.component";
 import CollectionPreview from "../../components/CollectionPreview/CollectionPreview.component";
+import Alerts from '../../components/alerts/alerts'
 
 
 import Typography from '@material-ui/core/Typography';
@@ -40,7 +41,10 @@ import {
 
 const useStyles = makeStyles({
   root: {
-    paddingLeft: "40px"
+    paddingLeft: "20px",
+    position: "sticky",
+    top: 60,
+    zIndex: 10,
   },
   
 });
@@ -87,6 +91,8 @@ function ProductPage({
         </Link>
         <Typography color="textPrimary">{item.Department}</Typography>
       </Breadcrumbs>
+
+    <Alerts />
 
       <ProductPageContainer>
 

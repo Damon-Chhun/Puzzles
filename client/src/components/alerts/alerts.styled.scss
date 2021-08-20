@@ -14,7 +14,7 @@ $success-color: #28a745;
     background: $light-color;
     color: #333;
     width: 90%;
-    
+
   }
   
 
@@ -40,6 +40,10 @@ $success-color: #28a745;
   .alert-danger {
     background: $danger-color;
     color: #fff;
+    position: sticky;
+    top:80px;
+    z-index: 10;
+    
   }
   
 

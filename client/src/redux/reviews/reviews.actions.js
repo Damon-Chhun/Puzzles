@@ -1,28 +1,29 @@
 import ActionTypes from "./reviews.Actiontypes";
 import setAuthToken from "../../utils/setAuthToken";
 import axios from "axios";
+import { setAlert } from "../alert/alert.actions";
 
 //Start GET reviews
 const getReviewsStart = () => ({
-  type: ActionTypes.GET_REVIEWS_START
+  type: ActionTypes.GET_REVIEWS_START,
 });
 
 //Successful GET reviews
-const getReviewsSuccess = data => ({
+const getReviewsSuccess = (data) => ({
   type: ActionTypes.GET_REVIEWS_SUCCESS,
-  payload: data
+  payload: data,
 });
 
 //Failed GET reviews
-const getReviewsFail = errorMessage => ({
+const getReviewsFail = (errorMessage) => ({
   type: ActionTypes.GET_REVIEWS_FAIL,
-  payload: errorMessage
+  payload: errorMessage,
 });
 
 //get reviews
 export function getReviews(department, productID) {
   console.log(department, productID);
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       await dispatch(getReviewsStart());
       const res = await axios.get(`/api/posts/${department}/${productID}`);
@@ -30,12 +31,15 @@ export function getReviews(department, productID) {
       dispatch(getReviewsSuccess(res.data));
     } catch (error) {
       dispatch(getReviewsFail("failed to get reviews"));
+      const errors = error.response.data.errors;
+      console.log(errors);
+      errors.forEach((errors) => dispatch(setAlert(errors.msg, "danger")));
     }
   };
 }
 
 //add like
-export const addLike = postId => async dispatch => {
+export const addLike = (postId) => async (dispatch) => {
   console.log(postId);
   console.log(localStorage.token);
   if (localStorage.token) {
@@ -44,34 +48,41 @@ export const addLike = postId => async dispatch => {
 
   const config = {
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   };
   try {
     const res = await axios.put(`/api/posts/like/${postId}`, config);
 
     dispatch({
       type: ActionTypes.UPDATE_LIKES,
-      payload: { postId, likes: res.data }
+      payload: { postId, likes: res.data },
     });
   } catch (error) {
+    const errors = error.response.data.errors;
+    console.log(errors);
+    errors.forEach((errors) => dispatch(setAlert(errors.msg, "danger")));
+
     dispatch({
       type: ActionTypes.LIKES_ERROR,
-      payload: { msg: error.response.statusText, status: error.response.status }
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
     });
   }
 };
 
 //unlike
-export const unlike = postId => async dispatch => {
+export const unlike = (postId) => async (dispatch) => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
 
   const config = {
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   };
 
   try {
@@ -79,26 +90,32 @@ export const unlike = postId => async dispatch => {
 
     dispatch({
       type: ActionTypes.UPDATE_LIKES,
-      payload: { postId, likes: res.data }
+      payload: { postId, likes: res.data },
     });
   } catch (error) {
+    const errors = error.response.data.errors;
+    console.log(errors);
+    errors.forEach((errors) => dispatch(setAlert(errors.msg, "danger")));
     dispatch({
       type: ActionTypes.LIKES_ERROR,
-      payload: { msg: error.response.statusText, status: error.response.status }
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
     });
   }
 };
 
 //delete post
-export const deletePost = postId => async dispatch => {
+export const deletePost = (postId) => async (dispatch) => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
 
   const config = {
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   };
 
   try {
@@ -106,18 +123,24 @@ export const deletePost = postId => async dispatch => {
 
     dispatch({
       type: ActionTypes.DELETE_POST,
-      payload: postId
+      payload: postId,
     });
   } catch (error) {
+    const errors = error.response.data.errors;
+    console.log(errors);
+    errors.forEach((errors) => dispatch(setAlert(errors.msg, "danger")));
     dispatch({
       type: ActionTypes.LIKES_ERROR,
-      payload: { msg: error.response.statusText, status: error.response.status }
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
     });
   }
 };
 
 //Add Post
-export const addPost = (text, postId) => async dispatch => {
+export const addPost = (text, postId) => async (dispatch) => {
   console.log(postId, text);
   if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -125,8 +148,8 @@ export const addPost = (text, postId) => async dispatch => {
 
   const config = {
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   };
 
   const body = JSON.stringify(text);
@@ -138,18 +161,24 @@ export const addPost = (text, postId) => async dispatch => {
 
     dispatch({
       type: ActionTypes.ADD_POST,
-      payload: res.data
+      payload: res.data,
     });
   } catch (error) {
+    const errors = error.response.data.errors;
+    console.log(errors);
+    errors.forEach((errors) => dispatch(setAlert(errors.msg, "danger")));
     dispatch({
       type: ActionTypes.LIKES_ERROR,
-      payload: { msg: error.response.statusText, status: error.response.status }
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
     });
   }
 };
 
 //GET discussion
-export const getDiscussion = postId => async dispatch => {
+export const getDiscussion = (postId) => async (dispatch) => {
   console.log(postId);
 
   try {
@@ -159,18 +188,24 @@ export const getDiscussion = postId => async dispatch => {
 
     dispatch({
       type: ActionTypes.GET_DISCUSSION,
-      payload: res.data
+      payload: res.data,
     });
   } catch (error) {
+    const errors = error.response.data.errors;
+    console.log(errors);
+    errors.forEach((errors) => dispatch(setAlert(errors.msg, "danger")));
     dispatch({
       type: ActionTypes.GET_DISCUSSION_FAIL,
-      payload: { msg: error.response.statusText, status: error.response.status }
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
     });
   }
 };
 
 //Comment on a post
-export const addComment = (text, postId) => async dispatch => {
+export const addComment = (text, postId) => async (dispatch) => {
   console.log(postId);
   if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -178,8 +213,8 @@ export const addComment = (text, postId) => async dispatch => {
 
   const config = {
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   };
 
   const body = JSON.stringify({ text });
@@ -193,18 +228,24 @@ export const addComment = (text, postId) => async dispatch => {
 
     dispatch({
       type: ActionTypes.POST_COMMENT,
-      payload: res.data
+      payload: res.data,
     });
   } catch (error) {
+    const errors = error.response.data.errors;
+    console.log(errors);
+    errors.forEach((errors) => dispatch(setAlert(errors.msg, "danger")));
     dispatch({
       type: ActionTypes.LIKES_ERROR,
-      payload: { msg: error.response.statusText, status: error.response.status }
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
     });
   }
 };
 
 //delete comment
-export const deleteComment = (commentID, postId) => async dispatch => {
+export const deleteComment = (commentID, postId) => async (dispatch) => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
@@ -214,12 +255,18 @@ export const deleteComment = (commentID, postId) => async dispatch => {
 
     dispatch({
       type: ActionTypes.DELETE_POST,
-      payload: commentID
+      payload: commentID,
     });
   } catch (error) {
+    const errors = error.response.data.errors;
+    console.log(errors);
+    errors.forEach((errors) => dispatch(setAlert(errors.msg, "danger")));
     dispatch({
       type: ActionTypes.LIKES_ERROR,
-      payload: { msg: error.response.statusText, status: error.response.status }
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
     });
   }
 };
