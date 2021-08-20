@@ -244,7 +244,8 @@ export function CalcTax(subTotal) {
 
 export function CalcTotal(subTotal, tax) {
   console.log(subTotal, tax, "SUBTOTAL AND TAX");
-  let total = subTotal + tax;
+  let total = +subTotal + +tax;
+
   total = parseFloat(total).toFixed(2);
 
   return {
