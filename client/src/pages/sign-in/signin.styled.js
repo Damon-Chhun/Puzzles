@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const SignInPageContainer = styled.div`
   height: 100vh;
   width: 100%;
-  padding-top: 40px;
+  //padding-top: 10px;
 
   display: flex;
   flex-direction: column;

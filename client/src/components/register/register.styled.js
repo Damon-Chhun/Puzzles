@@ -13,7 +13,7 @@ export const LoginComponentContainer = styled.div`
   flex-direction column;
   justify-content:flex-start;
   align-items: center;
-  padding: 15px;
+  margin-top:30px;
 `;
 
 export const EmailAndPassword = styled.div`
