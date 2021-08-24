@@ -9,7 +9,8 @@ import { selectIsAuth, selectAuthToken } from "../../redux/auth/auth.selectors";
 import "./checkout.item.styles.scss";
 
 const CheckoutItem = ({ Item, token, auth, removeItem }) => {
-  const { name, quantity, price, imageURL, productID } = Item;
+  const { name, quantity, price, imageURL, productID, department } = Item;
+
   return (
     <div className="checkout-item">
       <div className="image-container">
@@ -21,7 +22,7 @@ const CheckoutItem = ({ Item, token, auth, removeItem }) => {
         <div
           className="arrow"
           onClick={() =>
-            addToCart(productID, -1, imageURL, name, price, auth, token)
+            addToCart(productID, -1, imageURL, name, price, auth, department)
           }
         >
           &#10094;
@@ -30,7 +31,7 @@ const CheckoutItem = ({ Item, token, auth, removeItem }) => {
         <div
           className="arrow"
           onClick={() =>
-            addToCart(productID, 1, imageURL, name, price, auth, token)
+            addToCart(productID, 1, imageURL, name, price, auth, department)
           }
         >
           &#10095;
@@ -55,8 +56,8 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
   removeItem: (productID, auth) =>
     dispatch(RemoveItemFromCart(productID, auth)),
-  addToCart: (productID, quantity, imageURL, name, price, auth, token) =>
-    dispatch(addToCart(productID, quantity, imageURL, name, price, auth, token))
+  addToCart: (productID, quantity, imageURL, name, price, auth, department) =>
+    dispatch(addToCart(productID, quantity, imageURL, name, price, auth, department))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckoutItem);

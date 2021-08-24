@@ -28,55 +28,78 @@ export function addToCart(
   title,
   price,
   auth,
-  token,
   department
 ) {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
-  console.log(productID, quantity, imageURL, title, price, auth);
-  console.log("ADD TO CART ADD TO CART ADD TO CART");
+
   const config = {
     headers: {
       "Content-Type": "application/json",
     },
   };
-  console.log(quantity, "QUANTITY");
-  console.log(productID, "PRODUCTID");
-  console.log(auth);
 
   const body = JSON.stringify({ productID, quantity });
 
+  // return async (dispatch) => {
+  //   try {
+  //     if (auth !== true) {
+  //       dispatch(
+  //         addToCartUNAUTH(
+  //           productID,
+  //           title,
+  //           price,
+  //           imageURL,
+  //           quantity,
+  //           department
+  //         )
+  //       );
+  //     } else {
+  //       dispatch(AddToCartStart());
+  //       let res = await axios.post("/api/shop", body, config);
+
+  //       const indexOfProduct = res.data.products.findIndex(
+  //         (product) => product.productID === productID
+  //       );
+  //       console.log(indexOfProduct);
+  //       console.log(imageURL);
+  //       console.log(res.data);
+  //       res.data.products[indexOfProduct].imageURL = imageURL;
+  //       console.log(res.data);
+
+  //       dispatch(AddToCartSuccess(res.data));
+  //     }
+  //   } catch (error) {
+  //     dispatch(AddToCartFail("Fail"));
+  //   }
+  // };
+
   return async (dispatch) => {
-    try {
-      if (auth !== true) {
-        dispatch(
-          addToCartUNAUTH(
-            productID,
-            title,
-            price,
-            imageURL,
-            quantity,
-            department
-          )
-        );
-      } else {
-        dispatch(AddToCartStart());
+    if (auth !== true) {
+      dispatch(
+        addToCartUNAUTH(productID, title, price, imageURL, quantity, department)
+      );
+    } else {
+      dispatch(AddToCartStart());
+
+      try {
         let res = await axios.post("/api/shop", body, config);
 
         const indexOfProduct = res.data.products.findIndex(
           (product) => product.productID === productID
         );
-        console.log(indexOfProduct);
-        console.log(imageURL);
-        console.log(res.data);
-        res.data.products[indexOfProduct].imageURL = imageURL;
-        console.log(res.data);
+
+        if (indexOfProduct !== -1) {
+          res.data.products[indexOfProduct].imageURL = imageURL;
+        }
 
         dispatch(AddToCartSuccess(res.data));
+      } catch (error) {
+        console.log(error);
+
+        dispatch(AddToCartFail(error));
       }
-    } catch (error) {
-      dispatch(AddToCartFail("Fail"));
     }
   };
 }
@@ -91,10 +114,8 @@ export function addToCartUNAUTH(
   quantity,
   department
 ) {
-  console.log(productID, title, price, imageURL);
   return {
     type: ActionTypes.ADD_TO_CART_UNAUTH,
-
     payload: {
       productID,
       name: title,
@@ -136,10 +157,9 @@ export const loadCartOnLogin = () => async (dispatch) => {
   }
 
   try {
-    console.log("dispatch CHECKK CHECK CHECK CHECK");
     await dispatch(LoadCartOnLoginStart());
     const res = await axios.get("/api/shop/getCartItems");
-    console.log(res.data, "RES.DATA GET REQUEST");
+
     await dispatch(LoadCartOnLoginSuccess(res.data));
   } catch (error) {
     dispatch(LoadCartOnLoginFail("Fail"));
@@ -175,7 +195,6 @@ export function RemoveItemFromCart(productID, auth) {
       setAuthToken(localStorage.token);
     }
 
-    console.log(productID, "ID ID ID ID ID");
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -184,14 +203,12 @@ export function RemoveItemFromCart(productID, auth) {
     const body = JSON.stringify({ productID });
 
     try {
-      console.log(auth);
       if (auth !== true) {
         dispatch(RemoveItemFromCartUNAUTH(productID));
       } else {
-        console.log("dispatch CHECKK CHECK CHECK CHECK");
         await dispatch(RemoveCartItemStart());
         const res = await axios.post("/api/shop/removeCartItem", body, config);
-        console.log(res.data, "RES.DATA REQUEST");
+
         await dispatch(RemoveCartItemSuccess(res.data));
       }
     } catch (error) {
@@ -209,8 +226,6 @@ export function RemoveItemFromCartUNAUTH(productID) {
 }
 
 export function CalcSubTotal(cartItems) {
-  console.log(cartItems, "CALC SUBTOTAL ARGUMENT");
-
   if (cartItems.products === undefined) {
     return {
       type: ActionTypes.CALC_SUBTOTAL,
@@ -225,8 +240,6 @@ export function CalcSubTotal(cartItems) {
     )
     .toFixed(2);
 
-  console.log(subTotal, "SUBTOTAL CALCSUBTOTAL ACTION");
-
   return {
     type: ActionTypes.CALC_SUBTOTAL,
     payload: subTotal,
@@ -235,7 +248,7 @@ export function CalcSubTotal(cartItems) {
 
 export function CalcTax(subTotal) {
   const tax = (subTotal * 0.08).toFixed(2);
-  console.log(tax, "TAX");
+
   return {
     type: ActionTypes.CALC_TAX,
     payload: tax,
@@ -243,7 +256,6 @@ export function CalcTax(subTotal) {
 }
 
 export function CalcTotal(subTotal, tax) {
-  console.log(subTotal, tax, "SUBTOTAL AND TAX");
   let total = +subTotal + +tax;
 
   total = parseFloat(total).toFixed(2);

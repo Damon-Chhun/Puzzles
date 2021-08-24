@@ -13,33 +13,42 @@ module.exports = {
     const { quantity, productID } = req.body;
     try {
       console.log(productID, "PRODUCT ID ID ID I");
+      console.log(quantity);
       let doesCartExist = await Cart.findOne({ userId: req.user.id });
       console.log(doesCartExist);
       const item = await Shop.findById(productID);
-      console.log(item, "ITEM ITEM ITEM ITEM");
-      console.log(item.Department, "DEPRAESDKLFJSDKLFJSDLFJSDLO:");
+      //console.log(item, "ITEM ITEM ITEM ITEM");
+      //console.log(item.Department, "DEPRAESDKLFJSDKLFJSDLFJSDLO:");
 
       if (!doesCartExist && quantity < 0) {
         // If trying to reduce a product in a cart that doesn't exist
-        return res.status(400).json({ msg: "No Cart Exist" });
+        return res.status(400).json({ errors: [{ msg: "No Cart Exist" }] });
       }
       if (doesCartExist) {
         // If there is already a cart that exists
         let doesItemExist = doesCartExist.products.findIndex(
-          product => product.productID == productID
+          (product) => product.productID == productID
         );
 
         if (doesCartExist && quantity < 0 && doesItemExist < 0) {
           // If trying to reduce a product in a cart that doesn't exist
-          return res.status(400).json({ msg: "No Item Exists Exist" });
+          return res
+            .status(400)
+            .json({ errors: [{ msg: "No Item Exists Exist" }] });
         }
         console.log(doesItemExist, "    FIND INDEX");
         if (doesItemExist > -1) {
           //Item already exists in cart (change quantity)
           doesCartExist.products[doesItemExist].quantity += quantity;
-          console.log(doesCartExist.products[doesItemExist].quantity);
+          console.log(
+            doesCartExist.products[doesItemExist].quantity,
+            "quantity"
+          );
           if (doesCartExist.products[doesItemExist].quantity <= 0) {
+            console.log(doesItemExist, "    DOES ITEM EXIST");
             doesCartExist.products.splice(doesItemExist, 1);
+            console.log(doesCartExist.products);
+            console.log(doesCartExist);
           }
         } else {
           //Item doesnt exists in cart
@@ -49,7 +58,7 @@ module.exports = {
             name: item.title,
             department: item.Department,
             price: item.price,
-            imageURL: item.imageURL
+            imageURL: item.imageURL,
           });
           await doesCartExist.save();
           res.json(doesCartExist);
@@ -68,9 +77,9 @@ module.exports = {
               Department: item.Department,
               item: item.name,
               price: item.price,
-              imageURL: ""
-            }
-          ]
+              imageURL: "",
+            },
+          ],
         });
         console.log(reqCart);
         await reqCart.save();
@@ -92,7 +101,9 @@ module.exports = {
 
       // check if cart exists
       if (!doesCartExist) {
-        return res.status(404).json({ msg: "Cart doesn't exist" });
+        return res
+          .status(404)
+          .json({ errors: [{ msg: "Cart doesn't exist" }] });
       }
 
       await doesCartExist.remove();
@@ -130,7 +141,7 @@ module.exports = {
       console.log(productID, "ProductID");
 
       const indexOfSplice = cart.products.findIndex(
-        item => item.productID == productID
+        (item) => item.productID == productID
       );
       console.log(indexOfSplice, "INDEX OF SPLICE");
       const itemRemoved = cart.products.splice(indexOfSplice, 1);
@@ -139,5 +150,5 @@ module.exports = {
       await cart.save();
       res.json(itemRemoved);
     } catch (error) {}
-  }
+  },
 };
