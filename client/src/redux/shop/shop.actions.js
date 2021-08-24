@@ -5,12 +5,7 @@ const departments = ["Phones", "Laptops", "Mens", "Womens", "Hats", "Shoes"];
 
 // fetch shop collection
 export function fetchShop() {
-  return async dispatch => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    };
+  return async (dispatch) => {
     try {
       await dispatch(fetchShopStart());
       const res = await axios.get("/api/shop/");
@@ -21,8 +16,8 @@ export function fetchShop() {
           id: index,
           department: department,
           products: res.data.filter(
-            element => element.Department === department
-          )
+            (element) => element.Department === department
+          ),
         };
         return newObject;
       });
@@ -31,7 +26,7 @@ export function fetchShop() {
     } catch (error) {
       const errors = error.response.data.errors;
       if (errors) {
-        await errors.forEach(errors =>
+        await errors.forEach((errors) =>
           dispatch(fetchShopFail(errors.msg, "danger"))
         );
       }
@@ -42,30 +37,30 @@ export function fetchShop() {
 // START fetch shop collection
 const fetchShopStart = () => {
   return {
-    type: ACTIONTYPE.FETCH_SHOP_START
+    type: ACTIONTYPE.FETCH_SHOP_START,
   };
 };
 
 // SUCCESS fetch shop collection
-const fetchShopSuccess = documents => {
+const fetchShopSuccess = (documents) => {
   return {
     type: ACTIONTYPE.FETCH_SHOP_SUCCESS,
-    payload: documents
+    payload: documents,
   };
 };
 
 // FAIL fetch shop collection
-const fetchShopFail = error => {
+const fetchShopFail = (error) => {
   return {
     type: ACTIONTYPE.FETCH_SHOP_START,
-    payload: error
+    payload: error,
   };
 };
 
 // SCROLL to element state update
-export const updateScroll = name => {
+export const updateScroll = (name) => {
   return {
     type: ACTIONTYPE.SCROLL_TO,
-    payload: name
+    payload: name,
   };
 };

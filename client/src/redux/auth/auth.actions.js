@@ -142,7 +142,7 @@ export const getUserName = (userID) => async (dispatch) => {
       "Content-Type": "application/json",
     },
   };
-  const body = JSON.stringify({ userID });
+
   console.log(userID, "USERID IN getUserInfo Action");
 
   try {

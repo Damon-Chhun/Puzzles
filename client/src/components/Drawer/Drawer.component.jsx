@@ -14,8 +14,6 @@ import {
 } from "../../redux/cart/cart.selectors";
 import { selectAuthToken, selectIsAuth } from "../../redux/auth/auth.selectors";
 
-import getCartInfo from "./utill";
-
 import {
   CalcSubTotal,
   CalcTax,
@@ -28,8 +26,6 @@ import {
 import {
   DrawerContainer,
   Title,
-  CartItemsContainer,
-  ItemContainer,
   ListContainer,
   TopLineWrapper,
   CloseIcon,
@@ -60,37 +56,23 @@ const ShopDrawer = ({
   isDrawerOpen,
   auth,
   UnAuthCart,
-  SaveCostInfo,
   AuthProducts
 }) => {
-  console.log(
-    cartItems,
-    "CART ITEMS HELSDKLFJSDLKFJSLDK:FJSKL:DFJSDFL:KJSDL:KFJ"
-  );
 
   useEffect(() => {
     console.log("use effect processing");
     console.log(AuthProducts);
-    if (auth !== true) {
       console.log("unauth");
-      CalcSubTotal(UnAuthCart);
-      CalcTax(subTotalState);
+      CalcSubTotal((auth!== true) ? UnAuthCart : cartItems);
+      CalcTax( subTotalState);
       CalcTotal(subTotalState, taxState);
-    } else {
-      console.log("auth");
-      CalcSubTotal(cartItems);
-      CalcTax(subTotalState);
-      CalcTotal(subTotalState, taxState);
-    }
-  });
+});
 
-  //console.log(cartInfo);
-  // SaveCostInfo(cartInfo);
 
   return (
     <DrawerContainer>
       <TopLineWrapper>
-        {isDrawerOpen != true ? null : (
+        {isDrawerOpen !== true ? null : (
           <Icon onClick={() => closeDrawer()}>
             <CloseIcon />
           </Icon>
@@ -99,7 +81,7 @@ const ShopDrawer = ({
         <Title>Your Items</Title>
       </TopLineWrapper>
 
-      {auth == true ? (
+      {auth === true ? (
         <ListContainer>
           {AuthProducts != null
             ? AuthProducts.map(({ ...otherCartItemProps }) => {

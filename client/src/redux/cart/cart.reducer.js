@@ -1,12 +1,5 @@
 import { ActionTypes } from "./cart.ActionTypes";
-import {
-  addItemToCart,
-  removeItem,
-  addItemToUnAuthCart,
-  removeUnAuthItem,
-  removeUnAuthItemAction
-} from "./cart.util";
-import { getCartInfo } from "../../components/Drawer/utill";
+import { removeItem, addItemToUnAuthCart, removeUnAuthItem } from "./cart.util";
 
 const INITIAL_STATE = {
   isHidden: true,
@@ -14,7 +7,7 @@ const INITIAL_STATE = {
   cartItems: {
     _id: null,
     userId: null,
-    products: []
+    products: [],
   },
   message: null,
   subtotal: 0.0,
@@ -22,7 +15,7 @@ const INITIAL_STATE = {
   total: 0.0,
   quantity: 0,
   drawerIsOpen: true,
-  UnAuthCart: { products: [] }
+  UnAuthCart: { products: [] },
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -37,7 +30,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
     case ActionTypes.ADD_TO_CART_START:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
       };
     case ActionTypes.ADD_TO_CART_SUCCESS:
       console.log(payload);
@@ -46,9 +39,9 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         cartItems: {
           _id: payload._id,
           userId: payload.userId,
-          products: payload.products
+          products: payload.products,
         },
-        isLoading: false
+        isLoading: false,
       };
     case ActionTypes.ADD_TO_CART_UNAUTH:
       console.log(payload);
@@ -56,39 +49,39 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         UnAuthCart: {
-          products: addItemToUnAuthCart(state.UnAuthCart.products, payload)
-        }
+          products: addItemToUnAuthCart(state.UnAuthCart.products, payload),
+        },
       };
     case ActionTypes.ADD_TO_CART_FAIL:
       return {
         ...state,
-        message: payload
+        message: payload,
       };
     case ActionTypes.LOAD_CART_ON_LOGIN_START:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
       };
     case ActionTypes.LOAD_CART_ON_LOGIN_SUCCESS:
       return {
         ...state,
         cartItems: payload,
-        isLoading: false
+        isLoading: false,
       };
     case ActionTypes.LOAD_CART_ON_LOGIN_FAIL:
       return {
         ...state,
-        message: payload
+        message: payload,
       };
     case ActionTypes.REMOVE_ITEM_FROM_CART_FAIL:
       return {
         ...state,
-        message: payload
+        message: payload,
       };
     case ActionTypes.REMOVE_ITEM_FROM_CART_START:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
       };
     case ActionTypes.REMOVE_ITEM_FROM_CART_SUCCESS:
       console.log(payload[0].productID);
@@ -98,9 +91,9 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         cartItems: {
           _id: newPayload._id,
           userId: newPayload.userId,
-          products: newPayload.products
+          products: newPayload.products,
         },
-        isLoading: false
+        isLoading: false,
       };
 
     case ActionTypes.REMOVE_FROM_CART_UNAUTH:
@@ -109,35 +102,35 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         UnAuthCart: {
           ...state.UnAuthCart,
-          products: removeUnAuthItem(state.UnAuthCart.products, payload)
-        }
+          products: removeUnAuthItem(state.UnAuthCart.products, payload),
+        },
       };
 
     case ActionTypes.CALC_SUBTOTAL:
       return {
         ...state,
-        subtotal: payload
+        subtotal: payload,
       };
     case ActionTypes.CALC_TAX:
       return {
         ...state,
-        tax: payload
+        tax: payload,
       };
     case ActionTypes.CALC_TOTAL:
       return {
         ...state,
-        total: payload
+        total: payload,
       };
 
     case ActionTypes.OPEN_DRAWER:
       return {
         ...state,
-        drawerIsOpen: true
+        drawerIsOpen: true,
       };
     case ActionTypes.CLOSE_DRAWER:
       return {
         ...state,
-        drawerIsOpen: false
+        drawerIsOpen: false,
       };
 
     case ActionTypes.SAVE_CART_INFO:
@@ -145,7 +138,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         total: payload.total,
         tax: payload.tax,
-        subtotal: payload.subtotal
+        subtotal: payload.subtotal,
       };
 
     default:

@@ -2,6 +2,12 @@ import React from "react";
 import CheckoutItem from "../../components/checkout-item/checkout.item.component";
 import StripeCheckoutButton from "../../components/stripe-button/stripe-button.component";
 
+//MUI Breadcrumb component
+import Typography from '@material-ui/core/Typography';
+import { Breadcrumbs } from '@material-ui/core';
+import Link from '@material-ui/core/Link';
+import { makeStyles } from '@material-ui/core/styles';
+
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import {
@@ -14,9 +20,38 @@ import { selectIsAuth } from "../../redux/auth/auth.selectors";
 import Header from "../../components/header/header.component";
 import "./checkout.styles.scss";
 
-const CheckoutPage = ({ cartItems, unAuthCartItems, auth, total }) => (
+
+const useStyles = makeStyles({
+  root: {
+    
+    width: "100%",
+    position: "sticky",
+    top: 60,
+    zIndex: 10,
+  },
+  
+});
+
+
+
+const CheckoutPage = ({ cartItems, unAuthCartItems, auth, total }) => {
+
+  const classes = useStyles();
+
+return(
   <div className="checkout-page">
     <Header />
+
+    <Breadcrumbs aria-label="breadcrumb" classes={{root: classes.root}}>
+        <Link color="inherit" href="/" >
+          Home
+        </Link>
+        <Link color="inherit" href="/shop" >
+          Shop
+        </Link>
+        <Typography color="textPrimary">Checkout</Typography>
+      </Breadcrumbs>
+
     <div className="checkout-header">
       <div className="header-block">
         <span> Product </span>
@@ -50,7 +85,7 @@ const CheckoutPage = ({ cartItems, unAuthCartItems, auth, total }) => (
     </div>
     <StripeCheckoutButton price={total} />
   </div>
-);
+)};
 
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,

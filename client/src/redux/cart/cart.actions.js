@@ -4,19 +4,19 @@ import setAuthToken from "../../utils/setAuthToken";
 
 //start add to cart
 const AddToCartStart = () => ({
-  type: ActionTypes.ADD_TO_CART_START
+  type: ActionTypes.ADD_TO_CART_START,
 });
 
 //Success add to cart
-const AddToCartSuccess = cart => ({
+const AddToCartSuccess = (cart) => ({
   type: ActionTypes.ADD_TO_CART_SUCCESS,
-  payload: cart
+  payload: cart,
 });
 
 // Fail add to cart
-const AddToCartFail = error => ({
+const AddToCartFail = (error) => ({
   type: ActionTypes.ADD_TO_CART_FAIL,
-  message: error
+  message: error,
 });
 
 //add to cart
@@ -38,8 +38,8 @@ export function addToCart(
   console.log("ADD TO CART ADD TO CART ADD TO CART");
   const config = {
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   };
   console.log(quantity, "QUANTITY");
   console.log(productID, "PRODUCTID");
@@ -47,7 +47,7 @@ export function addToCart(
 
   const body = JSON.stringify({ productID, quantity });
 
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       if (auth !== true) {
         dispatch(
@@ -65,7 +65,7 @@ export function addToCart(
         let res = await axios.post("/api/shop", body, config);
 
         const indexOfProduct = res.data.products.findIndex(
-          product => product.productID == productID
+          (product) => product.productID === productID
         );
         console.log(indexOfProduct);
         console.log(imageURL);
@@ -101,36 +101,36 @@ export function addToCartUNAUTH(
       price,
       imageURL,
       quantity,
-      department
-    }
+      department,
+    },
   };
 }
 
 //start Load Cart on Login
 const LoadCartOnLoginStart = () => {
   return {
-    type: ActionTypes.LOAD_CART_ON_LOGIN_START
+    type: ActionTypes.LOAD_CART_ON_LOGIN_START,
   };
 };
 
 //Success Load Cart on Login
-const LoadCartOnLoginSuccess = cart => {
+const LoadCartOnLoginSuccess = (cart) => {
   return {
     type: ActionTypes.LOAD_CART_ON_LOGIN_SUCCESS,
-    payload: cart
+    payload: cart,
   };
 };
 
 // Fail Load Cart on Login
-const LoadCartOnLoginFail = error => {
+const LoadCartOnLoginFail = (error) => {
   return {
     type: ActionTypes.LOAD_CART_ON_LOGIN_FAIL,
-    message: error
+    message: error,
   };
 };
 
 //load cart items on login
-export const loadCartOnLogin = () => async dispatch => {
+export const loadCartOnLogin = () => async (dispatch) => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
@@ -149,28 +149,28 @@ export const loadCartOnLogin = () => async dispatch => {
 //start Remove Item from Cart
 const RemoveCartItemStart = () => {
   return {
-    type: ActionTypes.REMOVE_ITEM_FROM_CART_START
+    type: ActionTypes.REMOVE_ITEM_FROM_CART_START,
   };
 };
 
 //Success Remove Item from Cart
-const RemoveCartItemSuccess = cart => {
+const RemoveCartItemSuccess = (cart) => {
   return {
     type: ActionTypes.REMOVE_ITEM_FROM_CART_SUCCESS,
-    payload: cart
+    payload: cart,
   };
 };
 
 // Fail remove Item from Cart
-const RemoveCartItemFail = error => {
+const RemoveCartItemFail = (error) => {
   return {
     type: ActionTypes.REMOVE_ITEM_FROM_CART_FAIL,
-    message: error
+    message: error,
   };
 };
 
 export function RemoveItemFromCart(productID, auth) {
-  return async dispatch => {
+  return async (dispatch) => {
     if (localStorage.token) {
       setAuthToken(localStorage.token);
     }
@@ -178,8 +178,8 @@ export function RemoveItemFromCart(productID, auth) {
     console.log(productID, "ID ID ID ID ID");
     const config = {
       headers: {
-        "Content-Type": "application/json"
-      }
+        "Content-Type": "application/json",
+      },
     };
     const body = JSON.stringify({ productID });
 
@@ -204,17 +204,17 @@ export function RemoveItemFromCart(productID, auth) {
 export function RemoveItemFromCartUNAUTH(productID) {
   return {
     type: ActionTypes.REMOVE_FROM_CART_UNAUTH,
-    payload: productID
+    payload: productID,
   };
 }
 
 export function CalcSubTotal(cartItems) {
   console.log(cartItems, "CALC SUBTOTAL ARGUMENT");
 
-  if (cartItems.products == undefined) {
+  if (cartItems.products === undefined) {
     return {
       type: ActionTypes.CALC_SUBTOTAL,
-      payload: 0
+      payload: 0,
     };
   }
 
@@ -229,7 +229,7 @@ export function CalcSubTotal(cartItems) {
 
   return {
     type: ActionTypes.CALC_SUBTOTAL,
-    payload: subTotal
+    payload: subTotal,
   };
 }
 
@@ -238,7 +238,7 @@ export function CalcTax(subTotal) {
   console.log(tax, "TAX");
   return {
     type: ActionTypes.CALC_TAX,
-    payload: tax
+    payload: tax,
   };
 }
 
@@ -250,22 +250,22 @@ export function CalcTotal(subTotal, tax) {
 
   return {
     type: ActionTypes.CALC_TOTAL,
-    payload: total
+    payload: total,
   };
 }
 
 //OPEN DRAWER
 export const openDrawer = () => ({
-  type: ActionTypes.OPEN_DRAWER
+  type: ActionTypes.OPEN_DRAWER,
 });
 
 //CLOSE DRAWER
 export const closeDrawer = () => ({
-  type: ActionTypes.CLOSE_DRAWER
+  type: ActionTypes.CLOSE_DRAWER,
 });
 
 //save total, subtotal, and tax info to reducer
-export const SaveCostInfo = cartInfo => ({
+export const SaveCostInfo = (cartInfo) => ({
   type: ActionTypes.SAVE_CART_INFO,
-  payload: cartInfo
+  payload: cartInfo,
 });

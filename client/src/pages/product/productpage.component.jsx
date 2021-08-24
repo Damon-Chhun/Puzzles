@@ -4,7 +4,6 @@ import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
 import { selectShopCollection } from "../../redux/shop/shop.selectors";
 import Posts from "../../components/posts/posts.component";
-import CollectionPreview from "../../components/CollectionPreview/CollectionPreview.component";
 import Alerts from '../../components/alerts/alerts'
 
 
@@ -64,7 +63,7 @@ function ProductPage({
 
   useEffect(() => {
     getReviews(department, productID);
-  }, []);
+  },[]);
   console.log(productID, department, "product page arguments");
 
   const categoryIndex = shop.findIndex(category => {
@@ -114,12 +113,6 @@ function ProductPage({
             Add To Cart
           </AddBtn>
         </InfoContainer>
-
-        {/* <CollectionPreview
-          shop={shop[categoryIndex]}
-          productIndex={productIndex}
-        /> */}
-
         <PostsContainer>
           <ReviewForum productId={productID} />
           <Posts posts={posts} user={user === null ? null : user._id} />
