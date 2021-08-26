@@ -145,10 +145,12 @@ module.exports = {
 
       const post = await Posts.findById(req.params.postID);
 
+      const name = user.firstName + " " + user.lastName;
+
       const newComment = {
         text: req.body.text,
         user: req.user.id,
-        name: user.name,
+        name,
         avatar: user.avatar,
       };
 
