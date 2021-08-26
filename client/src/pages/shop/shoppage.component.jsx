@@ -2,6 +2,7 @@ import React, { useEffect, Fragment, useState } from "react";
 import Header from "../../components/header/header.component";
 import Cards from "../../components/Cards/Cards.component";
 import Scroll from "react-scroll";
+import Alerts from '../../components/alerts/alerts'
 
 import { connect } from "react-redux";
 import { compose } from "redux";
@@ -69,6 +70,7 @@ function ShopPage({
       <ShopSticky>
         <Header isHomepage={false} />
         <SmoothNavBar category={categories} />
+        <Alerts/>
       </ShopSticky>
 
       <DataContainer>

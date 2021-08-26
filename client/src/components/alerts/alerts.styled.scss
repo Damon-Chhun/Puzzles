@@ -13,8 +13,9 @@ $success-color: #28a745;
     opacity: 0.9;
     background: $light-color;
     color: #333;
-    width: 90%;
-
+    width: 100%;
+    text-align: center;
+    z-index: -1;
   }
   
 
@@ -50,6 +51,7 @@ $success-color: #28a745;
   .alert-success {
     background: $success-color;
     color: #fff;
+    
   }
   
 

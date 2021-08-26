@@ -33,12 +33,6 @@ function CartItem({
   history,
   auth
 }) {
-  //const productID = _id;
-  console.log(department, name, price, quantity, imageURL);
-
-  console.log(token, "TOKEN TOKEN TOKEN TOKEN TOKEN");
-  console.log(productID, "PRODUCTID PRODUCT ID PRODUCT ID");
-  console.log(_id, "_ID TESTINGSIGHNDFIGHJSDFKLGHJFLDKJGLDFKJ");
 
   if (!name) {
     name = "No Name Found, Fix";

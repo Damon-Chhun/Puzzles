@@ -109,7 +109,7 @@ function ProductPage({
             {item.description}
           </Description>
 
-          <AddBtn onClick={() => addToCart(item._id, 1, token)}>
+          <AddBtn onClick={() => addToCart(item._id, 1, item.imageURL, item.title, item.price,isAuth, item.department)}>
             Add To Cart
           </AddBtn>
         </InfoContainer>
@@ -137,8 +137,12 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
   getReviews: (department, productID) =>
     dispatch(getReviews(department, productID)),
-  addToCart: (productID, quantity, token) =>
-    dispatch(addToCart(productID, quantity, token))
+  addToCart: (productID,
+    quantity,imageURL,title,price,auth,department) =>
+    dispatch(addToCart(productID,quantity,imageURL,title,price,
+      auth,
+      department
+    ))
 });
 
 export default withRouter(

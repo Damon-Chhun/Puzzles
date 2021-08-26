@@ -44,7 +44,7 @@ describe("addToCartAuth", () => {
         cy.get(".MuiButton-label").click();
         cy.get(":nth-child(1) > .sc-kHOZQx").click();
         cy.addItemToCart(productArray);
-        cy.wait(1000);
+        cy.wait(1500);
         cy.window()
           .its("store")
           .invoke("getState")

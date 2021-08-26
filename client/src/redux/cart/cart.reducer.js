@@ -43,7 +43,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         },
         isLoading: false,
       };
-    case ActionTypes.ADD_TO_CART_UNAUTH:
+    case ActionTypes.ADD_TO_CART_UNAUTH_SUCCESS:
       console.log(payload);
 
       return {
@@ -52,6 +52,17 @@ const cartReducer = (state = INITIAL_STATE, action) => {
           products: addItemToUnAuthCart(state.UnAuthCart.products, payload),
         },
       };
+
+    case ActionTypes.ADD_TO_CART_UNAUTH_FAIL:
+      return {
+        ...state,
+      };
+
+    case ActionTypes.ADD_TO_CART_UNAUTH_START:
+      return {
+        ...state,
+      };
+
     case ActionTypes.ADD_TO_CART_FAIL:
       return {
         ...state,

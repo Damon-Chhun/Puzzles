@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ActionTypes } from "./cart.ActionTypes";
 import setAuthToken from "../../utils/setAuthToken";
+import { setAlert } from "../alert/alert.actions";
 
 //start add to cart
 const AddToCartStart = () => ({
@@ -42,39 +43,6 @@ export function addToCart(
 
   const body = JSON.stringify({ productID, quantity });
 
-  // return async (dispatch) => {
-  //   try {
-  //     if (auth !== true) {
-  //       dispatch(
-  //         addToCartUNAUTH(
-  //           productID,
-  //           title,
-  //           price,
-  //           imageURL,
-  //           quantity,
-  //           department
-  //         )
-  //       );
-  //     } else {
-  //       dispatch(AddToCartStart());
-  //       let res = await axios.post("/api/shop", body, config);
-
-  //       const indexOfProduct = res.data.products.findIndex(
-  //         (product) => product.productID === productID
-  //       );
-  //       console.log(indexOfProduct);
-  //       console.log(imageURL);
-  //       console.log(res.data);
-  //       res.data.products[indexOfProduct].imageURL = imageURL;
-  //       console.log(res.data);
-
-  //       dispatch(AddToCartSuccess(res.data));
-  //     }
-  //   } catch (error) {
-  //     dispatch(AddToCartFail("Fail"));
-  //   }
-  // };
-
   return async (dispatch) => {
     if (auth !== true) {
       dispatch(
@@ -94,7 +62,12 @@ export function addToCart(
           res.data.products[indexOfProduct].imageURL = imageURL;
         }
 
+        const addOrRemove = quantity > 0 ? "Added" : "Removed";
+
         dispatch(AddToCartSuccess(res.data));
+        dispatch(
+          setAlert(`Successfully ${addOrRemove} Product To Cart!`, "success")
+        );
       } catch (error) {
         console.log(error);
 
@@ -106,7 +79,16 @@ export function addToCart(
 
 //add to cart while not authorized
 
-export function addToCartUNAUTH(
+//start add to cart
+const AddToCartUNAUTHStart = () => ({
+  type: ActionTypes.ADD_TO_CART_UNAUTH_START,
+});
+
+const AddToCartUNAUTHFail = () => ({
+  type: ActionTypes.ADD_TO_CART_UNAUTH_FAIL,
+});
+
+export function addToCartUNAUTHSuccess(
   productID,
   title,
   price,
@@ -115,7 +97,7 @@ export function addToCartUNAUTH(
   department
 ) {
   return {
-    type: ActionTypes.ADD_TO_CART_UNAUTH,
+    type: ActionTypes.ADD_TO_CART_UNAUTH_SUCCESS,
     payload: {
       productID,
       name: title,
@@ -124,6 +106,41 @@ export function addToCartUNAUTH(
       quantity,
       department,
     },
+  };
+}
+
+export function addToCartUNAUTH(
+  productID,
+  title,
+  price,
+  imageURL,
+  quantity,
+  department
+) {
+  return async (dispatch) => {
+    //console.log("UNAUTH START UNAUTH START");
+
+    await dispatch(AddToCartUNAUTHStart());
+
+    try {
+      dispatch(
+        addToCartUNAUTHSuccess(
+          productID,
+          title,
+          price,
+          imageURL,
+          quantity,
+          department
+        )
+      );
+
+      dispatch(setAlert("Successfully Added Product To Cart!", "success"));
+    } catch (error) {
+      dispatch(AddToCartUNAUTHFail());
+      dispatch(
+        setAlert("Failed To Add Product To Cart, Please Try Again", "danger")
+      );
+    }
   };
 }
 
@@ -210,9 +227,16 @@ export function RemoveItemFromCart(productID, auth) {
         const res = await axios.post("/api/shop/removeCartItem", body, config);
 
         await dispatch(RemoveCartItemSuccess(res.data));
+        await dispatch(
+          setAlert("Successfully Removed Product From Cart", "success")
+        );
       }
     } catch (error) {
+      let errors = error.response.data.errors;
       dispatch(RemoveCartItemFail("Fail"));
+      errors.forEach((error) => {
+        dispatch(setAlert(errors, "danger"));
+      });
     }
   };
 }
