@@ -15,13 +15,19 @@ module.exports = {
       const user = await User.findById(req.user.id).select("-password");
       console.log(user, "USER MODEL");
 
+      console.log(req.params.productID, "PRODUCTID");
+
       const product = await Shop.findById(req.params.productID);
       console.log(product, "PRODUCT MODEL");
+
+      console.log(user.firstName, user.lastName);
+
+      const name = user.firstName + " " + user.lastName;
 
       const newPost = new Posts({
         text: req.body.text,
         user: req.user.id,
-        name: user.name,
+        name,
         avatar: user.avatar,
         productID: product.id,
       });
